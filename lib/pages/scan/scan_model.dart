@@ -6,6 +6,7 @@ class ScanModel extends FlutterFlowModel<ScanWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  var adnScan = '';
 
   @override
   void initState(BuildContext context) {}

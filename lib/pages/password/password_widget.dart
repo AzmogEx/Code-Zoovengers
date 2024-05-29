@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'password_model.dart';
 export 'password_model.dart';
 
@@ -23,8 +24,9 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     super.initState();
     _model = createModel(context, () => PasswordModel());
 
-    _model.emailAddressTextController ??= TextEditingController();
-    _model.emailAddressFocusNode ??= FocusNode();
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'password'});
+    _model.passWordTextController ??= TextEditingController();
+    _model.passWordFocusNode ??= FocusNode();
   }
 
   @override
@@ -53,6 +55,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
             size: 30.0,
           ),
           onPressed: () async {
+            logFirebaseEvent('PASSWORD_arrow_back_rounded_ICN_ON_TAP');
+            logFirebaseEvent('IconButton_navigate_back');
             context.pop();
           },
         ),
@@ -89,6 +93,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        logFirebaseEvent('PASSWORD_PAGE_Row_k7jiopb7_ON_TAP');
+                        logFirebaseEvent('Row_navigate_back');
                         context.safePop();
                       },
                       child: Row(
@@ -122,29 +128,37 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       ),
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    FFLocalizations.of(context).getText(
-                      'l1l2i0hl' /* Mots de passe final: */,
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        'l1l2i0hl' /* Mots de passe final: */,
+                      ),
+                      style:
+                          FlutterFlowTheme.of(context).headlineMedium.override(
+                                fontFamily: 'Urbanist',
+                                letterSpacing: 0.0,
+                              ),
                     ),
-                    style: FlutterFlowTheme.of(context).headlineMedium.override(
-                          fontFamily: 'Urbanist',
-                          letterSpacing: 0.0,
-                        ),
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
-                  child: Text(
-                    FFLocalizations.of(context).getText(
-                      'a58qj8yn' /* Attention vous n'avez le droit... */,
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        'a58qj8yn' /* Attention vous n'avez le droit... */,
+                      ),
+                      style: FlutterFlowTheme.of(context).labelMedium.override(
+                            fontFamily: 'Manrope',
+                            letterSpacing: 0.0,
+                          ),
                     ),
-                    style: FlutterFlowTheme.of(context).labelMedium.override(
-                          fontFamily: 'Manrope',
-                          letterSpacing: 0.0,
-                        ),
                   ),
                 ),
                 Padding(
@@ -153,8 +167,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                   child: SizedBox(
                     width: double.infinity,
                     child: TextFormField(
-                      controller: _model.emailAddressTextController,
-                      focusNode: _model.emailAddressFocusNode,
+                      controller: _model.passWordTextController,
+                      focusNode: _model.passWordFocusNode,
                       autofocus: false,
                       autofillHints: const [AutofillHints.password],
                       obscureText: false,
@@ -216,11 +230,52 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       maxLength: 10,
                       keyboardType: TextInputType.number,
                       cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.emailAddressTextControllerValidator
+                      validator: _model.passWordTextControllerValidator
                           .asValidator(context),
                     ),
                   ),
                 ),
+                if (_model.passWordTextController.text == '0123456789')
+                  Flexible(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: LinearPercentIndicator(
+                        percent: 0.0,
+                        lineHeight: 30.0,
+                        animation: true,
+                        animateFromLastPercent: true,
+                        progressColor: FlutterFlowTheme.of(context).primary,
+                        backgroundColor: FlutterFlowTheme.of(context).accent4,
+                        center: Text(
+                          FFLocalizations.of(context).getText(
+                            'dgo58x3p' /* Chargement */,
+                          ),
+                          style: FlutterFlowTheme.of(context)
+                              .headlineSmall
+                              .override(
+                                fontFamily: 'Urbanist',
+                                letterSpacing: 0.0,
+                              ),
+                        ),
+                        padding: EdgeInsets.zero,
+                      ),
+                    ),
+                  ),
+                if (_model.passWordTextController.text == '123456')
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        'h34b9tpi' /* Envoi des fichiers sur la base... */,
+                      ),
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Manrope',
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
                 Flexible(
                   child: Align(
                     alignment: const AlignmentDirectional(0.0, 1.0),
@@ -228,8 +283,35 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           16.0, 24.0, 16.0, 50.0),
                       child: FFButtonWidget(
-                        onPressed: () {
-                          print('Button-Login pressed ...');
+                        onPressed: () async {
+                          logFirebaseEvent('PASSWORD_PAGE_Button-Send_ON_TAP');
+                          if (_model.passWordTextController.text == '12345') {
+                            logFirebaseEvent('Button-Send_wait__delay');
+                            await Future.delayed(
+                                const Duration(milliseconds: 5000));
+                            logFirebaseEvent('Button-Send_navigate_to');
+
+                            context.pushNamed('Win');
+                          } else {
+                            logFirebaseEvent('Button-Send_alert_dialog');
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('ERREUR'),
+                                  content: const Text(
+                                      'le code que vous avez envoyer n\'est pas bon'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('reesayyer'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         text: FFLocalizations.of(context).getText(
                           '5e0dkiuf' /* Envoyer: */,

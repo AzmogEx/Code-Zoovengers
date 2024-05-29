@@ -12,7 +12,7 @@ class FFLocalizations {
   static FFLocalizations of(BuildContext context) =>
       Localizations.of<FFLocalizations>(context, FFLocalizations)!;
 
-  static List<String> languages() => ['fr', 'en'];
+  static List<String> languages() => ['fr', 'en', 'de'];
 
   static late SharedPreferences _prefs;
   static Future initialize() async =>
@@ -39,8 +39,9 @@ class FFLocalizations {
   String getVariableText({
     String? frText = '',
     String? enText = '',
+    String? deText = '',
   }) =>
-      [frText, enText][languageIndex] ?? '';
+      [frText, enText, deText][languageIndex] ?? '';
 
   static const Set<String> _languagesWithShortCode = {
     'ar',
@@ -109,204 +110,60 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '711x0j05': {
       'fr': 'Zoovengers Escape game',
+      'de': 'Zoovengers Escape-Spiel',
       'en': 'Zoovengers Escape game',
-    },
-    '6u6q5k7x': {
-      'fr': 'check.io',
-      'en': '',
-    },
-    'oe8eblap': {
-      'fr': 'Inbox',
-      'en': '',
-    },
-    'rtcixv5p': {
-      'fr': 'Today',
-      'en': '',
-    },
-    '9dmbm8dh': {
-      'fr': 'My Channel',
-      'en': '',
-    },
-    'qvteron4': {
-      'fr': 'Dashboard',
-      'en': '',
-    },
-    '56xvasxt': {
-      'fr': 'My Team',
-      'en': '',
-    },
-    '8u74lw2n': {
-      'fr': 'Messages',
-      'en': '',
-    },
-    'o24g37ro': {
-      'fr': 'Completed Tasks',
-      'en': '',
-    },
-    '7l2c55y6': {
-      'fr': 'Settings',
-      'en': '',
-    },
-    '0lj84kwn': {
-      'fr': 'Add Channel',
-      'en': '',
-    },
-    'icx4tey7': {
-      'fr': 'Andrew D.',
-      'en': '',
-    },
-    '1odiy6qd': {
-      'fr': 'Admin',
-      'en': '',
-    },
-    '2a1q1ut7': {
-      'fr': 'check.io',
-      'en': '',
-    },
-    '7ptr0ot4': {
-      'fr': 'Inbox',
-      'en': '',
-    },
-    'ia55uhoo': {
-      'fr': 'Today',
-      'en': '',
-    },
-    'c6zz5c8s': {
-      'fr': 'My Channel',
-      'en': '',
-    },
-    'z2yvd0mx': {
-      'fr': 'Dashboard',
-      'en': '',
-    },
-    'xeh0h7rm': {
-      'fr': 'My Team',
-      'en': '',
-    },
-    'o6j5vbi2': {
-      'fr': 'Messages',
-      'en': '',
-    },
-    'gvb1nvxt': {
-      'fr': 'Completed Tasks',
-      'en': '',
-    },
-    'drxh35q7': {
-      'fr': 'Settings',
-      'en': '',
-    },
-    'lbuhzlyd': {
-      'fr': 'Add Channel',
-      'en': '',
-    },
-    'h447ch3s': {
-      'fr': 'Andrew D.',
-      'en': '',
-    },
-    'o8ukjgso': {
-      'fr': 'Admin',
-      'en': '',
-    },
-    'bootkuwy': {
-      'fr': 'check.io',
-      'en': '',
-    },
-    '91ibz9bx': {
-      'fr': 'Inbox',
-      'en': '',
-    },
-    'rzl6apnf': {
-      'fr': 'Today',
-      'en': '',
-    },
-    '9tswfyir': {
-      'fr': 'My Channel',
-      'en': '',
-    },
-    'u3obsqd3': {
-      'fr': 'Dashboard',
-      'en': '',
-    },
-    '98ye6gdt': {
-      'fr': 'My Team',
-      'en': '',
-    },
-    '9c1ih56b': {
-      'fr': 'Messages',
-      'en': '',
-    },
-    'k122e9uc': {
-      'fr': 'Completed Tasks',
-      'en': '',
-    },
-    '0h60a1et': {
-      'fr': 'Settings',
-      'en': '',
-    },
-    'ndvrqewb': {
-      'fr': 'Add Channel',
-      'en': '',
-    },
-    'iy8zzs6l': {
-      'fr': 'Andrew D.',
-      'en': '',
-    },
-    '03ecq417': {
-      'fr': 'Admin',
-      'en': '',
     },
     'ly7rvitm': {
       'fr': 'Facile',
+      'de': 'Einfach',
       'en': 'Easy',
     },
     'q5fn3fsz': {
       'fr': 'Difficile',
-      'en': 'Hard',
+      'de': 'Schwierig',
+      'en': 'Difficult',
     },
     '1km6knrf': {
       'fr': 'Continuer',
+      'de': 'Weitermachen',
       'en': 'Continue',
+    },
+    'l3dg3sze': {
+      'fr': '8 ans et plus',
+      'de': '8 Jahre und älter',
+      'en': '8 years and over',
+    },
+    '8e6so0wr': {
+      'fr': '1 à 7 ans',
+      'de': '1 bis 7 Jahre',
+      'en': '1 to 7 years',
     },
     'ojfg8c3h': {
       'fr': 'Home',
-      'en': '',
-    },
-  },
-  // Scan
-  {
-    '0ncebavc': {
-      'fr': 'Scan',
-      'en': '',
-    },
-    'e1ghil4m': {
-      'fr': 'Scan',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // Timer
   {
     'hn7bs33d': {
       'fr': 'Choisissez la durée du compte à rebours',
-      'en': 'Choose the countdown duration:',
-    },
-    'zrpp1o6a': {
-      'fr': 'temps illimité',
-      'en': 'Unlimited time',
+      'de': 'Wählen Sie die Countdown-Dauer',
+      'en': 'Choose the countdown duration',
     },
     'sh22z9ht': {
       'fr': '1h',
-      'en': '',
+      'de': '1h',
+      'en': '1h',
     },
     '7ofavb6n': {
       'fr': '2h',
-      'en': '',
-    },
-    'dftvsuku': {
-      'fr': 'Retour',
-      'en': 'Back',
+      'de': '2h',
+      'en': '2h',
     },
     'g46hdcbm': {
       'fr': 'Compte à rebours',
+      'de': 'Countdown',
       'en': 'Countdown',
     },
   },
@@ -314,169 +171,559 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '4flophpy': {
       'fr': 'Zoovengers:',
-      'en': 'Home:',
+      'de': 'Zoovengers:',
+      'en': 'Zoovengers:',
     },
     'tx5gnfmy': {
       'fr': 'Bienvenue dans l\'escape game',
-      'en': 'Welcome to the Escape Game!',
+      'de': 'Willkommen beim Escape-Spiel',
+      'en': 'Welcome to the escape game',
     },
     'kig4qnvv': {
       'fr': 'Pourrez vous résoudre à temps les puzzles ?',
-      'en': 'Can you solve the puzzles and escape in time?',
+      'de': 'Kannst du die Rätsel rechtzeitig lösen?',
+      'en': 'Can you solve the puzzles in time?',
     },
     '23vakbx8': {
-      'fr': 'Home',
-      'en': '',
+      'fr': 'Accueil',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // Decryptek
   {
     'tqoumjk3': {
       'fr': 'Decryptek',
-      'en': '',
+      'de': 'Decryptek',
+      'en': 'Decryptek',
     },
     '21s8o4jm': {
       'fr':
           'Bienvenue sur le decryptek! Utiliser le pour déchiffrer les codes et résoudre les énigmes. Bonne chance!',
+      'de':
+          'Willkommen bei decryptek! Verwenden Sie es, um Codes zu entschlüsseln und Rätsel zu lösen. Viel Glück!',
       'en':
-          'Welcome to Decryptek! Use your skills to decipher the codes and solve the enigmas. Good luck!',
+          'Welcome to decryptek! Use it to decipher codes and solve puzzles. Good luck!',
     },
     'f2y9mbrm': {
       'fr': 'Decryptek',
-      'en': '',
+      'de': 'Decryptek',
+      'en': 'Decryptek',
     },
   },
   // password
   {
     'fpbw0kur': {
       'fr': 'Back',
-      'en': '',
+      'de': 'Zurück',
+      'en': 'Back',
     },
     'l1l2i0hl': {
       'fr': 'Mots de passe final:',
-      'en': 'Final password:',
+      'de': 'Endgültige Passwörter:',
+      'en': 'Final passwords:',
     },
     'a58qj8yn': {
-      'fr': 'Attention vous n\'avez le droit qu\'a 3 essai !',
-      'en': 'Be careful, you only have 3 tries !',
+      'fr': 'Attention vous n\'avez le droit qu\'a 3 tentatives !',
+      'de': 'Bitte beachten Sie, dass Ihnen nur 3 Versuche erlaubt sind!',
+      'en': 'Please note you are only allowed 3 attempts!',
     },
     'nnp78pgq': {
       'fr': 'Mots de passe final:',
-      'en': 'Final password:',
+      'de': 'Endgültige Passwörter:',
+      'en': 'Final passwords:',
     },
     'kv7244ty': {
       'fr': '',
+      'de': '',
+      'en': '',
+    },
+    'dgo58x3p': {
+      'fr': 'Chargement',
+      'de': 'Wird geladen',
+      'en': 'Loading',
+    },
+    'h34b9tpi': {
+      'fr': 'Envoi des fichiers sur la base de données:',
+      'de': '',
       'en': '',
     },
     '5e0dkiuf': {
       'fr': 'Envoyer:',
-      'en': 'Send',
+      'de': 'Schicken:',
+      'en': 'Send:',
     },
     'jrcins5k': {
+      'fr': 'Mots de passe',
+      'de': 'Passwörter',
+      'en': 'Passwords',
+    },
+  },
+  // GameOver
+  {
+    'me9kbrcb': {
+      'fr': 'Game Over',
+      'de': 'Spiel vorbei',
+      'en': 'Game Over',
+    },
+    '5fys4m2n': {
+      'fr': 'Vous ne vous êtes pas échappez à temps',
+      'de': 'Du bist nicht rechtzeitig entkommen',
+      'en': 'You didn\'t escape in time',
+    },
+    'n7c8br8i': {
+      'fr': 'Try Again',
+      'de': 'Versuchen Sie es erneut',
+      'en': 'Try Again',
+    },
+  },
+  // Win
+  {
+    '910ep2k8': {
+      'fr': 'Félicitation',
+      'de': 'Glückwunsch',
+      'en': 'Congratulations',
+    },
+    '0qttfj54': {
+      'fr': 'Vous avez réussi à retrouvez tout les animaux manquant !',
+      'de': 'Sie haben es geschafft, alle fehlenden Tiere zu finden!',
+      'en': 'You have managed to find all the missing animals!',
+    },
+    'pzor89sk': {
+      'fr': 'Go Home',
+      'de': 'Nach Hause gehen',
+      'en': 'Go Home',
+    },
+  },
+  // Scan
+  {
+    '3ys739fc': {
+      'fr': 'Placez le qr code au milieu du rectangle pour scanner l\'adn.',
+      'de': '',
+      'en': '',
+    },
+    'mj2zm0k2': {
+      'fr': 'Start Scanning',
+      'de': '',
+      'en': '',
+    },
+    'dmvdpma6': {
+      'fr': 'Annuler',
+      'de': '',
+      'en': '',
+    },
+    'przuw6rp': {
+      'fr': 'Scan QR Code',
+      'de': '',
+      'en': '',
+    },
+    '2t6ado82': {
+      'fr': 'Scan',
+      'de': '',
+      'en': '',
+    },
+  },
+  // Enigmes
+  {
+    'kb2gx9ki': {
+      'fr': 'fantome',
+      'de': '',
+      'en': '',
+    },
+    '9v6c5e2m': {
+      'fr': 'eclair',
+      'de': '',
+      'en': '',
+    },
+    '8kntvy5u': {
+      'fr': 'tasmanie',
+      'de': '',
+      'en': '',
+    },
+    '2077hesm': {
+      'fr': 'marsupial',
+      'de': '',
+      'en': '',
+    },
+    'kae5yyd8': {
+      'fr': 'berserk',
+      'de': '',
+      'en': '',
+    },
+    's4mzzcnt': {
+      'fr': 'Enigmes',
+      'de': '',
+      'en': '',
+    },
+    'x7pnqojq': {
+      'fr': 'enigmes',
+      'de': '',
+      'en': '',
+    },
+  },
+  // projetBerserk
+  {
+    '8iz0hrn6': {
+      'fr': 'PROJET BERSERK',
+      'de': '',
+      'en': '',
+    },
+    'zdhuaqtm': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': '',
+      'en': '',
+    },
+    'hkgj5q1s': {
+      'fr': 'code secret',
+      'de': '',
+      'en': '',
+    },
+    'mrtzag47': {
+      'fr': 'valider',
+      'de': '',
+      'en': '',
+    },
+    'yrep6uug': {
+      'fr': 'BERSERK',
+      'de': '',
+      'en': '',
+    },
+    'bfn2kbmh': {
       'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // projetTasmanie
+  {
+    '0axoixm6': {
+      'fr': 'PROJET TASMANIE',
+      'de': '',
+      'en': '',
+    },
+    'rl6x81ff': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': '',
+      'en': '',
+    },
+    'yy577qv4': {
+      'fr': 'code secret',
+      'de': '',
+      'en': '',
+    },
+    'ymjxfcil': {
+      'fr': 'valider',
+      'de': '',
+      'en': '',
+    },
+    '1s344ngj': {
+      'fr': 'TASMANIE',
+      'de': '',
+      'en': '',
+    },
+    'k885el7s': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // projetMarsupial
+  {
+    'ze66he32': {
+      'fr': 'PROJET MARSUPIAL',
+      'de': '',
+      'en': '',
+    },
+    '06vy7hfd': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': '',
+      'en': '',
+    },
+    'yc7l3mq2': {
+      'fr': 'code secret',
+      'de': '',
+      'en': '',
+    },
+    'vpbepcfj': {
+      'fr': 'valider',
+      'de': '',
+      'en': '',
+    },
+    '1qnxw2vo': {
+      'fr': 'MARSUPIAL',
+      'de': '',
+      'en': '',
+    },
+    'aqawfrhn': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // projetFantome
+  {
+    'fdqtpyjq': {
+      'fr': 'PROJET FANTOME',
+      'de': '',
+      'en': '',
+    },
+    '8q4lfq0j': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': '',
+      'en': '',
+    },
+    'eio2yvyq': {
+      'fr': 'code secret',
+      'de': '',
+      'en': '',
+    },
+    'bn06tfzo': {
+      'fr': 'valider',
+      'de': '',
+      'en': '',
+    },
+    '3g8bbclb': {
+      'fr': 'FANTOME',
+      'de': '',
+      'en': '',
+    },
+    'ty07qoo7': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // projetEclair
+  {
+    'xhzqdjal': {
+      'fr': 'PROJET ECLAIR',
+      'de': '',
+      'en': '',
+    },
+    'gjesb6rl': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': '',
+      'en': '',
+    },
+    'iorygo72': {
+      'fr': 'code secret',
+      'de': '',
+      'en': '',
+    },
+    '2whikijp': {
+      'fr': 'valider',
+      'de': '',
+      'en': '',
+    },
+    'mq8a7vs5': {
+      'fr': 'ECLAIR',
+      'de': '',
+      'en': '',
+    },
+    '31wt1dge': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // berserk
+  {
+    'f59wskar': {
+      'fr': 'Page Title',
+      'de': '',
+      'en': '',
+    },
+    'kqwe3x1v': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // tasmanie
+  {
+    'zd5dqn56': {
+      'fr': 'Page Title',
+      'de': '',
+      'en': '',
+    },
+    '9mhp0ar6': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // eclair
+  {
+    '62qmre4b': {
+      'fr': 'Page Title',
+      'de': '',
+      'en': '',
+    },
+    'jqbyenv9': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // marsupial
+  {
+    'agluf60a': {
+      'fr': 'Page Title',
+      'de': '',
+      'en': '',
+    },
+    'n5yduid3': {
+      'fr': 'Home',
+      'de': '',
+      'en': '',
+    },
+  },
+  // fantome
+  {
+    'b3jx8eqq': {
+      'fr': 'Page Title',
+      'de': '',
+      'en': '',
+    },
+    'asvzqm7t': {
+      'fr': 'Home',
+      'de': '',
       'en': '',
     },
   },
   // Miscellaneous
   {
+    'jsfto7km': {
+      'fr':
+          'Veuillez activez la permission d\'accéder à la caméra pour scanner les qr codes du jeu de piste.',
+      'de':
+          'Bitte aktivieren Sie die Berechtigung für den Zugriff auf die Kamera, um die QR-Codes der Schatzsuche zu scannen.',
+      'en':
+          'Please enable permission to access the camera to scan the treasure hunt QR codes.',
+    },
     'h2vzqt05': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '9q7gpx0t': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '335tqb7q': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'bt2up1sh': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '8r8f8vxx': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '865oe2gf': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '4dyjnwvz': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'gz2nojld': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'hz7rcmkb': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '0cwb94e8': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'v3xat9in': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '7wfxqmz8': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'cofdmuyt': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'r75saqmp': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'bh12gy3m': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '8sy262ec': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'pmsh8znu': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'swq5pezx': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'rorybedz': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '6rvy43jf': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'rdyo5tw7': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     '39nknc8k': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'jabsum65': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'fj5kvtaj': {
       'fr': '',
+      'de': '',
       'en': '',
     },
     'fc2cw25o': {
       'fr': '',
+      'de': '',
       'en': '',
     },
   },

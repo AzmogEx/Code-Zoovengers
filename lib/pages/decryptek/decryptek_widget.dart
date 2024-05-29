@@ -1,8 +1,12 @@
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'decryptek_model.dart';
 export 'decryptek_model.dart';
 
@@ -22,6 +26,24 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DecryptekModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Decryptek'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('DECRYPTEK_PAGE_Decryptek_ON_INIT_STATE');
+      logFirebaseEvent('Decryptek_timer');
+      _model.timerController.onStartTimer();
+      while (FFAppState().countDown != null) {
+        logFirebaseEvent('Decryptek_update_app_state');
+        setState(() {
+          FFAppState().countDown = _model.timerMilliseconds;
+        });
+        logFirebaseEvent('Decryptek_wait__delay');
+        await Future.delayed(const Duration(milliseconds: 200));
+      }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -33,6 +55,8 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -70,6 +94,27 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                         ),
                   ),
                 ),
+                FlutterFlowTimer(
+                  initialTime: FFAppState().countDown,
+                  getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                    value,
+                    hours: false,
+                    milliSecond: false,
+                  ),
+                  controller: _model.timerController,
+                  updateStateInterval: const Duration(milliseconds: 1000),
+                  onChanged: (value, displayTime, shouldUpdate) {
+                    _model.timerMilliseconds = value;
+                    _model.timerValue = displayTime;
+                    if (shouldUpdate) setState(() {});
+                  },
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Urbanist',
+                        fontSize: 40.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
                 Expanded(
                   child: SizedBox(
                     width: double.infinity,
@@ -90,7 +135,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                   'assets/images/Capture_decran_2024-05-27_a_14.43.40.png',
                                   width: 300.0,
                                   height: 380.0,
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.fitWidth,
                                 ),
                               ),
                               ClipRRect(

@@ -22,6 +22,8 @@ class _TimerWidgetState extends State<TimerWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimerModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Timer'});
   }
 
   @override
@@ -54,6 +56,8 @@ class _TimerWidgetState extends State<TimerWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('TIMER_PAGE_arrow_back_rounded_ICN_ON_TAP');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -79,15 +83,18 @@ class _TimerWidgetState extends State<TimerWidget> {
             children: [
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Text(
-                  FFLocalizations.of(context).getText(
-                    'hn7bs33d' /* Choisissez la durée du compte ... */,
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: Text(
+                    FFLocalizations.of(context).getText(
+                      'hn7bs33d' /* Choisissez la durée du compte ... */,
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                          fontFamily: 'Manrope',
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          letterSpacing: 0.0,
+                        ),
                   ),
-                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily: 'Manrope',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        letterSpacing: 0.0,
-                      ),
                 ),
               ),
               Flexible(
@@ -100,41 +107,22 @@ class _TimerWidgetState extends State<TimerWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Align(
-                          alignment: const AlignmentDirectional(-1.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'zrpp1o6a' /* temps illimité */,
-                            ),
-                            options: FFButtonOptions(
-                              width: 100.0,
-                              height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).secondary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                          ),
-                        ),
                         Flexible(
                           child: Align(
-                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                logFirebaseEvent('TIMER_PAGE_1H_BTN_ON_TAP');
+                                logFirebaseEvent('Button_update_app_state');
+                                setState(() {
+                                  FFAppState().countDown = 360000;
+                                });
+                                logFirebaseEvent('Button_wait__delay');
+                                await Future.delayed(
+                                    const Duration(milliseconds: 200));
+                                logFirebaseEvent('Button_navigate_to');
+
+                                context.goNamed('Accueil');
                               },
                               text: FFLocalizations.of(context).getText(
                                 'sh22z9ht' /* 1h */,
@@ -163,8 +151,18 @@ class _TimerWidgetState extends State<TimerWidget> {
                         Align(
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              logFirebaseEvent('TIMER_PAGE_2H_BTN_ON_TAP');
+                              logFirebaseEvent('Button_update_app_state');
+                              setState(() {
+                                FFAppState().countDown = 720000;
+                              });
+                              logFirebaseEvent('Button_wait__delay');
+                              await Future.delayed(
+                                  const Duration(milliseconds: 200));
+                              logFirebaseEvent('Button_navigate_to');
+
+                              context.goNamed('Accueil');
                             },
                             text: FFLocalizations.of(context).getText(
                               '7ofavb6n' /* 2h */,
@@ -190,36 +188,6 @@ class _TimerWidgetState extends State<TimerWidget> {
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                ),
-              ),
-              Flexible(
-                child: Align(
-                  alignment: const AlignmentDirectional(0.0, 1.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('Start');
-                    },
-                    text: FFLocalizations.of(context).getText(
-                      'dftvsuku' /* Retour */,
-                    ),
-                    options: FFButtonOptions(
-                      width: 150.0,
-                      height: 60.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleMedium.override(
-                                fontFamily: 'Manrope',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
                 ),

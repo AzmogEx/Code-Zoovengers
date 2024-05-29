@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 class PasswordModel extends FlutterFlowModel<PasswordWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for emailAddress widget.
-  FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressTextController;
-  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
+  // State field(s) for PassWord widget.
+  FocusNode? passWordFocusNode;
+  TextEditingController? passWordTextController;
+  String? Function(BuildContext, String?)? passWordTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    emailAddressFocusNode?.dispose();
-    emailAddressTextController?.dispose();
+    passWordFocusNode?.dispose();
+    passWordTextController?.dispose();
   }
 }

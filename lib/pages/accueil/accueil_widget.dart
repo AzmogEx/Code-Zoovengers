@@ -4,6 +4,9 @@ import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:provider/provider.dart';
 import 'accueil_model.dart';
 export 'accueil_model.dart';
 
@@ -24,6 +27,22 @@ class _AccueilWidgetState extends State<AccueilWidget> {
     super.initState();
     _model = createModel(context, () => AccueilModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Accueil'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('ACCUEIL_PAGE_Accueil_ON_INIT_STATE');
+      logFirebaseEvent('Accueil_timer');
+      _model.timerController.onStartTimer();
+      while (FFAppState().countDown != null) {
+        logFirebaseEvent('Accueil_update_app_state');
+        setState(() {
+          FFAppState().countDown = _model.timerMilliseconds;
+        });
+        logFirebaseEvent('Accueil_wait__delay');
+        await Future.delayed(const Duration(milliseconds: 200));
+      }
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -36,6 +55,8 @@ class _AccueilWidgetState extends State<AccueilWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -64,24 +85,30 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                       ),
                 ),
                 actions: [
-                  FlutterFlowIconButton(
-                    borderColor: FlutterFlowTheme.of(context).primary,
-                    borderRadius: 20.0,
-                    borderWidth: 1.0,
-                    buttonSize: 40.0,
-                    fillColor: FlutterFlowTheme.of(context).accent1,
-                    icon: Icon(
-                      Icons.mode_night_sharp,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                    child: FlutterFlowIconButton(
+                      borderRadius: 20.0,
+                      borderWidth: 1.0,
+                      buttonSize: 40.0,
+                      icon: Icon(
+                        Icons.mode_night_sharp,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                        size: 24.0,
+                      ),
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'ACCUEIL_PAGE_mode_night_sharp_ICN_ON_TAP');
+                        if (Theme.of(context).brightness == Brightness.dark) {
+                          logFirebaseEvent('IconButton_set_dark_mode_settings');
+                          setDarkModeSetting(context, ThemeMode.light);
+                        } else {
+                          logFirebaseEvent('IconButton_set_dark_mode_settings');
+                          setDarkModeSetting(context, ThemeMode.dark);
+                        }
+                      },
                     ),
-                    onPressed: () async {
-                      if (Theme.of(context).brightness == Brightness.dark) {
-                        setDarkModeSetting(context, ThemeMode.light);
-                      } else {
-                        setDarkModeSetting(context, ThemeMode.dark);
-                      }
-                    },
                   ),
                 ],
                 centerTitle: false,
@@ -116,9 +143,9 @@ class _AccueilWidgetState extends State<AccueilWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: FlutterFlowTimer(
-                    initialTime: _model.timerInitialTimeMs,
+                    initialTime: FFAppState().countDown,
                     getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
                       value,
                       hours: false,
@@ -130,6 +157,24 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                       _model.timerMilliseconds = value;
                       _model.timerValue = displayTime;
                       if (shouldUpdate) setState(() {});
+                    },
+                    onEnded: () async {
+                      logFirebaseEvent(
+                          'ACCUEIL_PAGE_Timer_l9a5aj57_ON_TIMER_END');
+                      logFirebaseEvent('Timer_navigate_to');
+
+                      context.goNamed('GameOver');
+
+                      logFirebaseEvent('Timer_play_sound');
+                      _model.soundPlayer ??= AudioPlayer();
+                      if (_model.soundPlayer!.playing) {
+                        await _model.soundPlayer!.stop();
+                      }
+                      _model.soundPlayer!.setVolume(1.0);
+                      _model.soundPlayer!
+                          .setAsset(
+                              'assets/audios/SUPER_MARIO_-_game_over_-_sound_effect.mp3')
+                          .then((_) => _model.soundPlayer!.play());
                     },
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
