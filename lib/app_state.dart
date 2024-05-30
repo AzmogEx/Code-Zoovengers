@@ -109,4 +109,33 @@ class FFAppState extends ChangeNotifier {
   set animVerif(bool value) {
     _animVerif = value;
   }
+
+  List<String> _adnScan = [];
+  List<String> get adnScan => _adnScan;
+  set adnScan(List<String> value) {
+    _adnScan = value;
+  }
+
+  void addToAdnScan(String value) {
+    _adnScan.add(value);
+  }
+
+  void removeFromAdnScan(String value) {
+    _adnScan.remove(value);
+  }
+
+  void removeAtIndexFromAdnScan(int index) {
+    _adnScan.removeAt(index);
+  }
+
+  void updateAdnScanAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _adnScan[index] = updateFn(_adnScan[index]);
+  }
+
+  void insertAtIndexInAdnScan(int index, String value) {
+    _adnScan.insert(index, value);
+  }
 }

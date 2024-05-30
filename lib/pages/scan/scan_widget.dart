@@ -30,12 +30,24 @@ class _ScanWidgetState extends State<ScanWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.timerController.onStartTimer();
-      while (FFAppState().countDown != null) {
-        setState(() {
-          FFAppState().countDown = _model.timerMilliseconds;
-        });
-        await Future.delayed(const Duration(milliseconds: 200));
-      }
+      await Future.wait([
+        Future(() async {
+          while (FFAppState().countDown != null) {
+            setState(() {
+              FFAppState().countDown = _model.timerMilliseconds;
+            });
+            await Future.delayed(const Duration(milliseconds: 200));
+          }
+        }),
+        Future(() async {
+          while (FFAppState().adnScan.contains(_model.adnScan)) {
+            setState(() {
+              FFAppState().addToAdnScan(_model.adnScan);
+            });
+            await Future.delayed(const Duration(milliseconds: 200));
+          }
+        }),
+      ]);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -64,23 +76,20 @@ class _ScanWidgetState extends State<ScanWidget> {
           automaticallyImplyLeading: false,
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 0.0, 0.0),
-              child: Text(
-                FFLocalizations.of(context).getText(
-                  'przuw6rp' /* Scan QR Code */,
-                ),
-                style: FlutterFlowTheme.of(context).headlineLarge.override(
-                      fontFamily: 'Urbanist',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      letterSpacing: 0.0,
-                    ),
+            child: Text(
+              FFLocalizations.of(context).getText(
+                'przuw6rp' /* Scan QR Code */,
               ),
+              style: FlutterFlowTheme.of(context).headlineLarge.override(
+                    fontFamily: 'Urbanist',
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    letterSpacing: 0.0,
+                  ),
             ),
           ),
           actions: [
             Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 5.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
               child: FlutterFlowTimer(
                 initialTime: FFAppState().countDown,
                 getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
@@ -161,6 +170,126 @@ class _ScanWidgetState extends State<ScanWidget> {
                         ), // cancel button text
                         true, // whether to show the flash icon
                         ScanMode.QR,
+                      );
+
+                      setState(() {
+                        FFAppState().addToAdnScan(_model.adnScan);
+                      });
+                      if (!FFAppState().Difficulte) {
+                        await Future.wait([
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('FANTOME')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              setState(() {
+                                FFAppState().removeFromAdnScan('FANTOME');
+                              });
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('HYGROCHROME')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              setState(() {
+                                FFAppState().removeFromAdnScan('HYGROCHROME');
+                              });
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('TASMANIE')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              setState(() {
+                                FFAppState().removeFromAdnScan('TASMANIE');
+                              });
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('ECLAIR')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              setState(() {
+                                FFAppState().removeFromAdnScan('ECLAIR');
+                              });
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('MARSUPIAL')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              setState(() {
+                                FFAppState().removeFromAdnScan('MARSUPIAL');
+                              });
+                            }
+                          }),
+                        ]);
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'ADN Correctement scanner, projet ajouter dans la section enigme !',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor: const Color(0xFF3CEF26),
+                        ),
                       );
 
                       setState(() {});

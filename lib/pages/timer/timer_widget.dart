@@ -106,13 +106,59 @@ class _TimerWidgetState extends State<TimerWidget> {
                         Flexible(
                           child: Align(
                             alignment: const AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  50.0, 0.0, 0.0, 0.0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  setState(() {
+                                    FFAppState().countDown = 3600000;
+                                  });
+                                  setState(() {
+                                    FFAppState().deuxheures = 3600000;
+                                  });
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 200));
+
+                                  context.goNamed('Accueil');
+                                },
+                                text: FFLocalizations.of(context).getText(
+                                  'sh22z9ht' /* 1h */,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 100.0,
+                                  height: 50.0,
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        fontFamily: 'Manrope',
+                                        color: Colors.white,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: const AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 50.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 setState(() {
-                                  FFAppState().countDown = 3600000;
+                                  FFAppState().countDown = 7200000;
                                 });
                                 setState(() {
-                                  FFAppState().deuxheures = 3600000;
+                                  FFAppState().deuxheures = 7200000;
                                 });
                                 await Future.delayed(
                                     const Duration(milliseconds: 200));
@@ -120,7 +166,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                                 context.goNamed('Accueil');
                               },
                               text: FFLocalizations.of(context).getText(
-                                'sh22z9ht' /* 1h */,
+                                '7ofavb6n' /* 2h */,
                               ),
                               options: FFButtonOptions(
                                 width: 100.0,
@@ -140,44 +186,6 @@ class _TimerWidgetState extends State<TimerWidget> {
                                 elevation: 0.0,
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              setState(() {
-                                FFAppState().countDown = 7200000;
-                              });
-                              setState(() {
-                                FFAppState().deuxheures = 7200000;
-                              });
-                              await Future.delayed(
-                                  const Duration(milliseconds: 200));
-
-                              context.goNamed('Accueil');
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              '7ofavb6n' /* 2h */,
-                            ),
-                            options: FFButtonOptions(
-                              width: 100.0,
-                              height: 50.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).secondary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 0.0,
-                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                         ),

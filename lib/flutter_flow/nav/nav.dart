@@ -33,9 +33,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       errorBuilder: (context, state) => appStateNotifier.showSplashImage
           ? Builder(
               builder: (context) => Container(
-                color: const Color(0x00FFFFFF),
+                color: Colors.transparent,
                 child: Image.asset(
-                  'assets/images/logo_ZooVengers_2.png',
+                  'assets/images/logo_zoovengers.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -48,9 +48,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => appStateNotifier.showSplashImage
               ? Builder(
                   builder: (context) => Container(
-                    color: const Color(0x00FFFFFF),
+                    color: Colors.transparent,
                     child: Image.asset(
-                      'assets/images/logo_ZooVengers_2.png',
+                      'assets/images/logo_zoovengers.png',
                       fit: BoxFit.contain,
                     ),
                   ),

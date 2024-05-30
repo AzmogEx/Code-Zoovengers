@@ -63,20 +63,17 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
           automaticallyImplyLeading: false,
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(100.0, 0.0, 0.0, 0.0),
-              child: Text(
-                FFLocalizations.of(context).getText(
-                  's4mzzcnt' /* Enigmes */,
-                ),
-                textAlign: TextAlign.center,
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Urbanist',
-                      color: Colors.white,
-                      fontSize: 30.0,
-                      letterSpacing: 0.0,
-                    ),
+            child: Text(
+              FFLocalizations.of(context).getText(
+                's4mzzcnt' /* Enigmes */,
               ),
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).headlineMedium.override(
+                    fontFamily: 'Urbanist',
+                    color: Colors.white,
+                    fontSize: 30.0,
+                    letterSpacing: 0.0,
+                  ),
             ),
           ),
           actions: [
@@ -133,52 +130,17 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            FFButtonWidget(
-                              onPressed: () async {
-                                if (FFAppState().axoloth == true) {
-                                  context.pushNamed('axololth');
-                                } else {
-                                  context.pushNamed('projetAxoloth');
-                                }
-                              },
-                              text: FFLocalizations.of(context).getText(
-                                '8kntvy5u' /* axoloth */,
-                              ),
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      fontFamily: 'Manrope',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: FFButtonWidget(
+                            if (FFAppState().adnScan.contains('AXOLOLT'))
+                              FFButtonWidget(
                                 onPressed: () async {
-                                  if (FFAppState().sentinelle == true) {
-                                    context.pushNamed('sentinelle');
+                                  if (FFAppState().axoloth == true) {
+                                    context.pushNamed('axololth');
                                   } else {
-                                    context.pushNamed('projetSentinelle');
+                                    context.pushNamed('projetAxoloth');
                                   }
                                 },
                                 text: FFLocalizations.of(context).getText(
-                                  'ejqwm72z' /* sentinelle */,
+                                  '8kntvy5u' /* axololt */,
                                 ),
                                 options: FFButtonOptions(
                                   height: 40.0,
@@ -202,122 +164,163 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (FFAppState().simbioz == true) {
-                                    context.pushNamed('symbiose');
-                                  } else {
-                                    context.pushNamed('projetSimbiose');
-                                  }
-                                },
-                                text: FFLocalizations.of(context).getText(
-                                  'hlxlfhqr' /* simbioz */,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (FFAppState().ressort == true) {
-                                    context.pushNamed('ressort');
-                                  } else {
-                                    context.pushNamed('projetRessort');
-                                  }
-                                },
-                                text: FFLocalizations.of(context).getText(
-                                  '4vtiu98s' /* ressort */,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 30.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  if (FFAppState().tasmanie == true) {
-                                    context.pushNamed('tasmanie');
-                                  } else {
-                                    context.pushNamed('projetTasmanie');
-                                  }
-                                },
-                                text: FFLocalizations.of(context).getText(
-                                  'it17rejo' /* tasmanie */,
-                                ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 3.0,
-                                  borderSide: const BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                              ),
-                            ),
-                            if (FFAppState().Difficulte == true)
+                            if (FFAppState().adnScan.contains('SENTINELLE'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 30.0, 0.0, 0.0),
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (FFAppState().sentinelle == true) {
+                                      context.pushNamed('sentinelle');
+                                    } else {
+                                      context.pushNamed('projetSentinelle');
+                                    }
+                                  },
+                                  text: FFLocalizations.of(context).getText(
+                                    'ejqwm72z' /* sentinelle */,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ),
+                            if (FFAppState().adnScan.contains('SYMBIOZ'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (FFAppState().simbioz == true) {
+                                      context.pushNamed('symbiose');
+                                    } else {
+                                      context.pushNamed('projetSimbiose');
+                                    }
+                                  },
+                                  text: FFLocalizations.of(context).getText(
+                                    'hlxlfhqr' /* simbioz */,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ),
+                            if (FFAppState().adnScan.contains('RESSORT'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (FFAppState().ressort == true) {
+                                      context.pushNamed('ressort');
+                                    } else {
+                                      context.pushNamed('projetRessort');
+                                    }
+                                  },
+                                  text: FFLocalizations.of(context).getText(
+                                    '4vtiu98s' /* ressort */,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ),
+                            if (FFAppState().adnScan.contains('TASMANIE'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    if (FFAppState().tasmanie == true) {
+                                      context.pushNamed('tasmanie');
+                                    } else {
+                                      context.pushNamed('projetTasmanie');
+                                    }
+                                  },
+                                  text: FFLocalizations.of(context).getText(
+                                    'it17rejo' /* tasmanie */,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          fontFamily: 'Manrope',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: const BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                              ),
+                            if ((FFAppState().Difficulte == true) &&
+                                FFAppState().adnScan.contains('HYGROCHROME'))
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     if (FFAppState().hygrochrome == true) {
@@ -352,10 +355,11 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                   ),
                                 ),
                               ),
-                            if (FFAppState().Difficulte == true)
+                            if ((FFAppState().Difficulte == true) &&
+                                FFAppState().adnScan.contains('FANTOME'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 30.0, 0.0, 0.0),
+                                    0.0, 20.0, 0.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     if (FFAppState().fantome == true) {
@@ -390,7 +394,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                   ),
                                 ),
                               ),
-                            if (FFAppState().Difficulte == true)
+                            if ((FFAppState().Difficulte == true) &&
+                                FFAppState().adnScan.contains('ECLAIR'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
@@ -428,7 +433,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                   ),
                                 ),
                               ),
-                            if (FFAppState().Difficulte == true)
+                            if ((FFAppState().Difficulte == true) &&
+                                FFAppState().adnScan.contains('MARSUPIAL'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
@@ -466,7 +472,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                   ),
                                 ),
                               ),
-                            if (FFAppState().Difficulte == true)
+                            if ((FFAppState().Difficulte == true) &&
+                                FFAppState().adnScan.contains('BERSERKER'))
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 20.0, 0.0, 0.0),
