@@ -24,8 +24,6 @@ class _ProjetBerserkWidgetState extends State<ProjetBerserkWidget> {
     super.initState();
     _model = createModel(context, () => ProjetBerserkModel());
 
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'projetBerserk'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -60,9 +58,7 @@ class _ProjetBerserkWidgetState extends State<ProjetBerserkWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('PROJET_BERSERK_keyboard_backspace_ICN_ON');
-              logFirebaseEvent('IconButton_navigate_back');
-              context.pop();
+              context.pushNamed('Enigmes');
             },
           ),
           title: Text(
@@ -204,18 +200,13 @@ class _ProjetBerserkWidgetState extends State<ProjetBerserkWidget> {
                       Flexible(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'PROJET_BERSERK_PAGE_VALIDER_BTN_ON_TAP');
                             if (_model.textController.text == '12345') {
-                              logFirebaseEvent('Button_update_app_state');
                               setState(() {
                                 FFAppState().berserk = true;
                               });
-                              logFirebaseEvent('Button_navigate_to');
 
                               context.pushNamed('berserk');
                             } else {
-                              logFirebaseEvent('Button_alert_dialog');
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {

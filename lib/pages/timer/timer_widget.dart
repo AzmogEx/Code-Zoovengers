@@ -22,8 +22,6 @@ class _TimerWidgetState extends State<TimerWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimerModel());
-
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Timer'});
   }
 
   @override
@@ -56,8 +54,6 @@ class _TimerWidgetState extends State<TimerWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('TIMER_PAGE_arrow_back_rounded_ICN_ON_TAP');
-              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -112,15 +108,14 @@ class _TimerWidgetState extends State<TimerWidget> {
                             alignment: const AlignmentDirectional(-1.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                logFirebaseEvent('TIMER_PAGE_1H_BTN_ON_TAP');
-                                logFirebaseEvent('Button_update_app_state');
                                 setState(() {
-                                  FFAppState().countDown = 360000;
+                                  FFAppState().countDown = 3600000;
                                 });
-                                logFirebaseEvent('Button_wait__delay');
+                                setState(() {
+                                  FFAppState().deuxheures = 3600000;
+                                });
                                 await Future.delayed(
                                     const Duration(milliseconds: 200));
-                                logFirebaseEvent('Button_navigate_to');
 
                                 context.goNamed('Accueil');
                               },
@@ -152,15 +147,14 @@ class _TimerWidgetState extends State<TimerWidget> {
                           alignment: const AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              logFirebaseEvent('TIMER_PAGE_2H_BTN_ON_TAP');
-                              logFirebaseEvent('Button_update_app_state');
                               setState(() {
-                                FFAppState().countDown = 720000;
+                                FFAppState().countDown = 7200000;
                               });
-                              logFirebaseEvent('Button_wait__delay');
+                              setState(() {
+                                FFAppState().deuxheures = 7200000;
+                              });
                               await Future.delayed(
                                   const Duration(milliseconds: 200));
-                              logFirebaseEvent('Button_navigate_to');
 
                               context.goNamed('Accueil');
                             },

@@ -24,8 +24,6 @@ class _ProjetTasmanieWidgetState extends State<ProjetTasmanieWidget> {
     super.initState();
     _model = createModel(context, () => ProjetTasmanieModel());
 
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'projetTasmanie'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -60,8 +58,6 @@ class _ProjetTasmanieWidgetState extends State<ProjetTasmanieWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('PROJET_TASMANIE_keyboard_backspace_ICN_O');
-              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -213,18 +209,13 @@ class _ProjetTasmanieWidgetState extends State<ProjetTasmanieWidget> {
                       Flexible(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'PROJET_TASMANIE_PAGE_VALIDER_BTN_ON_TAP');
                             if (_model.textController.text == '12345') {
-                              logFirebaseEvent('Button_update_app_state');
                               setState(() {
                                 FFAppState().tasmanie = true;
                               });
-                              logFirebaseEvent('Button_navigate_to');
 
                               context.pushNamed('tasmanie');
                             } else {
-                              logFirebaseEvent('Button_alert_dialog');
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {

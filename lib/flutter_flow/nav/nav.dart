@@ -82,13 +82,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const DecryptekWidget(),
         ),
         FFRoute(
-          name: 'password',
-          path: '/password',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'password')
-              : const PasswordWidget(),
-        ),
-        FFRoute(
           name: 'GameOver',
           path: '/gameOver',
           builder: (context, params) => const GameOverWidget(),
@@ -160,6 +153,63 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'fantome',
           path: '/fantome',
           builder: (context, params) => const FantomeWidget(),
+        ),
+        FFRoute(
+          name: 'axololth',
+          path: '/axololth',
+          builder: (context, params) => const AxololthWidget(),
+        ),
+        FFRoute(
+          name: 'projetAxoloth',
+          path: '/projetAxoloth',
+          builder: (context, params) => const ProjetAxolothWidget(),
+        ),
+        FFRoute(
+          name: 'symbiose',
+          path: '/symbiose',
+          builder: (context, params) => const SymbioseWidget(),
+        ),
+        FFRoute(
+          name: 'projetSimbiose',
+          path: '/projetSimbiose',
+          builder: (context, params) => const ProjetSimbioseWidget(),
+        ),
+        FFRoute(
+          name: 'sentinelle',
+          path: '/sentinelle',
+          builder: (context, params) => const SentinelleWidget(),
+        ),
+        FFRoute(
+          name: 'projetSentinelle',
+          path: '/projetSentinelle',
+          builder: (context, params) => const ProjetSentinelleWidget(),
+        ),
+        FFRoute(
+          name: 'ressort',
+          path: '/ressort',
+          builder: (context, params) => const RessortWidget(),
+        ),
+        FFRoute(
+          name: 'projetRessort',
+          path: '/projetRessort',
+          builder: (context, params) => const ProjetRessortWidget(),
+        ),
+        FFRoute(
+          name: 'hygrochrome',
+          path: '/hygrochrome',
+          builder: (context, params) => const HygrochromeWidget(),
+        ),
+        FFRoute(
+          name: 'projetHygrochrome',
+          path: '/projetHygrochrome',
+          builder: (context, params) => const ProjetHygrochromeWidget(),
+        ),
+        FFRoute(
+          name: 'password',
+          path: '/password',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'password')
+              : const PasswordWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

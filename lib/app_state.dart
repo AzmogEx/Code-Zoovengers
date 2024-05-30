@@ -50,9 +50,63 @@ class FFAppState extends ChangeNotifier {
     _tasmanie = value;
   }
 
-  int _countDown = 0;
+  int _countDown = 360000;
   int get countDown => _countDown;
   set countDown(int value) {
     _countDown = value;
+  }
+
+  bool _Difficulte = false;
+  bool get Difficulte => _Difficulte;
+  set Difficulte(bool value) {
+    _Difficulte = value;
+  }
+
+  bool _axoloth = false;
+  bool get axoloth => _axoloth;
+  set axoloth(bool value) {
+    _axoloth = value;
+  }
+
+  bool _simbioz = false;
+  bool get simbioz => _simbioz;
+  set simbioz(bool value) {
+    _simbioz = value;
+  }
+
+  bool _sentinelle = false;
+  bool get sentinelle => _sentinelle;
+  set sentinelle(bool value) {
+    _sentinelle = value;
+  }
+
+  bool _ressort = false;
+  bool get ressort => _ressort;
+  set ressort(bool value) {
+    _ressort = value;
+  }
+
+  bool _hygrochrome = false;
+  bool get hygrochrome => _hygrochrome;
+  set hygrochrome(bool value) {
+    _hygrochrome = value;
+  }
+
+  int _deuxheures = 720000;
+  int get deuxheures => _deuxheures;
+  set deuxheures(int value) {
+    _deuxheures = value;
+  }
+
+  bool _animSend = false;
+  bool get animSend => _animSend;
+  set animSend(bool value) {
+    _animSend = value;
+  }
+
+  bool _animVerif = false;
+  bool get animVerif => _animVerif;
+  set animVerif(bool value) {
+    _animVerif = value;
   }
 }

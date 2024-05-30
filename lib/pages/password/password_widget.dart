@@ -1,9 +1,12 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'password_model.dart';
 export 'password_model.dart';
 
@@ -24,9 +27,21 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     super.initState();
     _model = createModel(context, () => PasswordModel());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'password'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.timerController.onStartTimer();
+      while (FFAppState().countDown != null) {
+        setState(() {
+          FFAppState().countDown = _model.timerMilliseconds;
+        });
+        await Future.delayed(const Duration(milliseconds: 200));
+      }
+    });
+
     _model.passWordTextController ??= TextEditingController();
     _model.passWordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -38,29 +53,40 @@ class _PasswordWidgetState extends State<PasswordWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30.0,
-          borderWidth: 1.0,
-          buttonSize: 60.0,
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
-            size: 30.0,
+        actions: [
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+            child: FlutterFlowTimer(
+              initialTime: FFAppState().countDown,
+              getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                value,
+                hours: false,
+                milliSecond: false,
+              ),
+              controller: _model.timerController,
+              updateStateInterval: const Duration(milliseconds: 1000),
+              onChanged: (value, displayTime, shouldUpdate) {
+                _model.timerMilliseconds = value;
+                _model.timerValue = displayTime;
+                if (shouldUpdate) setState(() {});
+              },
+              textAlign: TextAlign.start,
+              style: FlutterFlowTheme.of(context).headlineSmall.override(
+                    fontFamily: 'Urbanist',
+                    fontSize: 40.0,
+                    letterSpacing: 0.0,
+                  ),
+            ),
           ),
-          onPressed: () async {
-            logFirebaseEvent('PASSWORD_arrow_back_rounded_ICN_ON_TAP');
-            logFirebaseEvent('IconButton_navigate_back');
-            context.pop();
-          },
-        ),
-        actions: const [],
+        ],
         centerTitle: false,
         elevation: 0.0,
       ),
@@ -93,8 +119,6 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        logFirebaseEvent('PASSWORD_PAGE_Row_k7jiopb7_ON_TAP');
-                        logFirebaseEvent('Row_navigate_back');
                         context.safePop();
                       },
                       child: Row(
@@ -114,7 +138,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 12.0, 0.0, 0.0, 0.0),
                             child: Text(
                               FFLocalizations.of(context).getText(
-                                'fpbw0kur' /* Back */,
+                                '2oun6orm' /* Back */,
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
@@ -135,7 +159,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'l1l2i0hl' /* Mots de passe final: */,
+                        'zx2l5tcm' /* Mots de passe final: */,
                       ),
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
@@ -152,7 +176,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                         const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'a58qj8yn' /* Attention vous n'avez le droit... */,
+                        '0eejz8ik' /* Attention vous n'avez le droit... */,
                       ),
                       style: FlutterFlowTheme.of(context).labelMedium.override(
                             fontFamily: 'Manrope',
@@ -174,7 +198,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       obscureText: false,
                       decoration: InputDecoration(
                         labelText: FFLocalizations.of(context).getText(
-                          'nnp78pgq' /* Mots de passe final: */,
+                          'r90vn38u' /* Mots de passe final: */,
                         ),
                         labelStyle:
                             FlutterFlowTheme.of(context).labelMedium.override(
@@ -235,45 +259,26 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     ),
                   ),
                 ),
-                if (_model.passWordTextController.text == '0123456789')
-                  Flexible(
-                    child: Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
-                      child: LinearPercentIndicator(
-                        percent: 0.0,
-                        lineHeight: 30.0,
-                        animation: true,
-                        animateFromLastPercent: true,
-                        progressColor: FlutterFlowTheme.of(context).primary,
-                        backgroundColor: FlutterFlowTheme.of(context).accent4,
-                        center: Text(
-                          FFLocalizations.of(context).getText(
-                            'dgo58x3p' /* Chargement */,
-                          ),
-                          style: FlutterFlowTheme.of(context)
-                              .headlineSmall
-                              .override(
-                                fontFamily: 'Urbanist',
-                                letterSpacing: 0.0,
-                              ),
-                        ),
-                        padding: EdgeInsets.zero,
-                      ),
-                    ),
-                  ),
-                if (_model.passWordTextController.text == '123456')
+                if (FFAppState().animSend)
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Text(
-                      FFLocalizations.of(context).getText(
-                        'h34b9tpi' /* Envoi des fichiers sur la base... */,
-                      ),
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Manrope',
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
-                          ),
+                    child: Lottie.network(
+                      'https://lottie.host/a03effb3-777a-455b-b9da-156fd42061cb/DSjVZlzKmT.json',
+                      width: 311.0,
+                      height: 130.0,
+                      fit: BoxFit.cover,
+                      animate: true,
+                    ),
+                  ),
+                if (FFAppState().animVerif)
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Lottie.network(
+                      'https://lottie.host/9bc464c8-a813-4b20-9537-a90b6b7ec77b/X1ee2TnmjJ.json',
+                      width: 188.0,
+                      height: 152.0,
+                      fit: BoxFit.cover,
+                      animate: true,
                     ),
                   ),
                 Flexible(
@@ -284,16 +289,52 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                           16.0, 24.0, 16.0, 50.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          logFirebaseEvent('PASSWORD_PAGE_Button-Send_ON_TAP');
                           if (_model.passWordTextController.text == '12345') {
-                            logFirebaseEvent('Button-Send_wait__delay');
+                            setState(() {
+                              FFAppState().animVerif = true;
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Verification des fichiers adn !',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor: const Color(0xFF7335D0),
+                              ),
+                            );
+                            await Future.delayed(
+                                const Duration(milliseconds: 8000));
+                            setState(() {
+                              FFAppState().animVerif = false;
+                            });
+                            setState(() {
+                              FFAppState().animSend = true;
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor: const Color(0xFF41E822),
+                              ),
+                            );
                             await Future.delayed(
                                 const Duration(milliseconds: 5000));
-                            logFirebaseEvent('Button-Send_navigate_to');
+                            setState(() {
+                              FFAppState().animSend = false;
+                            });
 
                             context.pushNamed('Win');
                           } else {
-                            logFirebaseEvent('Button-Send_alert_dialog');
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
@@ -314,7 +355,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                           }
                         },
                         text: FFLocalizations.of(context).getText(
-                          '5e0dkiuf' /* Envoyer: */,
+                          'i2y6xlm4' /* Envoyer: */,
                         ),
                         options: FFButtonOptions(
                           width: double.infinity,

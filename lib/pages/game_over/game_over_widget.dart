@@ -21,8 +21,6 @@ class _GameOverWidgetState extends State<GameOverWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => GameOverModel());
-
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'GameOver'});
   }
 
   @override
@@ -85,9 +83,6 @@ class _GameOverWidgetState extends State<GameOverWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      logFirebaseEvent('GAME_OVER_PAGE_TRY_AGAIN_BTN_ON_TAP');
-                      logFirebaseEvent('Button_navigate_to');
-
                       context.pushNamed('Start');
                     },
                     text: FFLocalizations.of(context).getText(

@@ -123,11 +123,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': 'Schwierig',
       'en': 'Difficult',
     },
-    '1km6knrf': {
-      'fr': 'Continuer',
-      'de': 'Weitermachen',
-      'en': 'Continue',
-    },
     'l3dg3sze': {
       'fr': '8 ans et plus',
       'de': '8 Jahre und älter',
@@ -153,8 +148,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'sh22z9ht': {
       'fr': '1h',
-      'de': '1h',
-      'en': '1h',
+      'de': '1 Stunde',
+      'en': '1 hour',
     },
     '7ofavb6n': {
       'fr': '2h',
@@ -186,8 +181,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '23vakbx8': {
       'fr': 'Accueil',
-      'de': 'Heim',
-      'en': 'Home',
+      'de': 'Willkommen',
+      'en': 'Welcome',
     },
   },
   // Decryptek
@@ -209,54 +204,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Decryptek',
       'de': 'Decryptek',
       'en': 'Decryptek',
-    },
-  },
-  // password
-  {
-    'fpbw0kur': {
-      'fr': 'Back',
-      'de': 'Zurück',
-      'en': 'Back',
-    },
-    'l1l2i0hl': {
-      'fr': 'Mots de passe final:',
-      'de': 'Endgültige Passwörter:',
-      'en': 'Final passwords:',
-    },
-    'a58qj8yn': {
-      'fr': 'Attention vous n\'avez le droit qu\'a 3 tentatives !',
-      'de': 'Bitte beachten Sie, dass Ihnen nur 3 Versuche erlaubt sind!',
-      'en': 'Please note you are only allowed 3 attempts!',
-    },
-    'nnp78pgq': {
-      'fr': 'Mots de passe final:',
-      'de': 'Endgültige Passwörter:',
-      'en': 'Final passwords:',
-    },
-    'kv7244ty': {
-      'fr': '',
-      'de': '',
-      'en': '',
-    },
-    'dgo58x3p': {
-      'fr': 'Chargement',
-      'de': 'Wird geladen',
-      'en': 'Loading',
-    },
-    'h34b9tpi': {
-      'fr': 'Envoi des fichiers sur la base de données:',
-      'de': '',
-      'en': '',
-    },
-    '5e0dkiuf': {
-      'fr': 'Envoyer:',
-      'de': 'Schicken:',
-      'en': 'Send:',
-    },
-    'jrcins5k': {
-      'fr': 'Mots de passe',
-      'de': 'Passwörter',
-      'en': 'Passwords',
     },
   },
   // GameOver
@@ -290,309 +237,618 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'You have managed to find all the missing animals!',
     },
     'pzor89sk': {
-      'fr': 'Go Home',
-      'de': 'Nach Hause gehen',
-      'en': 'Go Home',
+      'fr': 'Rejouer',
+      'de': 'Wiederholung',
+      'en': 'Replay',
     },
   },
   // Scan
   {
     '3ys739fc': {
       'fr': 'Placez le qr code au milieu du rectangle pour scanner l\'adn.',
-      'de': '',
-      'en': '',
+      'de':
+          'Platzieren Sie den QR-Code in der Mitte des Rechtecks, um die DNA zu scannen.',
+      'en': 'Place the QR code in the middle of the rectangle to scan the DNA.',
     },
     'mj2zm0k2': {
-      'fr': 'Start Scanning',
-      'de': '',
-      'en': '',
+      'fr': 'Démarrer le scan',
+      'de': 'Beginnen Sie mit dem Scannen',
+      'en': 'Start scanning',
     },
     'dmvdpma6': {
       'fr': 'Annuler',
-      'de': '',
-      'en': '',
+      'de': 'Stornieren',
+      'en': 'Cancel',
     },
     'przuw6rp': {
       'fr': 'Scan QR Code',
-      'de': '',
-      'en': '',
+      'de': 'QR-Code scannen',
+      'en': 'Scan QR Code',
     },
     '2t6ado82': {
       'fr': 'Scan',
-      'de': '',
-      'en': '',
+      'de': 'Scan',
+      'en': 'Scan',
     },
   },
   // Enigmes
   {
+    '8kntvy5u': {
+      'fr': 'axoloth',
+      'de': 'Axoloth',
+      'en': 'axoloth',
+    },
+    'ejqwm72z': {
+      'fr': 'sentinelle',
+      'de': 'Wächter',
+      'en': 'sentinel',
+    },
+    'hlxlfhqr': {
+      'fr': 'simbioz',
+      'de': 'simbioz',
+      'en': 'simbioz',
+    },
+    '4vtiu98s': {
+      'fr': 'ressort',
+      'de': 'Frühling',
+      'en': 'spring',
+    },
+    'it17rejo': {
+      'fr': 'tasmanie',
+      'de': 'Tasmanien',
+      'en': 'tasmania',
+    },
+    'toqpqu3u': {
+      'fr': 'hygrochrome',
+      'de': 'hygrochrom',
+      'en': 'hygrochromic',
+    },
     'kb2gx9ki': {
       'fr': 'fantome',
-      'de': '',
-      'en': '',
+      'de': 'Geist',
+      'en': 'ghost',
     },
     '9v6c5e2m': {
       'fr': 'eclair',
-      'de': '',
-      'en': '',
-    },
-    '8kntvy5u': {
-      'fr': 'tasmanie',
-      'de': '',
-      'en': '',
+      'de': 'Blitz',
+      'en': 'flash',
     },
     '2077hesm': {
       'fr': 'marsupial',
-      'de': '',
-      'en': '',
+      'de': 'Beuteltier',
+      'en': 'marsupial',
     },
     'kae5yyd8': {
       'fr': 'berserk',
-      'de': '',
-      'en': '',
+      'de': 'Berserker',
+      'en': 'berserk',
     },
     's4mzzcnt': {
       'fr': 'Enigmes',
-      'de': '',
-      'en': '',
+      'de': 'Rätsel',
+      'en': 'Riddles',
     },
     'x7pnqojq': {
-      'fr': 'enigmes',
-      'de': '',
-      'en': '',
+      'fr': 'Enigmes',
+      'de': 'Rätsel',
+      'en': 'Riddles',
     },
   },
   // projetBerserk
   {
     '8iz0hrn6': {
       'fr': 'PROJET BERSERK',
-      'de': '',
-      'en': '',
+      'de': 'BERSERKER-PROJEKT',
+      'en': 'BERSERK PROJECT',
     },
     'zdhuaqtm': {
       'fr': 'veuillez inserer le code du projet',
-      'de': '',
-      'en': '',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
     },
     'hkgj5q1s': {
       'fr': 'code secret',
-      'de': '',
-      'en': '',
+      'de': 'Geheim Code',
+      'en': 'secret code',
     },
     'mrtzag47': {
       'fr': 'valider',
-      'de': '',
-      'en': '',
+      'de': 'bestätigen',
+      'en': 'to validate',
     },
     'yrep6uug': {
       'fr': 'BERSERK',
-      'de': '',
-      'en': '',
+      'de': 'BERSERKER',
+      'en': 'BERSERK',
     },
     'bfn2kbmh': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // projetTasmanie
   {
     '0axoixm6': {
       'fr': 'PROJET TASMANIE',
-      'de': '',
-      'en': '',
+      'de': 'TASMANIEN-PROJEKT',
+      'en': 'TASMANIA PROJECT',
     },
     'rl6x81ff': {
       'fr': 'veuillez inserer le code du projet',
-      'de': '',
-      'en': '',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
     },
     'yy577qv4': {
       'fr': 'code secret',
-      'de': '',
-      'en': '',
+      'de': 'Geheim Code',
+      'en': 'secret code',
     },
     'ymjxfcil': {
       'fr': 'valider',
-      'de': '',
-      'en': '',
+      'de': 'bestätigen',
+      'en': 'to validate',
     },
     '1s344ngj': {
       'fr': 'TASMANIE',
-      'de': '',
-      'en': '',
+      'de': 'TASMANIEN',
+      'en': 'TASMANIA',
     },
     'k885el7s': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // projetMarsupial
   {
     'ze66he32': {
       'fr': 'PROJET MARSUPIAL',
-      'de': '',
-      'en': '',
+      'de': 'Beuteltier-Projekt',
+      'en': 'MARSUPIAL PROJECT',
     },
     '06vy7hfd': {
       'fr': 'veuillez inserer le code du projet',
-      'de': '',
-      'en': '',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
     },
     'yc7l3mq2': {
       'fr': 'code secret',
-      'de': '',
-      'en': '',
+      'de': 'Geheim Code',
+      'en': 'secret code',
     },
     'vpbepcfj': {
       'fr': 'valider',
-      'de': '',
-      'en': '',
+      'de': 'bestätigen',
+      'en': 'to validate',
     },
     '1qnxw2vo': {
       'fr': 'MARSUPIAL',
-      'de': '',
-      'en': '',
+      'de': 'BEUTELTIER',
+      'en': 'MARSUPIAL',
     },
     'aqawfrhn': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // projetFantome
   {
     'fdqtpyjq': {
       'fr': 'PROJET FANTOME',
-      'de': '',
-      'en': '',
+      'de': 'GEISTERPROJEKT',
+      'en': 'GHOST PROJECT',
     },
     '8q4lfq0j': {
       'fr': 'veuillez inserer le code du projet',
-      'de': '',
-      'en': '',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
     },
     'eio2yvyq': {
       'fr': 'code secret',
-      'de': '',
-      'en': '',
+      'de': 'Geheim Code',
+      'en': 'secret code',
     },
     'bn06tfzo': {
       'fr': 'valider',
-      'de': '',
-      'en': '',
+      'de': 'bestätigen',
+      'en': 'to validate',
     },
     '3g8bbclb': {
       'fr': 'FANTOME',
-      'de': '',
-      'en': '',
+      'de': 'GEIST',
+      'en': 'GHOST',
     },
     'ty07qoo7': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // projetEclair
   {
     'xhzqdjal': {
       'fr': 'PROJET ECLAIR',
-      'de': '',
-      'en': '',
+      'de': 'FLASH-PROJEKT',
+      'en': 'FLASH PROJECT',
     },
     'gjesb6rl': {
       'fr': 'veuillez inserer le code du projet',
-      'de': '',
-      'en': '',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
     },
     'iorygo72': {
       'fr': 'code secret',
-      'de': '',
-      'en': '',
+      'de': 'Geheim Code',
+      'en': 'secret code',
     },
     '2whikijp': {
       'fr': 'valider',
-      'de': '',
-      'en': '',
+      'de': 'bestätigen',
+      'en': 'to validate',
     },
     'mq8a7vs5': {
       'fr': 'ECLAIR',
-      'de': '',
-      'en': '',
+      'de': 'BLITZ',
+      'en': 'FLASH',
     },
     '31wt1dge': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // berserk
   {
     'f59wskar': {
-      'fr': 'Page Title',
-      'de': '',
-      'en': '',
+      'fr': 'berserk',
+      'de': 'Seitentitel',
+      'en': 'Page Title',
     },
     'kqwe3x1v': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // tasmanie
   {
     'zd5dqn56': {
-      'fr': 'Page Title',
-      'de': '',
-      'en': '',
+      'fr': 'tasmanie',
+      'de': 'Seitentitel',
+      'en': 'Page Title',
     },
     '9mhp0ar6': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // eclair
   {
     '62qmre4b': {
-      'fr': 'Page Title',
-      'de': '',
-      'en': '',
+      'fr': 'eclair',
+      'de': 'Seitentitel',
+      'en': 'Page Title',
     },
     'jqbyenv9': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // marsupial
   {
     'agluf60a': {
-      'fr': 'Page Title',
-      'de': '',
-      'en': '',
+      'fr': 'marsupial',
+      'de': 'Seitentitel',
+      'en': 'Page Title',
     },
     'n5yduid3': {
       'fr': 'Home',
-      'de': '',
-      'en': '',
+      'de': 'Heim',
+      'en': 'Home',
     },
   },
   // fantome
   {
     'b3jx8eqq': {
-      'fr': 'Page Title',
-      'de': '',
-      'en': '',
+      'fr': 'fantome',
+      'de': 'Seitentitel',
+      'en': 'Page Title',
     },
     'asvzqm7t': {
       'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // axololth
+  {
+    'qflitt38': {
+      'fr': 'axoloth',
+      'de': 'Axoloth',
+      'en': 'axoloth',
+    },
+    '7p94u5hd': {
+      'fr': 'utiliser le decriptek afin de resoudre l\'enigme',
       'de': '',
       'en': '',
+    },
+    'qb2anhgc': {
+      'fr': 'votre reponse',
+      'de': '',
+      'en': '',
+    },
+    '25xf1bud': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // projetAxoloth
+  {
+    'nw8vnig1': {
+      'fr': 'PROJET BERSERK',
+      'de': 'BERSERKER-PROJEKT',
+      'en': 'BERSERK PROJECT',
+    },
+    'q6tiw5fy': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
+    },
+    'lyl3jn5j': {
+      'fr': 'code secret',
+      'de': 'Geheim Code',
+      'en': 'secret code',
+    },
+    'cxjlvdfr': {
+      'fr': 'valider',
+      'de': 'bestätigen',
+      'en': 'to validate',
+    },
+    'yth6ql8r': {
+      'fr': 'BERSERK',
+      'de': 'BERSERKER',
+      'en': 'BERSERK',
+    },
+    'nchhdzng': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // symbiose
+  {
+    'akf0izqf': {
+      'fr': 'symbioz',
+      'de': 'Symbioz',
+      'en': 'symbioz',
+    },
+    'ixdnpqid': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // projetSimbiose
+  {
+    '1ux7sw86': {
+      'fr': 'PROJET BERSERK',
+      'de': 'BERSERKER-PROJEKT',
+      'en': 'BERSERK PROJECT',
+    },
+    'ppfll7j1': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
+    },
+    'dhbe67by': {
+      'fr': 'code secret',
+      'de': 'Geheim Code',
+      'en': 'secret code',
+    },
+    'v7fqjwf9': {
+      'fr': 'valider',
+      'de': 'bestätigen',
+      'en': 'to validate',
+    },
+    'wt1r6ojd': {
+      'fr': 'BERSERK',
+      'de': 'BERSERKER',
+      'en': 'BERSERK',
+    },
+    '2enwg85i': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // sentinelle
+  {
+    '4mp1bfmh': {
+      'fr': 'sentinelle',
+      'de': 'Wächter',
+      'en': 'sentinel',
+    },
+    't0fhjx9w': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // projetSentinelle
+  {
+    'ouo2j63o': {
+      'fr': 'PROJET BERSERK',
+      'de': 'BERSERKER-PROJEKT',
+      'en': 'BERSERK PROJECT',
+    },
+    'z1aba3j4': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
+    },
+    '6p4u828w': {
+      'fr': 'code secret',
+      'de': 'Geheim Code',
+      'en': 'secret code',
+    },
+    'xvxi0wfa': {
+      'fr': 'valider',
+      'de': 'bestätigen',
+      'en': 'to validate',
+    },
+    '95q9suci': {
+      'fr': 'sentinelle',
+      'de': 'BERSERKER',
+      'en': 'BERSERK',
+    },
+    'xljbqgkt': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // ressort
+  {
+    'hfaap6l6': {
+      'fr': 'ressort',
+      'de': 'Frühling',
+      'en': 'spring',
+    },
+    '8aw5os4m': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // projetRessort
+  {
+    'css087sx': {
+      'fr': 'PROJET BERSERK',
+      'de': 'BERSERKER-PROJEKT',
+      'en': 'BERSERK PROJECT',
+    },
+    'j993mpzn': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
+    },
+    'zzkav8aq': {
+      'fr': 'code secret',
+      'de': 'Geheim Code',
+      'en': 'secret code',
+    },
+    '8rgqh8sv': {
+      'fr': 'valider',
+      'de': 'bestätigen',
+      'en': 'to validate',
+    },
+    '7np2914y': {
+      'fr': 'BERSERK',
+      'de': 'BERSERKER',
+      'en': 'BERSERK',
+    },
+    '7mewlwci': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // hygrochrome
+  {
+    'phjl1iwc': {
+      'fr': 'hygrochrome',
+      'de': 'Seitentitel',
+      'en': 'Page Title',
+    },
+    'd3quih9r': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // projetHygrochrome
+  {
+    '54zme012': {
+      'fr': 'PROJET BERSERK',
+      'de': 'BERSERKER-PROJEKT',
+      'en': 'BERSERK PROJECT',
+    },
+    'bskm090k': {
+      'fr': 'veuillez inserer le code du projet',
+      'de': 'Bitte geben Sie den Projektcode ein',
+      'en': 'please insert the project code',
+    },
+    'sup9ppz9': {
+      'fr': 'code secret',
+      'de': 'Geheim Code',
+      'en': 'secret code',
+    },
+    '9feteob4': {
+      'fr': 'valider',
+      'de': 'bestätigen',
+      'en': 'to validate',
+    },
+    'ljui0b2m': {
+      'fr': 'BERSERK',
+      'de': 'BERSERKER',
+      'en': 'BERSERK',
+    },
+    '2igxqsb8': {
+      'fr': 'Home',
+      'de': 'Heim',
+      'en': 'Home',
+    },
+  },
+  // password
+  {
+    '2oun6orm': {
+      'fr': 'Back',
+      'de': 'Zurück',
+      'en': 'Back',
+    },
+    'zx2l5tcm': {
+      'fr': 'Mots de passe final:',
+      'de': 'Endgültige Passwörter:',
+      'en': 'Final passwords:',
+    },
+    '0eejz8ik': {
+      'fr': 'Attention vous n\'avez le droit qu\'a 3 tentatives !',
+      'de': 'Bitte beachten Sie, dass Ihnen nur 3 Versuche erlaubt sind!',
+      'en': 'Please note you are only allowed 3 attempts!',
+    },
+    'r90vn38u': {
+      'fr': 'Mots de passe final:',
+      'de': 'Endgültige Passwörter:',
+      'en': 'Final passwords:',
+    },
+    'u02o7izy': {
+      'fr': '',
+      'de': '',
+      'en': '',
+    },
+    'i2y6xlm4': {
+      'fr': 'Envoyer:',
+      'de': 'Schicken:',
+      'en': 'Send:',
+    },
+    'l1yiy5pz': {
+      'fr': 'Final',
+      'de': 'Finale',
+      'en': 'Final',
     },
   },
   // Miscellaneous
   {
+    'obh009ze': {
+      'fr': '',
+      'de': '',
+      'en': '',
+    },
     'jsfto7km': {
       'fr':
           'Veuillez activez la permission d\'accéder à la caméra pour scanner les qr codes du jeu de piste.',

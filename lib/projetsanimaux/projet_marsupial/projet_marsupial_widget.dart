@@ -24,8 +24,6 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
     super.initState();
     _model = createModel(context, () => ProjetMarsupialModel());
 
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'projetMarsupial'});
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -60,8 +58,6 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('PROJET_MARSUPIAL_keyboard_backspace_ICN_');
-              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -213,18 +209,13 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
                       Flexible(
                         child: FFButtonWidget(
                           onPressed: () async {
-                            logFirebaseEvent(
-                                'PROJET_MARSUPIAL_PAGE_VALIDER_BTN_ON_TAP');
                             if (_model.textController.text == '12345') {
-                              logFirebaseEvent('Button_update_app_state');
                               setState(() {
                                 FFAppState().marsupilan = true;
                               });
-                              logFirebaseEvent('Button_navigate_to');
 
                               context.pushNamed('marsupial');
                             } else {
-                              logFirebaseEvent('Button_alert_dialog');
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {

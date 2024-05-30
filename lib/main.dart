@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
@@ -13,7 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
   usePathUrlStrategy();
-  await initFirebase();
 
   await FlutterFlowTheme.initialize();
 
@@ -123,9 +121,9 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Accueil': const AccueilWidget(),
       'Decryptek': const DecryptekWidget(),
-      'password': const PasswordWidget(),
       'Scan': const ScanWidget(),
       'Enigmes': const EnigmesWidget(),
+      'password': const PasswordWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -164,16 +162,6 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: const Icon(
-              Icons.password,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
-              'jrcins5k' /* Mots de passe */,
-            ),
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(
               Icons.qr_code,
             ),
             label: FFLocalizations.of(context).getText(
@@ -187,7 +175,17 @@ class _NavBarPageState extends State<NavBarPage> {
               size: 24.0,
             ),
             label: FFLocalizations.of(context).getText(
-              'x7pnqojq' /* enigmes */,
+              'x7pnqojq' /* Enigmes */,
+            ),
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.password,
+              size: 24.0,
+            ),
+            label: FFLocalizations.of(context).getText(
+              'l1yiy5pz' /* Final */,
             ),
             tooltip: '',
           )

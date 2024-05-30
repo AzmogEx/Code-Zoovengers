@@ -27,18 +27,13 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
     super.initState();
     _model = createModel(context, () => DecryptekModel());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Decryptek'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('DECRYPTEK_PAGE_Decryptek_ON_INIT_STATE');
-      logFirebaseEvent('Decryptek_timer');
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
-        logFirebaseEvent('Decryptek_update_app_state');
         setState(() {
           FFAppState().countDown = _model.timerMilliseconds;
         });
-        logFirebaseEvent('Decryptek_wait__delay');
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });

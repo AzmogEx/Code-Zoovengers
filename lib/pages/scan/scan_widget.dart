@@ -1,8 +1,12 @@
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:provider/provider.dart';
 import 'scan_model.dart';
 export 'scan_model.dart';
 
@@ -23,7 +27,18 @@ class _ScanWidgetState extends State<ScanWidget> {
     super.initState();
     _model = createModel(context, () => ScanModel());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Scan'});
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.timerController.onStartTimer();
+      while (FFAppState().countDown != null) {
+        setState(() {
+          FFAppState().countDown = _model.timerMilliseconds;
+        });
+        await Future.delayed(const Duration(milliseconds: 200));
+      }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -35,6 +50,8 @@ class _ScanWidgetState extends State<ScanWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -47,18 +64,46 @@ class _ScanWidgetState extends State<ScanWidget> {
           automaticallyImplyLeading: false,
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
-            child: Text(
-              FFLocalizations.of(context).getText(
-                'przuw6rp' /* Scan QR Code */,
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(60.0, 0.0, 0.0, 0.0),
+              child: Text(
+                FFLocalizations.of(context).getText(
+                  'przuw6rp' /* Scan QR Code */,
+                ),
+                style: FlutterFlowTheme.of(context).headlineLarge.override(
+                      fontFamily: 'Urbanist',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      letterSpacing: 0.0,
+                    ),
               ),
-              style: FlutterFlowTheme.of(context).headlineLarge.override(
-                    fontFamily: 'Urbanist',
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    letterSpacing: 0.0,
-                  ),
             ),
           ),
-          actions: const [],
+          actions: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 5.0, 0.0),
+              child: FlutterFlowTimer(
+                initialTime: FFAppState().countDown,
+                getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                  value,
+                  hours: false,
+                  milliSecond: false,
+                ),
+                controller: _model.timerController,
+                updateStateInterval: const Duration(milliseconds: 1000),
+                onChanged: (value, displayTime, shouldUpdate) {
+                  _model.timerMilliseconds = value;
+                  _model.timerValue = displayTime;
+                  if (shouldUpdate) setState(() {});
+                },
+                textAlign: TextAlign.start,
+                style: FlutterFlowTheme.of(context).headlineSmall.override(
+                      fontFamily: 'Urbanist',
+                      fontSize: 30.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -109,8 +154,6 @@ class _ScanWidgetState extends State<ScanWidget> {
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      logFirebaseEvent('SCAN_PAGE_START_SCANNING_BTN_ON_TAP');
-                      logFirebaseEvent('Button_scan_barcode_q_r_code');
                       _model.adnScan = await FlutterBarcodeScanner.scanBarcode(
                         '#C62828', // scanning line color
                         FFLocalizations.of(context).getText(
@@ -123,7 +166,7 @@ class _ScanWidgetState extends State<ScanWidget> {
                       setState(() {});
                     },
                     text: FFLocalizations.of(context).getText(
-                      'mj2zm0k2' /* Start Scanning */,
+                      'mj2zm0k2' /* Démarrer le scan */,
                     ),
                     options: FFButtonOptions(
                       width: 200.0,

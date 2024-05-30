@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'win_model.dart';
 export 'win_model.dart';
 
@@ -24,7 +25,6 @@ class _WinWidgetState extends State<WinWidget> {
     super.initState();
     _model = createModel(context, () => WinModel());
 
-    logFirebaseEvent('screen_view', parameters: {'screen_name': 'Win'});
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -37,6 +37,8 @@ class _WinWidgetState extends State<WinWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -85,7 +87,10 @@ class _WinWidgetState extends State<WinWidget> {
                 ),
               ),
               FlutterFlowTimer(
-                initialTime: _model.timerInitialTimeMs,
+                initialTime: valueOrDefault<int>(
+                  FFAppState().deuxheures - FFAppState().countDown,
+                  0,
+                ),
                 getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
                   value,
                   hours: false,
@@ -101,17 +106,18 @@ class _WinWidgetState extends State<WinWidget> {
                 textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
                       fontFamily: 'Urbanist',
+                      fontSize: 40.0,
                       letterSpacing: 0.0,
                     ),
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    context.goNamed('Start');
                   },
                   text: FFLocalizations.of(context).getText(
-                    'pzor89sk' /* Go Home */,
+                    'pzor89sk' /* Rejouer */,
                   ),
                   options: FFButtonOptions(
                     width: 130.0,

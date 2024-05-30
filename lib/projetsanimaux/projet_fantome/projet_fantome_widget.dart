@@ -3,9 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'projet_fantome_model.dart';
 export 'projet_fantome_model.dart';
 
@@ -26,39 +24,6 @@ class _ProjetFantomeWidgetState extends State<ProjetFantomeWidget> {
     super.initState();
     _model = createModel(context, () => ProjetFantomeModel());
 
-    logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'projetFantome'});
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('PROJET_FANTOME_projetFantome_ON_INIT_STA');
-      if (_model.textController.text == '12345') {
-        logFirebaseEvent('projetFantome_update_app_state');
-        setState(() {
-          FFAppState().fantome = true;
-        });
-        logFirebaseEvent('projetFantome_navigate_to');
-
-        context.pushNamed('fantome');
-      } else {
-        logFirebaseEvent('projetFantome_alert_dialog');
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: const Text('ERREUR!'),
-              content: const Text('mauvais code'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: const Text('reesseyer'),
-                ),
-              ],
-            );
-          },
-        );
-      }
-    });
-
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
   }
@@ -72,8 +37,6 @@ class _ProjetFantomeWidgetState extends State<ProjetFantomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -95,8 +58,6 @@ class _ProjetFantomeWidgetState extends State<ProjetFantomeWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              logFirebaseEvent('PROJET_FANTOME_keyboard_backspace_ICN_ON');
-              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),
@@ -247,8 +208,31 @@ class _ProjetFantomeWidgetState extends State<ProjetFantomeWidget> {
                       ),
                       Flexible(
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            if (_model.textController.text == '12345') {
+                              setState(() {
+                                FFAppState().fantome = true;
+                              });
+
+                              context.pushNamed('fantome');
+                            } else {
+                              await showDialog(
+                                context: context,
+                                builder: (alertDialogContext) {
+                                  return AlertDialog(
+                                    title: const Text('ERREUR!'),
+                                    content: const Text('mauvais code'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: const Text('reesseyer'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            }
                           },
                           text: FFLocalizations.of(context).getText(
                             'bn06tfzo' /* valider */,

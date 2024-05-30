@@ -9,10 +9,10 @@ class WinModel extends FlutterFlowModel<WinWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for Timer widget.
-  final timerInitialTimeMs = 60000;
-  int timerMilliseconds = 60000;
+  final timerInitialTimeMs = 0;
+  int timerMilliseconds = 0;
   String timerValue = StopWatchTimer.getDisplayTime(
-    60000,
+    0,
     hours: false,
     milliSecond: false,
   );
