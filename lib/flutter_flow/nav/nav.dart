@@ -210,11 +210,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'password')
               : const PasswordWidget(),
-        ),
-        FFRoute(
-          name: 'Video',
-          path: '/video',
-          builder: (context, params) => const VideoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

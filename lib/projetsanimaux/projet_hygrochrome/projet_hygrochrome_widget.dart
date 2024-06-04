@@ -64,7 +64,7 @@ class _ProjetHygrochromeWidgetState extends State<ProjetHygrochromeWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'ljui0b2m' /* BERSERK */,
+              'ljui0b2m' /* Hygrochrome */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Urbanist',
@@ -86,8 +86,8 @@ class _ProjetHygrochromeWidgetState extends State<ProjetHygrochromeWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Container(
-                    width: 400.0,
-                    height: 704.0,
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       shape: BoxShape.rectangle,
@@ -100,7 +100,7 @@ class _ProjetHygrochromeWidgetState extends State<ProjetHygrochromeWidget> {
                       children: [
                         Text(
                           FFLocalizations.of(context).getText(
-                            '54zme012' /* PROJET BERSERK */,
+                            '54zme012' /* PROJET Hygrochrome */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(

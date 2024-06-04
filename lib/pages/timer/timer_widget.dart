@@ -121,7 +121,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                                   context.goNamed('Accueil');
                                 },
                                 text: FFLocalizations.of(context).getText(
-                                  'sh22z9ht' /* Speed */,
+                                  'sh22z9ht' /* 1h */,
                                 ),
                                 options: FFButtonOptions(
                                   width: 100.0,
@@ -162,7 +162,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                                 context.goNamed('Accueil');
                               },
                               text: FFLocalizations.of(context).getText(
-                                '7ofavb6n' /* Tranquille */,
+                                '7ofavb6n' /* 2h */,
                               ),
                               options: FFButtonOptions(
                                 width: 100.0,

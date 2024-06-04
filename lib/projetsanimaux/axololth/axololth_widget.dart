@@ -59,7 +59,7 @@ class _AxololthWidgetState extends State<AxololthWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'qflitt38' /* axoloth */,
+              'qflitt38' /* axololt */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Urbanist',
@@ -77,14 +77,17 @@ class _AxololthWidgetState extends State<AxololthWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              FlutterFlowVideoPlayer(
-                path: 'assets/videos/intro_loading.mp4',
-                videoType: VideoType.asset,
-                autoPlay: true,
-                looping: false,
-                showControls: false,
-                allowFullScreen: true,
-                allowPlaybackSpeedMenu: false,
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: FlutterFlowVideoPlayer(
+                  path: 'assets/videos/intro_loading.mp4',
+                  videoType: VideoType.asset,
+                  autoPlay: true,
+                  looping: false,
+                  showControls: false,
+                  allowFullScreen: true,
+                  allowPlaybackSpeedMenu: false,
+                ),
               ),
             ],
           ),

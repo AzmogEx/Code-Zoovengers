@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -142,109 +141,6 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                   centerTitle: false,
                   elevation: 0.0,
                 ),
-                if (FFAppState().notification == true)
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: AlignedTooltip(
-                      content: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'h7a358pd' /* Bon dépêche toi un peu ! */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ),
-                      offset: 4.0,
-                      preferredDirection: AxisDirection.down,
-                      borderRadius: BorderRadius.circular(8.0),
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 4.0,
-                      tailBaseWidth: 24.0,
-                      tailLength: 12.0,
-                      waitDuration: const Duration(milliseconds: 100),
-                      showDuration: const Duration(milliseconds: 1500),
-                      triggerMode: TooltipTriggerMode.tap,
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          FFAppState().notification = false;
-                          setState(() {});
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.asset(
-                            'assets/images/file.png',
-                            width: 98.0,
-                            height: 108.0,
-                            fit: BoxFit.cover,
-                            alignment: const Alignment(0.0, 0.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                if (FFAppState().notification == true)
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: AlignedTooltip(
-                      content: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Text(
-                          FFLocalizations.of(context).getText(
-                            'zk93uf01' /* L'agence croit en toi ! */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                      ),
-                      offset: 4.0,
-                      preferredDirection: AxisDirection.down,
-                      borderRadius: BorderRadius.circular(8.0),
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
-                      elevation: 4.0,
-                      tailBaseWidth: 24.0,
-                      tailLength: 12.0,
-                      waitDuration: const Duration(milliseconds: 100),
-                      showDuration: const Duration(milliseconds: 1500),
-                      triggerMode: TooltipTriggerMode.tap,
-                      child: Visibility(
-                        visible: FFAppState().notification2 == true,
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            FFAppState().notification = false;
-                            setState(() {});
-                          },
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(
-                              'assets/images/file.png',
-                              width: 98.0,
-                              height: 108.0,
-                              fit: BoxFit.cover,
-                              alignment: const Alignment(0.0, 0.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
@@ -269,6 +165,7 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Manrope',
                           color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 16.0,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -324,8 +221,8 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
                         'assets/images/final_sans_fond_zoovengers.png',
-                        width: 394.0,
-                        height: 415.0,
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        height: MediaQuery.sizeOf(context).height * 0.5,
                         fit: BoxFit.contain,
                       ),
                     ),

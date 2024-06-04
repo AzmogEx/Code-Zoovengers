@@ -63,7 +63,7 @@ class _ProjetSimbioseWidgetState extends State<ProjetSimbioseWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'wt1r6ojd' /* BERSERK */,
+              'wt1r6ojd' /* Symbioz */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Urbanist',
@@ -85,8 +85,8 @@ class _ProjetSimbioseWidgetState extends State<ProjetSimbioseWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Container(
-                    width: 400.0,
-                    height: 704.0,
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       shape: BoxShape.rectangle,
@@ -99,7 +99,7 @@ class _ProjetSimbioseWidgetState extends State<ProjetSimbioseWidget> {
                       children: [
                         Text(
                           FFLocalizations.of(context).getText(
-                            '1ux7sw86' /* PROJET BERSERK */,
+                            '1ux7sw86' /* PROJET Symbioz */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(

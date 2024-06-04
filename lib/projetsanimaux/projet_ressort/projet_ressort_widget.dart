@@ -63,7 +63,7 @@ class _ProjetRessortWidgetState extends State<ProjetRessortWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              '7np2914y' /* BERSERK */,
+              '7np2914y' /* Ressort */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Urbanist',
@@ -85,8 +85,8 @@ class _ProjetRessortWidgetState extends State<ProjetRessortWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Container(
-                    width: 400.0,
-                    height: 704.0,
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       shape: BoxShape.rectangle,
@@ -99,7 +99,7 @@ class _ProjetRessortWidgetState extends State<ProjetRessortWidget> {
                       children: [
                         Text(
                           FFLocalizations.of(context).getText(
-                            'css087sx' /* PROJET BERSERK */,
+                            'css087sx' /* PROJET Ressort */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(

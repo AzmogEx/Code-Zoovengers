@@ -68,9 +68,10 @@ class _StartWidgetState extends State<StartWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                   child: FlutterFlowLanguageSelector(
-                    width: 250.0,
+                    width: MediaQuery.sizeOf(context).width * 0.35,
+                    height: MediaQuery.sizeOf(context).height * 0.08,
                     backgroundColor: const Color(0xFF137C8B),
                     borderColor: Colors.transparent,
                     dropdownIconColor: Colors.white,
@@ -78,7 +79,7 @@ class _StartWidgetState extends State<StartWidget> {
                     textStyle: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.normal,
-                      fontSize: 13.0,
+                      fontSize: 20.0,
                     ),
                     hideFlags: true,
                     flagSize: 24.0,
@@ -90,10 +91,10 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.62, -0.02),
+                alignment: const AlignmentDirectional(-0.58, 0.04),
                 child: Container(
-                  width: 100.0,
-                  height: 100.0,
+                  width: MediaQuery.sizeOf(context).width * 0.3,
+                  height: MediaQuery.sizeOf(context).height * 0.08,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
@@ -108,7 +109,8 @@ class _StartWidgetState extends State<StartWidget> {
                       'ly7rvitm' /* Famille */,
                     ),
                     options: FFButtonOptions(
-                      height: 40.0,
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
@@ -118,6 +120,7 @@ class _StartWidgetState extends State<StartWidget> {
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Manrope',
                                 color: Colors.white,
+                                fontSize: 20.0,
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
@@ -131,10 +134,10 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.74, -0.02),
+                alignment: const AlignmentDirectional(0.74, 0.04),
                 child: Container(
-                  width: 100.0,
-                  height: 100.0,
+                  width: MediaQuery.sizeOf(context).width * 0.3,
+                  height: MediaQuery.sizeOf(context).height * 0.08,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
@@ -159,6 +162,7 @@ class _StartWidgetState extends State<StartWidget> {
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Manrope',
                                 color: Colors.white,
+                                fontSize: 20.0,
                                 letterSpacing: 0.0,
                               ),
                       elevation: 3.0,
@@ -172,25 +176,27 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.7, 0.2),
+                alignment: const AlignmentDirectional(0.73, 0.22),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     'l3dg3sze' /* 10 ans et plus */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
+                        fontSize: 20.0,
                         letterSpacing: 0.0,
                       ),
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.53, 0.2),
+                alignment: const AlignmentDirectional(-0.43, 0.21),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     '8e6so0wr' /* 7 ans */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
+                        fontSize: 20.0,
                         letterSpacing: 0.0,
                       ),
                 ),

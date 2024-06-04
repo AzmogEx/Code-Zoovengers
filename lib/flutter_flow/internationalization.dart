@@ -147,12 +147,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Elige la duración de la cuenta atrás',
     },
     'sh22z9ht': {
-      'fr': 'Speed',
+      'fr': '1h',
       'en': '1 hour',
       'es': '1 hora',
     },
     '7ofavb6n': {
-      'fr': 'Tranquille',
+      'fr': '2h',
       'en': '2h',
       'es': '2h',
     },
@@ -168,16 +168,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Zoovengers:',
       'en': 'Zoovengers:',
       'es': 'Vengadores del zoológico:',
-    },
-    'h7a358pd': {
-      'fr': 'Bon dépêche toi un peu !',
-      'en': '',
-      'es': '',
-    },
-    'zk93uf01': {
-      'fr': 'L\'agence croit en toi !',
-      'en': '',
-      'es': '',
     },
     'tx5gnfmy': {
       'fr': 'L\'agence zoovengers vous souhaite la bienvenue',
@@ -577,7 +567,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // axololth
   {
     'qflitt38': {
-      'fr': 'axoloth',
+      'fr': 'axololt',
       'en': 'axoloth',
       'es': 'ajolote',
     },
@@ -590,7 +580,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // projetAxoloth
   {
     'nw8vnig1': {
-      'fr': 'PROJET BERSERK',
+      'fr': 'PROJET Axololt',
       'en': 'BERSERK PROJECT',
       'es': 'PROYECTO BERSERK',
     },
@@ -610,7 +600,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'validar',
     },
     'yth6ql8r': {
-      'fr': 'BERSERK',
+      'fr': 'Axololt',
       'en': 'BERSERK',
       'es': 'ENLOQUECIDO',
     },
@@ -636,7 +626,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // projetSimbiose
   {
     '1ux7sw86': {
-      'fr': 'PROJET BERSERK',
+      'fr': 'PROJET Symbioz',
       'en': 'BERSERK PROJECT',
       'es': 'PROYECTO BERSERK',
     },
@@ -656,7 +646,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'validar',
     },
     'wt1r6ojd': {
-      'fr': 'BERSERK',
+      'fr': 'Symbioz',
       'en': 'BERSERK',
       'es': 'ENLOQUECIDO',
     },
@@ -728,7 +718,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // projetRessort
   {
     'css087sx': {
-      'fr': 'PROJET BERSERK',
+      'fr': 'PROJET Ressort',
       'en': 'BERSERK PROJECT',
       'es': 'PROYECTO BERSERK',
     },
@@ -748,7 +738,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'validar',
     },
     '7np2914y': {
-      'fr': 'BERSERK',
+      'fr': 'Ressort',
       'en': 'BERSERK',
       'es': 'ENLOQUECIDO',
     },
@@ -774,7 +764,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // projetHygrochrome
   {
     '54zme012': {
-      'fr': 'PROJET BERSERK',
+      'fr': 'PROJET Hygrochrome',
       'en': 'BERSERK PROJECT',
       'es': 'PROYECTO BERSERK',
     },
@@ -794,7 +784,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'validar',
     },
     'ljui0b2m': {
-      'fr': 'BERSERK',
+      'fr': 'Hygrochrome',
       'en': 'BERSERK',
       'es': 'ENLOQUECIDO',
     },
@@ -840,14 +830,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr': 'Final',
       'en': 'Final',
       'es': 'Final',
-    },
-  },
-  // Video
-  {
-    '6c0h2k8p': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
     },
   },
   // Miscellaneous
