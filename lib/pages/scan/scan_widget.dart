@@ -1,6 +1,12 @@
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:provider/provider.dart';
 import 'scan_model.dart';
 export 'scan_model.dart';
 
@@ -20,6 +26,29 @@ class _ScanWidgetState extends State<ScanWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ScanModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.timerController.onStartTimer();
+      await Future.wait([
+        Future(() async {
+          while (FFAppState().countDown != null) {
+            FFAppState().countDown = _model.timerMilliseconds;
+            setState(() {});
+            await Future.delayed(const Duration(milliseconds: 200));
+          }
+        }),
+        Future(() async {
+          while (FFAppState().adnScan.contains(_model.adnScan)) {
+            FFAppState().addToAdnScan(_model.adnScan);
+            setState(() {});
+            await Future.delayed(const Duration(milliseconds: 200));
+          }
+        }),
+      ]);
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -31,6 +60,8 @@ class _ScanWidgetState extends State<ScanWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -38,40 +69,249 @@ class _ScanWidgetState extends State<ScanWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: const Drawer(
-          elevation: 16.0,
-        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
-          leading: const Icon(
-            Icons.density_medium_sharp,
-            color: Colors.white,
-            size: 24.0,
-          ),
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Text(
               FFLocalizations.of(context).getText(
-                '0ncebavc' /* Scan */,
+                'przuw6rp' /* Scan QR Code */,
               ),
-              style: FlutterFlowTheme.of(context).headlineMedium.override(
+              style: FlutterFlowTheme.of(context).headlineLarge.override(
                     fontFamily: 'Urbanist',
-                    color: Colors.white,
-                    fontSize: 22.0,
+                    color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
                   ),
             ),
           ),
-          actions: const [],
+          actions: [
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+              child: FlutterFlowTimer(
+                initialTime: FFAppState().countDown,
+                getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                  value,
+                  hours: false,
+                  milliSecond: false,
+                ),
+                controller: _model.timerController,
+                updateStateInterval: const Duration(milliseconds: 1000),
+                onChanged: (value, displayTime, shouldUpdate) {
+                  _model.timerMilliseconds = value;
+                  _model.timerValue = displayTime;
+                  if (shouldUpdate) setState(() {});
+                },
+                textAlign: TextAlign.start,
+                style: FlutterFlowTheme.of(context).headlineSmall.override(
+                      fontFamily: 'Urbanist',
+                      fontSize: 30.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),
-        body: const SafeArea(
+        body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
+                child: Text(
+                  FFLocalizations.of(context).getText(
+                    '3ys739fc' /* Placez le qr code au milieu du... */,
+                  ),
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Manrope',
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        fontSize: 13.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Container(
+                  width: 267.0,
+                  height: 300.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Icon(
+                      Icons.qr_code_scanner,
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      size: 128.0,
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      _model.adnScan = await FlutterBarcodeScanner.scanBarcode(
+                        '#C62828', // scanning line color
+                        FFLocalizations.of(context).getText(
+                          'dmvdpma6' /* Annuler */,
+                        ), // cancel button text
+                        true, // whether to show the flash icon
+                        ScanMode.QR,
+                      );
+
+                      FFAppState().addToAdnScan(_model.adnScan);
+                      setState(() {});
+                      if (!FFAppState().Difficulte) {
+                        await Future.wait([
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('FANTOME')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              FFAppState().removeFromAdnScan('FANTOME');
+                              setState(() {});
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('HYGROCHROME')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              FFAppState().removeFromAdnScan('HYGROCHROME');
+                              setState(() {});
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('TASMANIE')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              FFAppState().removeFromAdnScan('TASMANIE');
+                              setState(() {});
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('ECLAIR')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              FFAppState().removeFromAdnScan('ECLAIR');
+                              setState(() {});
+                            }
+                          }),
+                          Future(() async {
+                            if (FFAppState().adnScan.contains('MARSUPIAL')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                    style: TextStyle(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
+                                    ),
+                                  ),
+                                  duration: const Duration(milliseconds: 4000),
+                                  backgroundColor: const Color(0xFFFF0004),
+                                ),
+                              );
+                              FFAppState().removeFromAdnScan('MARSUPIAL');
+                              setState(() {});
+                            }
+                          }),
+                        ]);
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'ADN Correctement scanner, projet ajouter dans la section enigme !',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: const Duration(milliseconds: 4000),
+                          backgroundColor: const Color(0xFF3CEF26),
+                        ),
+                      );
+
+                      setState(() {});
+                    },
+                    text: FFLocalizations.of(context).getText(
+                      'mj2zm0k2' /* Démarrer le scan */,
+                    ),
+                    options: FFButtonOptions(
+                      width: 200.0,
+                      height: 50.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .titleSmall
+                          .override(
+                            fontFamily: 'Manrope',
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            letterSpacing: 0.0,
+                          ),
+                      elevation: 2.0,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

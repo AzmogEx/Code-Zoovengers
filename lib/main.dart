@@ -1,3 +1,4 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,7 +15,13 @@ void main() async {
 
   await FlutterFlowTheme.initialize();
 
-  runApp(const MyApp());
+  final appState = FFAppState(); // Initialize FFAppState
+  await appState.initializePersistedState();
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => appState,
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -35,12 +42,17 @@ class _MyAppState extends State<MyApp> {
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
 
+  bool displaySplashImage = true;
+
   @override
   void initState() {
     super.initState();
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
+
+    Future.delayed(const Duration(milliseconds: 1000),
+        () => setState(() => _appStateNotifier.stopShowingSplashImage()));
   }
 
   void setLocale(String language) {
@@ -55,7 +67,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'zoovengers',
+      title: 'Zoovengers',
       localizationsDelegates: const [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -66,6 +78,7 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [
         Locale('fr'),
         Locale('en'),
+        Locale('es'),
       ],
       theme: ThemeData(
         brightness: Brightness.light,
@@ -107,8 +120,10 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Accueil': const AccueilWidget(),
-      'Scan': const ScanWidget(),
       'Decryptek': const DecryptekWidget(),
+      'Scan': const ScanWidget(),
+      'Enigmes': const EnigmesWidget(),
+      'password': const PasswordWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -123,8 +138,8 @@ class _NavBarPageState extends State<NavBarPage> {
         backgroundColor: Colors.white,
         selectedItemColor: FlutterFlowTheme.of(context).primary,
         unselectedItemColor: const Color(0x8A000000),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -132,17 +147,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.home,
             ),
             label: FFLocalizations.of(context).getText(
-              '23vakbx8' /* Home */,
-            ),
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.qr_code,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
-              'e1ghil4m' /* Scan */,
+              '23vakbx8' /* Accueil */,
             ),
             tooltip: '',
           ),
@@ -152,6 +157,35 @@ class _NavBarPageState extends State<NavBarPage> {
             ),
             label: FFLocalizations.of(context).getText(
               'f2y9mbrm' /* Decryptek */,
+            ),
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.qr_code,
+            ),
+            label: FFLocalizations.of(context).getText(
+              '2t6ado82' /* Scan */,
+            ),
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.castle,
+              size: 24.0,
+            ),
+            label: FFLocalizations.of(context).getText(
+              'x7pnqojq' /* Enigmes */,
+            ),
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.password,
+              size: 24.0,
+            ),
+            label: FFLocalizations.of(context).getText(
+              'l1yiy5pz' /* Final */,
             ),
             tooltip: '',
           )

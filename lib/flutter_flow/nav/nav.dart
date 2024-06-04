@@ -30,23 +30,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => const StartWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Image.asset(
+                  'assets/images/final_sans_fond_zoovengers.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
+          : const StartWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const StartWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      'assets/images/final_sans_fond_zoovengers.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                )
+              : const StartWidget(),
         ),
         FFRoute(
           name: 'Start',
           path: '/start',
           builder: (context, params) => const StartWidget(),
-        ),
-        FFRoute(
-          name: 'Scan',
-          path: '/scan',
-          builder: (context, params) =>
-              params.isEmpty ? const NavBarPage(initialPage: 'Scan') : const ScanWidget(),
         ),
         FFRoute(
           name: 'Timer',
@@ -68,11 +82,137 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : const DecryptekWidget(),
         ),
         FFRoute(
+          name: 'GameOver',
+          path: '/gameOver',
+          builder: (context, params) => const GameOverWidget(),
+        ),
+        FFRoute(
+          name: 'Win',
+          path: '/win',
+          builder: (context, params) => const WinWidget(),
+        ),
+        FFRoute(
+          name: 'Scan',
+          path: '/scan',
+          builder: (context, params) =>
+              params.isEmpty ? const NavBarPage(initialPage: 'Scan') : const ScanWidget(),
+        ),
+        FFRoute(
+          name: 'Enigmes',
+          path: '/enigmes',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'Enigmes')
+              : const EnigmesWidget(),
+        ),
+        FFRoute(
+          name: 'projetBerserk',
+          path: '/projetBerserk',
+          builder: (context, params) => const ProjetBerserkWidget(),
+        ),
+        FFRoute(
+          name: 'projetTasmanie',
+          path: '/projetTasmanie',
+          builder: (context, params) => const ProjetTasmanieWidget(),
+        ),
+        FFRoute(
+          name: 'projetMarsupial',
+          path: '/projetMarsupial',
+          builder: (context, params) => const ProjetMarsupialWidget(),
+        ),
+        FFRoute(
+          name: 'projetFantome',
+          path: '/projetFantome',
+          builder: (context, params) => const ProjetFantomeWidget(),
+        ),
+        FFRoute(
+          name: 'projetEclair',
+          path: '/projetEclair',
+          builder: (context, params) => const ProjetEclairWidget(),
+        ),
+        FFRoute(
+          name: 'berserk',
+          path: '/berserk',
+          builder: (context, params) => const BerserkWidget(),
+        ),
+        FFRoute(
+          name: 'tasmanie',
+          path: '/tasmanie',
+          builder: (context, params) => const TasmanieWidget(),
+        ),
+        FFRoute(
+          name: 'eclair',
+          path: '/eclair',
+          builder: (context, params) => const EclairWidget(),
+        ),
+        FFRoute(
+          name: 'marsupial',
+          path: '/marsupial',
+          builder: (context, params) => const MarsupialWidget(),
+        ),
+        FFRoute(
+          name: 'fantome',
+          path: '/fantome',
+          builder: (context, params) => const FantomeWidget(),
+        ),
+        FFRoute(
+          name: 'axololth',
+          path: '/axololth',
+          builder: (context, params) => const AxololthWidget(),
+        ),
+        FFRoute(
+          name: 'projetAxoloth',
+          path: '/projetAxoloth',
+          builder: (context, params) => const ProjetAxolothWidget(),
+        ),
+        FFRoute(
+          name: 'symbiose',
+          path: '/symbiose',
+          builder: (context, params) => const SymbioseWidget(),
+        ),
+        FFRoute(
+          name: 'projetSimbiose',
+          path: '/projetSimbiose',
+          builder: (context, params) => const ProjetSimbioseWidget(),
+        ),
+        FFRoute(
+          name: 'sentinelle',
+          path: '/sentinelle',
+          builder: (context, params) => const SentinelleWidget(),
+        ),
+        FFRoute(
+          name: 'projetSentinelle',
+          path: '/projetSentinelle',
+          builder: (context, params) => const ProjetSentinelleWidget(),
+        ),
+        FFRoute(
+          name: 'ressort',
+          path: '/ressort',
+          builder: (context, params) => const RessortWidget(),
+        ),
+        FFRoute(
+          name: 'projetRessort',
+          path: '/projetRessort',
+          builder: (context, params) => const ProjetRessortWidget(),
+        ),
+        FFRoute(
+          name: 'hygrochrome',
+          path: '/hygrochrome',
+          builder: (context, params) => const HygrochromeWidget(),
+        ),
+        FFRoute(
+          name: 'projetHygrochrome',
+          path: '/projetHygrochrome',
+          builder: (context, params) => const ProjetHygrochromeWidget(),
+        ),
+        FFRoute(
           name: 'password',
           path: '/password',
-          builder: (context, params) => const PasswordWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'password')
+              : const PasswordWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
