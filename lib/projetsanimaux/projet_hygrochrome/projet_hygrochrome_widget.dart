@@ -206,9 +206,8 @@ class _ProjetHygrochromeWidgetState extends State<ProjetHygrochromeWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().hygrochrome = true;
-                                });
+                                FFAppState().hygrochrome = true;
+                                setState(() {});
 
                                 context.pushNamed('berserk');
                               } else {

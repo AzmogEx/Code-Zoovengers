@@ -214,9 +214,8 @@ class _ProjetEclairWidgetState extends State<ProjetEclairWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().eclair = true;
-                                });
+                                FFAppState().eclair = true;
+                                setState(() {});
 
                                 context.pushNamed('eclair');
                               } else {

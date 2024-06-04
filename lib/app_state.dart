@@ -138,4 +138,29 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInAdnScan(int index, String value) {
     _adnScan.insert(index, value);
   }
+
+  bool _notification = false;
+  bool get notification => _notification;
+  set notification(bool value) {
+    _notification = value;
+  }
+
+  Color _couleur = Colors.transparent;
+  Color get couleur => _couleur;
+  set couleur(Color value) {
+    _couleur = value;
+  }
+
+  bool _notification2 = false;
+  bool get notification2 => _notification2;
+  set notification2(bool value) {
+    _notification2 = value;
+  }
+}
+
+Color? _colorFromIntValue(int? val) {
+  if (val == null) {
+    return null;
+  }
+  return Color(val);
 }

@@ -111,19 +111,17 @@ class _TimerWidgetState extends State<TimerWidget> {
                                   50.0, 0.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  setState(() {
-                                    FFAppState().countDown = 3600000;
-                                  });
-                                  setState(() {
-                                    FFAppState().deuxheures = 3600000;
-                                  });
+                                  FFAppState().countDown = 3600000;
+                                  setState(() {});
+                                  FFAppState().deuxheures = 3600000;
+                                  setState(() {});
                                   await Future.delayed(
                                       const Duration(milliseconds: 200));
 
                                   context.goNamed('Accueil');
                                 },
                                 text: FFLocalizations.of(context).getText(
-                                  'sh22z9ht' /* 1h */,
+                                  'sh22z9ht' /* Speed */,
                                 ),
                                 options: FFButtonOptions(
                                   width: 100.0,
@@ -154,19 +152,17 @@ class _TimerWidgetState extends State<TimerWidget> {
                                 0.0, 0.0, 50.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                setState(() {
-                                  FFAppState().countDown = 7200000;
-                                });
-                                setState(() {
-                                  FFAppState().deuxheures = 7200000;
-                                });
+                                FFAppState().countDown = 7200000;
+                                setState(() {});
+                                FFAppState().deuxheures = 7200000;
+                                setState(() {});
                                 await Future.delayed(
                                     const Duration(milliseconds: 200));
 
                                 context.goNamed('Accueil');
                               },
                               text: FFLocalizations.of(context).getText(
-                                '7ofavb6n' /* 2h */,
+                                '7ofavb6n' /* Tranquille */,
                               ),
                               options: FFButtonOptions(
                                 width: 100.0,

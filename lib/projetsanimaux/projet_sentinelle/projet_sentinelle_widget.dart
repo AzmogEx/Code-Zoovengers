@@ -205,9 +205,8 @@ class _ProjetSentinelleWidgetState extends State<ProjetSentinelleWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().sentinelle = true;
-                                });
+                                FFAppState().sentinelle = true;
+                                setState(() {});
 
                                 context.pushNamed('berserk');
                               } else {

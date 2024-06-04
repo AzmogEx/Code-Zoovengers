@@ -31,9 +31,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
-        setState(() {
-          FFAppState().countDown = _model.timerMilliseconds;
-        });
+        FFAppState().countDown = _model.timerMilliseconds;
+        setState(() {});
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
@@ -290,9 +289,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           if (_model.passWordTextController.text == '12345') {
-                            setState(() {
-                              FFAppState().animVerif = true;
-                            });
+                            FFAppState().animVerif = true;
+                            setState(() {});
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -308,12 +306,10 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                             );
                             await Future.delayed(
                                 const Duration(milliseconds: 8000));
-                            setState(() {
-                              FFAppState().animVerif = false;
-                            });
-                            setState(() {
-                              FFAppState().animSend = true;
-                            });
+                            FFAppState().animVerif = false;
+                            setState(() {});
+                            FFAppState().animSend = true;
+                            setState(() {});
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -329,9 +325,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                             );
                             await Future.delayed(
                                 const Duration(milliseconds: 5000));
-                            setState(() {
-                              FFAppState().animSend = false;
-                            });
+                            FFAppState().animSend = false;
+                            setState(() {});
 
                             context.pushNamed('Win');
                           } else {

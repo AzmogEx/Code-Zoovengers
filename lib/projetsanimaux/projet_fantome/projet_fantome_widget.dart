@@ -214,9 +214,8 @@ class _ProjetFantomeWidgetState extends State<ProjetFantomeWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().fantome = true;
-                                });
+                                FFAppState().fantome = true;
+                                setState(() {});
 
                                 context.pushNamed('fantome');
                               } else {

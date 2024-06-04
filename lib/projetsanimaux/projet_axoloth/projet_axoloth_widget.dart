@@ -215,9 +215,8 @@ class _ProjetAxolothWidgetState extends State<ProjetAxolothWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().axoloth = true;
-                                });
+                                FFAppState().axoloth = true;
+                                setState(() {});
 
                                 context.pushNamed('berserk');
                               } else {

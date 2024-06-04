@@ -209,9 +209,8 @@ class _ProjetBerserkWidgetState extends State<ProjetBerserkWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().berserk = true;
-                                });
+                                FFAppState().berserk = true;
+                                setState(() {});
 
                                 context.pushNamed('berserk');
                               } else {

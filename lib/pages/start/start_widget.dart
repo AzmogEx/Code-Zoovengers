@@ -99,14 +99,13 @@ class _StartWidgetState extends State<StartWidget> {
                   ),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      setState(() {
-                        FFAppState().Difficulte = false;
-                      });
+                      FFAppState().Difficulte = false;
+                      setState(() {});
 
                       context.pushNamed('Timer');
                     },
                     text: FFLocalizations.of(context).getText(
-                      'ly7rvitm' /* Facile */,
+                      'ly7rvitm' /* Famille */,
                     ),
                     options: FFButtonOptions(
                       height: 40.0,
@@ -141,14 +140,13 @@ class _StartWidgetState extends State<StartWidget> {
                   ),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      setState(() {
-                        FFAppState().Difficulte = true;
-                      });
+                      FFAppState().Difficulte = true;
+                      setState(() {});
 
                       context.pushNamed('Timer');
                     },
                     text: FFLocalizations.of(context).getText(
-                      'q5fn3fsz' /* Difficile */,
+                      'q5fn3fsz' /* Joueur */,
                     ),
                     options: FFButtonOptions(
                       height: 27.0,

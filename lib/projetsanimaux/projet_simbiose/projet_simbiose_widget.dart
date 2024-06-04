@@ -205,9 +205,8 @@ class _ProjetSimbioseWidgetState extends State<ProjetSimbioseWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().simbioz = true;
-                                });
+                                FFAppState().simbioz = true;
+                                setState(() {});
 
                                 context.pushNamed('berserk');
                               } else {

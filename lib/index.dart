@@ -40,3 +40,4 @@ export '/projetsanimaux/hygrochrome/hygrochrome_widget.dart'
 export '/projetsanimaux/projet_hygrochrome/projet_hygrochrome_widget.dart'
     show ProjetHygrochromeWidget;
 export '/pages/password/password_widget.dart' show PasswordWidget;
+export '/pages/video/video_widget.dart' show VideoWidget;

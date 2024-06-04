@@ -214,9 +214,8 @@ class _ProjetTasmanieWidgetState extends State<ProjetTasmanieWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().tasmanie = true;
-                                });
+                                FFAppState().tasmanie = true;
+                                setState(() {});
 
                                 context.pushNamed('tasmanie');
                               } else {

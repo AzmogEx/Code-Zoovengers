@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -30,12 +31,46 @@ class _AccueilWidgetState extends State<AccueilWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.timerController.onStartTimer();
-      while (FFAppState().countDown != null) {
-        setState(() {
-          FFAppState().countDown = _model.timerMilliseconds;
-        });
-        await Future.delayed(const Duration(milliseconds: 200));
-      }
+      await Future.wait([
+        Future(() async {
+          while (FFAppState().countDown != null) {
+            FFAppState().countDown = _model.timerMilliseconds;
+            setState(() {});
+            await Future.delayed(const Duration(milliseconds: 200));
+          }
+        }),
+        Future(() async {
+          if (FFAppState().countDown < 1800000) {
+            FFAppState().couleur = const Color(0xFFFF0000);
+            setState(() {});
+          } else {
+            if (Theme.of(context).brightness == Brightness.dark) {
+              FFAppState().couleur = Colors.white;
+              setState(() {});
+            } else {
+              FFAppState().couleur = Colors.black;
+              setState(() {});
+            }
+          }
+        }),
+        Future(() async {
+          if (FFAppState().countDown < 600000) {
+            FFAppState().notification2 = false;
+            setState(() {});
+            FFAppState().notification = true;
+            setState(() {});
+          }
+        }),
+        Future(() async {
+          if ((FFAppState().countDown < 1800000) &&
+              (FFAppState().countDown > 600000)) {
+            FFAppState().notification = false;
+            setState(() {});
+            FFAppState().notification2 = true;
+            setState(() {});
+          }
+        }),
+      ]);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -107,12 +142,115 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                   centerTitle: false,
                   elevation: 0.0,
                 ),
+                if (FFAppState().notification == true)
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'h7a358pd' /* Bon dépêche toi un peu ! */,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Manrope',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          FFAppState().notification = false;
+                          setState(() {});
+                        },
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/file.png',
+                            width: 98.0,
+                            height: 108.0,
+                            fit: BoxFit.cover,
+                            alignment: const Alignment(0.0, 0.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                if (FFAppState().notification == true)
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: AlignedTooltip(
+                      content: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text(
+                          FFLocalizations.of(context).getText(
+                            'zk93uf01' /* L'agence croit en toi ! */,
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyLarge.override(
+                                    fontFamily: 'Manrope',
+                                    letterSpacing: 0.0,
+                                  ),
+                        ),
+                      ),
+                      offset: 4.0,
+                      preferredDirection: AxisDirection.down,
+                      borderRadius: BorderRadius.circular(8.0),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      elevation: 4.0,
+                      tailBaseWidth: 24.0,
+                      tailLength: 12.0,
+                      waitDuration: const Duration(milliseconds: 100),
+                      showDuration: const Duration(milliseconds: 1500),
+                      triggerMode: TooltipTriggerMode.tap,
+                      child: Visibility(
+                        visible: FFAppState().notification2 == true,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            FFAppState().notification = false;
+                            setState(() {});
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/file.png',
+                              width: 98.0,
+                              height: 108.0,
+                              fit: BoxFit.cover,
+                              alignment: const Alignment(0.0, 0.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
-                      'tx5gnfmy' /* Bienvenue dans l'escape game */,
+                      'tx5gnfmy' /* L'agence zoovengers vous souha... */,
                     ),
                     style: FlutterFlowTheme.of(context).headlineLarge.override(
                           fontFamily: 'Urbanist',
@@ -171,6 +309,7 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
                                 fontFamily: 'Urbanist',
+                                color: FFAppState().couleur,
                                 fontSize: 50.0,
                                 letterSpacing: 0.0,
                               ),

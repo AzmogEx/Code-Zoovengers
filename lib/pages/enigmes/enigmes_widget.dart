@@ -30,9 +30,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
-        setState(() {
-          FFAppState().countDown = _model.timerMilliseconds;
-        });
+        FFAppState().countDown = _model.timerMilliseconds;
+        setState(() {});
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });

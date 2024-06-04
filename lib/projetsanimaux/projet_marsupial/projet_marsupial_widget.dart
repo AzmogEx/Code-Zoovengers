@@ -214,9 +214,8 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().marsupilan = true;
-                                });
+                                FFAppState().marsupilan = true;
+                                setState(() {});
 
                                 context.pushNamed('marsupial');
                               } else {

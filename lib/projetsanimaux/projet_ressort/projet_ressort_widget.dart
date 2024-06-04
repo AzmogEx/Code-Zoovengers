@@ -205,9 +205,8 @@ class _ProjetRessortWidgetState extends State<ProjetRessortWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               if (_model.textController.text == '12345') {
-                                setState(() {
-                                  FFAppState().ressort = true;
-                                });
+                                FFAppState().ressort = true;
+                                setState(() {});
 
                                 context.pushNamed('berserk');
                               } else {

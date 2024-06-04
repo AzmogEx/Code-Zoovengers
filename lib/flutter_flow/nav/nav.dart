@@ -35,7 +35,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context) => Container(
                 color: Colors.transparent,
                 child: Image.asset(
-                  'assets/images/logo_zoovengers.png',
+                  'assets/images/final_sans_fond_zoovengers.png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -50,7 +50,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   builder: (context) => Container(
                     color: Colors.transparent,
                     child: Image.asset(
-                      'assets/images/logo_zoovengers.png',
+                      'assets/images/final_sans_fond_zoovengers.png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -210,8 +210,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'password')
               : const PasswordWidget(),
+        ),
+        FFRoute(
+          name: 'Video',
+          path: '/video',
+          builder: (context, params) => const VideoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {

@@ -33,17 +33,15 @@ class _ScanWidgetState extends State<ScanWidget> {
       await Future.wait([
         Future(() async {
           while (FFAppState().countDown != null) {
-            setState(() {
-              FFAppState().countDown = _model.timerMilliseconds;
-            });
+            FFAppState().countDown = _model.timerMilliseconds;
+            setState(() {});
             await Future.delayed(const Duration(milliseconds: 200));
           }
         }),
         Future(() async {
           while (FFAppState().adnScan.contains(_model.adnScan)) {
-            setState(() {
-              FFAppState().addToAdnScan(_model.adnScan);
-            });
+            FFAppState().addToAdnScan(_model.adnScan);
+            setState(() {});
             await Future.delayed(const Duration(milliseconds: 200));
           }
         }),
@@ -172,9 +170,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                         ScanMode.QR,
                       );
 
-                      setState(() {
-                        FFAppState().addToAdnScan(_model.adnScan);
-                      });
+                      FFAppState().addToAdnScan(_model.adnScan);
+                      setState(() {});
                       if (!FFAppState().Difficulte) {
                         await Future.wait([
                           Future(() async {
@@ -192,9 +189,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   backgroundColor: const Color(0xFFFF0004),
                                 ),
                               );
-                              setState(() {
-                                FFAppState().removeFromAdnScan('FANTOME');
-                              });
+                              FFAppState().removeFromAdnScan('FANTOME');
+                              setState(() {});
                             }
                           }),
                           Future(() async {
@@ -212,9 +208,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   backgroundColor: const Color(0xFFFF0004),
                                 ),
                               );
-                              setState(() {
-                                FFAppState().removeFromAdnScan('HYGROCHROME');
-                              });
+                              FFAppState().removeFromAdnScan('HYGROCHROME');
+                              setState(() {});
                             }
                           }),
                           Future(() async {
@@ -232,9 +227,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   backgroundColor: const Color(0xFFFF0004),
                                 ),
                               );
-                              setState(() {
-                                FFAppState().removeFromAdnScan('TASMANIE');
-                              });
+                              FFAppState().removeFromAdnScan('TASMANIE');
+                              setState(() {});
                             }
                           }),
                           Future(() async {
@@ -252,9 +246,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   backgroundColor: const Color(0xFFFF0004),
                                 ),
                               );
-                              setState(() {
-                                FFAppState().removeFromAdnScan('ECLAIR');
-                              });
+                              FFAppState().removeFromAdnScan('ECLAIR');
+                              setState(() {});
                             }
                           }),
                           Future(() async {
@@ -272,9 +265,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   backgroundColor: const Color(0xFFFF0004),
                                 ),
                               );
-                              setState(() {
-                                FFAppState().removeFromAdnScan('MARSUPIAL');
-                              });
+                              FFAppState().removeFromAdnScan('MARSUPIAL');
+                              setState(() {});
                             }
                           }),
                         ]);
