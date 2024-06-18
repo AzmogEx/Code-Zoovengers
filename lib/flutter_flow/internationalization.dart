@@ -114,21 +114,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Juego Escape de los Vengadores del Zoo',
     },
     'ly7rvitm': {
-      'fr': 'Famille',
-      'en': 'Easy',
-      'es': 'Fácil',
+      'fr': 'Apprenti Zoovengers',
+      'en': 'Zoovengers Apprentice',
+      'es': 'Aprendiz de los Vengadores del Zoo',
     },
     'q5fn3fsz': {
-      'fr': 'Joueur',
-      'en': 'Difficult',
-      'es': 'Difícil',
+      'fr': 'Expert Zoovengers',
+      'en': 'Expert',
+      'es': 'Experto',
     },
     'l3dg3sze': {
-      'fr': '10 ans et plus',
+      'fr': '10ans +',
       'en': '10 years and over',
       'es': '10 años y más',
     },
     '8e6so0wr': {
+      'fr':
+          'Attention : le choix de la difficulté aura un impact sur votre expérience de jeu. Choisissez judicieusement, car cela influencera le défi et l\'intensité de votre partie !',
+      'en': '7 years',
+      'es': '7 años',
+    },
+    '22xd5sx7': {
       'fr': '7 ans',
       'en': '7 years',
       'es': '7 años',
@@ -141,11 +147,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Timer
   {
-    'hn7bs33d': {
-      'fr': 'Choisissez la durée du compte à rebours',
-      'en': 'Choose the countdown duration',
-      'es': 'Elige la duración de la cuenta atrás',
-    },
     'sh22z9ht': {
       'fr': '1h',
       'en': '1 hour',
@@ -156,6 +157,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': '2h',
       'es': '2h',
     },
+    'hn7bs33d': {
+      'fr': 'Choisissez la durée du compte à rebours',
+      'en': 'Choose the countdown duration',
+      'es': 'Elige la duración de la cuenta atrás',
+    },
+    '47hbjogc': {
+      'fr':
+          'Attention : si l\'application se ferme, vous perdrez votre progression et toutes vos données. Faites attention ! La mission échouera.',
+      'en': '',
+      'es': '',
+    },
     'g46hdcbm': {
       'fr': 'Compte à rebours',
       'en': 'Countdown',
@@ -165,19 +177,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Accueil
   {
     '4flophpy': {
-      'fr': 'Zoovengers:',
+      'fr': 'Zoovengers',
       'en': 'Zoovengers:',
       'es': 'Vengadores del zoológico:',
     },
     'tx5gnfmy': {
       'fr': 'L\'agence zoovengers vous souhaite la bienvenue',
-      'en': 'Welcome to the escape game',
-      'es': 'Bienvenido al juego de escape',
+      'en': 'The zoovengers agency welcomes you',
+      'es': 'La agencia zoovengers te da la bienvenida.',
     },
     'kig4qnvv': {
       'fr': 'Pourrez vous résoudre à temps les puzzles ?',
       'en': 'Can you solve the puzzles in time?',
       'es': '¿Podrás resolver los acertijos a tiempo?',
+    },
+    '9r2cp5f0': {
+      'fr': 'Code: ',
+      'en': 'Coded:',
+      'es': 'Codificado:',
     },
     '23vakbx8': {
       'fr': 'Accueil',
@@ -194,11 +211,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '21s8o4jm': {
       'fr':
-          'Bienvenue sur le decryptek! Utiliser le pour déchiffrer les codes et résoudre les énigmes. Bonne chance!',
+          'Bienvenue sur le decryptek! Utiliser le pour déchiffrer les codes et résoudre les énigmes. Bonne chance! (Uniquement pour la difficutlé Expert)',
       'en':
-          'Welcome to decryptek! Use it to decipher codes and solve puzzles. Good luck!',
+          'Welcome to decryptek! Use it to decipher codes and solve puzzles. Good luck! (Only for Expert difficulty)',
       'es':
-          '¡Bienvenido a decryptek! Úselo para descifrar códigos y resolver acertijos. ¡Buena suerte!',
+          '¡Bienvenido a decryptek! Úselo para descifrar códigos y resolver acertijos. ¡Buena suerte! (Solo para dificultad Experto)',
+    },
+    '73rm5fhi': {
+      'fr':
+          'Cette fonctionnalité est réservée aux modes de difficulté plus élevés. Vous pourrez tenter votre chance à un autre moment.',
+      'en': '',
+      'es': '',
     },
     'f2y9mbrm': {
       'fr': 'Decryptek',
@@ -209,9 +232,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // GameOver
   {
     'me9kbrcb': {
-      'fr': 'Game Over',
-      'en': 'Game Over',
-      'es': 'Juego terminado',
+      'fr': 'GAME OVER',
+      'en': 'GAME OVER',
+      'es': 'JUEGO TERMINADO',
     },
     '5fys4m2n': {
       'fr': 'Vous ne vous êtes pas échappez à temps',
@@ -219,9 +242,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'No escapaste a tiempo',
     },
     'n7c8br8i': {
-      'fr': 'Try Again',
-      'en': 'Try Again',
-      'es': 'Intentar otra vez',
+      'fr': 'réessayer',
+      'en': 'try again',
+      'es': 'Volver a intentar',
     },
   },
   // Win
@@ -237,6 +260,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '¡Has logrado encontrar todos los animales perdidos!',
     },
     'pzor89sk': {
+      'fr': 'Continuer ?',
+      'en': 'Continue ?',
+      'es': 'Seguir ?',
+    },
+    '5cvalrt8': {
       'fr': 'Rejouer',
       'en': 'Replay',
       'es': 'Repetición',
@@ -274,54 +302,54 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Enigmes
   {
     '8kntvy5u': {
-      'fr': 'axololt',
-      'en': 'axololt',
-      'es': 'ajolote',
+      'fr': 'NUIT NOIR',
+      'en': 'BLACK NIGHT',
+      'es': 'NOCHE NEGRA',
     },
     'ejqwm72z': {
-      'fr': 'sentinelle',
-      'en': 'sentinel',
-      'es': 'centinela',
+      'fr': 'SENTINELLE',
+      'en': 'SENTINEL',
+      'es': 'CENTINELA',
     },
     'hlxlfhqr': {
-      'fr': 'simbioz',
-      'en': 'simbioz',
-      'es': 'simbiosis',
+      'fr': 'SYMBIOZ',
+      'en': 'SYMBIOZ',
+      'es': 'SIMBIOZ',
     },
     '4vtiu98s': {
-      'fr': 'ressort',
-      'en': 'spring',
-      'es': 'primavera',
+      'fr': 'RESSORT',
+      'en': 'SPRING',
+      'es': 'PRIMAVERA',
     },
     'it17rejo': {
-      'fr': 'tasmanie',
-      'en': 'tasmania',
-      'es': 'tasmania',
+      'fr': 'TASMANIE',
+      'en': 'TASMANIA',
+      'es': 'TASMANÍA',
     },
     'toqpqu3u': {
-      'fr': 'hygrochrome',
-      'en': 'hygrochromic',
-      'es': 'higrocrómico',
+      'fr': 'GUERISSEUR',
+      'en': 'HEALER',
+      'es': 'CURADOR',
     },
     'kb2gx9ki': {
-      'fr': 'fantome',
-      'en': 'ghost',
-      'es': 'fantasma',
+      'fr': 'FANTOME',
+      'en': 'GHOST',
+      'es': 'FANTASMA',
     },
     '9v6c5e2m': {
-      'fr': 'eclair',
-      'en': 'flash',
-      'es': 'destello',
+      'fr': 'ECLAIR',
+      'en': 'FLASH',
+      'es': 'DESTELLO',
     },
     '2077hesm': {
-      'fr': 'marsupial',
-      'en': 'marsupial',
-      'es': 'marsupial',
+      'fr': 'MARSUPIAL',
+      'en': 'MARSUPIAL',
+      'es': 'MARSUPIAL',
     },
     'kae5yyd8': {
-      'fr': 'berserk',
-      'en': 'berserk',
-      'es': 'enloquecido',
+      'fr': 'BERSERKER',
+      'en': 'BERSERKER',
+      'es': 'FRENÉTICO',
     },
     's4mzzcnt': {
       'fr': 'Enigmes',
@@ -336,459 +364,32 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // projetBerserk
   {
-    '8iz0hrn6': {
-      'fr': 'PROJET BERSERK',
-      'en': 'BERSERK PROJECT',
-      'es': 'PROYECTO BERSERK',
-    },
-    'zdhuaqtm': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'hkgj5q1s': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'mrtzag47': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
     'yrep6uug': {
-      'fr': 'BERSERK',
-      'en': 'BERSERK',
-      'es': 'ENLOQUECIDO',
+      'fr': 'BERSERKER',
+      'en': 'BERSERKER',
+      'es': 'FRENÉTICO',
+    },
+    '2ziuo8dl': {
+      'fr': 'PROJET BERSERKER',
+      'en': 'BERSERKER PROJECT',
+      'es': 'PROYECTO BERSERKER',
+    },
+    'wt2hm79s': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    'h2j348ul': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    '1pzzwabi': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
     },
     'bfn2kbmh': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetTasmanie
-  {
-    '0axoixm6': {
-      'fr': 'PROJET TASMANIE',
-      'en': 'TASMANIA PROJECT',
-      'es': 'PROYECTO TASMANÍA',
-    },
-    'rl6x81ff': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'yy577qv4': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'ymjxfcil': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    '1s344ngj': {
-      'fr': 'TASMANIE',
-      'en': 'TASMANIA',
-      'es': 'TASMANÍA',
-    },
-    'k885el7s': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetMarsupial
-  {
-    'ze66he32': {
-      'fr': 'PROJET MARSUPIAL',
-      'en': 'MARSUPIAL PROJECT',
-      'es': 'PROYECTO MARSUPIAL',
-    },
-    '06vy7hfd': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'yc7l3mq2': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'vpbepcfj': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    '1qnxw2vo': {
-      'fr': 'MARSUPIAL',
-      'en': 'MARSUPIAL',
-      'es': 'MARSUPIAL',
-    },
-    'aqawfrhn': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetFantome
-  {
-    'fdqtpyjq': {
-      'fr': 'PROJET FANTOME',
-      'en': 'GHOST PROJECT',
-      'es': 'PROYECTO FANTASMA',
-    },
-    '8q4lfq0j': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'eio2yvyq': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'bn06tfzo': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    '3g8bbclb': {
-      'fr': 'FANTOME',
-      'en': 'GHOST',
-      'es': 'FANTASMA',
-    },
-    'ty07qoo7': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetEclair
-  {
-    'xhzqdjal': {
-      'fr': 'PROJET ECLAIR',
-      'en': 'FLASH PROJECT',
-      'es': 'PROYECTO FLASH',
-    },
-    'gjesb6rl': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'iorygo72': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    '2whikijp': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    'mq8a7vs5': {
-      'fr': 'ECLAIR',
-      'en': 'FLASH',
-      'es': 'DESTELLO',
-    },
-    '31wt1dge': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // berserk
-  {
-    'f59wskar': {
-      'fr': 'berserk',
-      'en': 'berserk',
-      'es': 'enloquecido',
-    },
-    'kqwe3x1v': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // tasmanie
-  {
-    'zd5dqn56': {
-      'fr': 'tasmanie',
-      'en': 'tasmania',
-      'es': 'tasmania',
-    },
-    '9mhp0ar6': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // eclair
-  {
-    '62qmre4b': {
-      'fr': 'eclair',
-      'en': 'flash',
-      'es': 'destello',
-    },
-    'jqbyenv9': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // marsupial
-  {
-    'agluf60a': {
-      'fr': 'marsupial',
-      'en': 'marsupial',
-      'es': 'marsupial',
-    },
-    'n5yduid3': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // fantome
-  {
-    'b3jx8eqq': {
-      'fr': 'fantome',
-      'en': 'ghost',
-      'es': 'fantasma',
-    },
-    'asvzqm7t': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // axololth
-  {
-    'qflitt38': {
-      'fr': 'axololt',
-      'en': 'axoloth',
-      'es': 'ajolote',
-    },
-    '25xf1bud': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetAxoloth
-  {
-    'nw8vnig1': {
-      'fr': 'PROJET Axololt',
-      'en': 'BERSERK PROJECT',
-      'es': 'PROYECTO BERSERK',
-    },
-    'q6tiw5fy': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'lyl3jn5j': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'cxjlvdfr': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    'yth6ql8r': {
-      'fr': 'Axololt',
-      'en': 'BERSERK',
-      'es': 'ENLOQUECIDO',
-    },
-    'nchhdzng': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // symbiose
-  {
-    'akf0izqf': {
-      'fr': 'symbioz',
-      'en': 'symbioz',
-      'es': 'simbionte',
-    },
-    'ixdnpqid': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetSimbiose
-  {
-    '1ux7sw86': {
-      'fr': 'PROJET Symbioz',
-      'en': 'BERSERK PROJECT',
-      'es': 'PROYECTO BERSERK',
-    },
-    'ppfll7j1': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'dhbe67by': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'v7fqjwf9': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    'wt1r6ojd': {
-      'fr': 'Symbioz',
-      'en': 'BERSERK',
-      'es': 'ENLOQUECIDO',
-    },
-    '2enwg85i': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // sentinelle
-  {
-    '4mp1bfmh': {
-      'fr': 'sentinelle',
-      'en': 'sentinel',
-      'es': 'centinela',
-    },
-    't0fhjx9w': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetSentinelle
-  {
-    'ouo2j63o': {
-      'fr': 'PROJET BERSERK',
-      'en': 'BERSERK PROJECT',
-      'es': 'PROYECTO BERSERK',
-    },
-    'z1aba3j4': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    '6p4u828w': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    'xvxi0wfa': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    '95q9suci': {
-      'fr': 'sentinelle',
-      'en': 'sentinel',
-      'es': 'centinela',
-    },
-    'xljbqgkt': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // ressort
-  {
-    'hfaap6l6': {
-      'fr': 'ressort',
-      'en': 'spring',
-      'es': 'primavera',
-    },
-    '8aw5os4m': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetRessort
-  {
-    'css087sx': {
-      'fr': 'PROJET Ressort',
-      'en': 'BERSERK PROJECT',
-      'es': 'PROYECTO BERSERK',
-    },
-    'j993mpzn': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'zzkav8aq': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    '8rgqh8sv': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    '7np2914y': {
-      'fr': 'Ressort',
-      'en': 'BERSERK',
-      'es': 'ENLOQUECIDO',
-    },
-    '7mewlwci': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // hygrochrome
-  {
-    'phjl1iwc': {
-      'fr': 'hygrochrome',
-      'en': 'hygrochromic',
-      'es': 'higrocrómico',
-    },
-    'd3quih9r': {
-      'fr': 'Home',
-      'en': 'Home',
-      'es': 'Hogar',
-    },
-  },
-  // projetHygrochrome
-  {
-    '54zme012': {
-      'fr': 'PROJET Hygrochrome',
-      'en': 'BERSERK PROJECT',
-      'es': 'PROYECTO BERSERK',
-    },
-    'bskm090k': {
-      'fr': 'veuillez inserer le code du projet',
-      'en': 'please insert the project code',
-      'es': 'por favor inserte el código del proyecto',
-    },
-    'sup9ppz9': {
-      'fr': 'code secret',
-      'en': 'secret code',
-      'es': 'código secreto',
-    },
-    '9feteob4': {
-      'fr': 'valider',
-      'en': 'to validate',
-      'es': 'validar',
-    },
-    'ljui0b2m': {
-      'fr': 'Hygrochrome',
-      'en': 'BERSERK',
-      'es': 'ENLOQUECIDO',
-    },
-    '2igxqsb8': {
       'fr': 'Home',
       'en': 'Home',
       'es': 'Hogar',
@@ -802,14 +403,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Atrás',
     },
     'zx2l5tcm': {
-      'fr': 'Mots de passe final:',
-      'en': 'Final passwords:',
-      'es': 'Contraseñas finales:',
-    },
-    '0eejz8ik': {
-      'fr': 'Attention vous n\'avez le droit qu\'a 3 tentatives !',
-      'en': 'Please note you are only allowed 3 attempts!',
-      'es': '¡Tenga en cuenta que solo se le permiten 3 intentos!',
+      'fr': 'MOT DE PASSE FINAL:',
+      'en': 'FINAL PASSWORD:',
+      'es': 'CONTRASEÑA FINAL:',
     },
     'r90vn38u': {
       'fr': 'Mots de passe final:',
@@ -832,6 +428,713 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Final',
     },
   },
+  // projetEclair
+  {
+    'q8zdcudy': {
+      'fr': 'ECLAIR',
+      'en': 'FLASH',
+      'es': 'DESTELLO',
+    },
+    'rm80b295': {
+      'fr': 'PROJET ECLAIR',
+      'en': 'FLASH PROJECT',
+      'es': 'PROYECTO FLASH',
+    },
+    'qggbt4m9': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    '8h7kssyj': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'lw8iwpgh': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'lstxbig5': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetFantome
+  {
+    'vf45em74': {
+      'fr': 'FANTOME',
+      'en': 'GHOST',
+      'es': 'FANTASMA',
+    },
+    'oltue32d': {
+      'fr': 'PROJET FANTOME',
+      'en': 'GHOST PROJECT',
+      'es': 'PROYECTO FANTASMA',
+    },
+    'k4w0fllj': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    '4dosy5ds': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'gj2zf0lr': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '2765r1bu': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetNuit
+  {
+    '8emgfua1': {
+      'fr': 'NUIT NOIR',
+      'en': 'BLACK NIGHT',
+      'es': 'NOCHE NEGRA',
+    },
+    'cnrmfgx4': {
+      'fr': 'PROJET NUIT NOIR',
+      'en': 'NIGHT BLACK PROJECT',
+      'es': 'PROYECTO NOCHE NEGRA',
+    },
+    'xpbvbsnb': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    'gobj1gcs': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'fspy1odi': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '2cns9z59': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetRessort
+  {
+    'wvwfzvtk': {
+      'fr': 'RESSORT',
+      'en': 'SPRING',
+      'es': 'PRIMAVERA',
+    },
+    'a8wf24i7': {
+      'fr': 'PROJET RESSORT',
+      'en': 'SPRING PROJECT',
+      'es': 'PROYECTO DE PRIMAVERA',
+    },
+    'r7gkorir': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    'zsbb6lks': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'kdugha3o': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '1wscl5yp': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetSentinelle
+  {
+    'poaz51z9': {
+      'fr': 'SENTINELLE',
+      'en': 'SENTINEL',
+      'es': 'CENTINELA',
+    },
+    'l3zkbzdv': {
+      'fr': 'PROJET SENTINELLE',
+      'en': 'SENTINEL PROJECT',
+      'es': 'PROYECTO CENTINELA',
+    },
+    'ju66758h': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    's69pos50': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'w3ioqhcl': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'nsobf8d1': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetSylbioz
+  {
+    'a1zpxqh8': {
+      'fr': 'SYMBIOZ',
+      'en': 'SYMBIOZ',
+      'es': 'SIMBIOZ',
+    },
+    'vjevkq45': {
+      'fr': 'PROJET SYMBIOZ',
+      'en': 'SYMBIOZ PROJECT',
+      'es': 'PROYECTO SIMBIOZ',
+    },
+    '0lv9bbh2': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    'j6o6i3iv': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'xunlg3vv': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '7g7uq3jd': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetTasmanie
+  {
+    'kaic6zni': {
+      'fr': 'TASMANIE',
+      'en': 'TASMANIA',
+      'es': 'TASMANÍA',
+    },
+    'su4ordwk': {
+      'fr': 'PROJET TASMANIE',
+      'en': 'TASMANIA PROJECT',
+      'es': 'PROYECTO TASMANÍA',
+    },
+    '7kyojovj': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    '7v5iroat': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'ba8wrb2k': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '5f6dho03': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetMarsupial
+  {
+    'snfl2jhz': {
+      'fr': 'MARSUPIAL',
+      'en': 'MARSUPIAL',
+      'es': 'MARSUPIAL',
+    },
+    'e0arwc1q': {
+      'fr': 'PROJET MARSUPIAL',
+      'en': 'MARSUPIAL PROJECT',
+      'es': 'PROYECTO MARSUPIAL',
+    },
+    '0ki5ayyt': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    'k0jqrt5c': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'v9t4z6bp': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '3zlmq69r': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // projetGuerisseur
+  {
+    'ss60lyr1': {
+      'fr': 'GUERISSEUR',
+      'en': 'HEALER',
+      'es': 'CURADOR',
+    },
+    'lrkxf1oq': {
+      'fr': 'PROJET GUERISSEUR',
+      'en': 'HEALER PROJECT',
+      'es': 'PROYECTO SANADOR',
+    },
+    '52xc1q1d': {
+      'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
+      'en': 'Insert the project password to unlock it.',
+      'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
+    },
+    'fursnqsh': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'u8zwwg3s': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '3licowbx': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // berserker
+  {
+    'izboco9v': {
+      'fr': 'BERSERKER',
+      'en': 'BERSERKER',
+      'es': 'FRENÉTICO',
+    },
+    'xry0k6ys': {
+      'fr': 'Ursus maritimus, Ours polaire',
+      'en': 'Ursus maritimus, Polar bear',
+      'es': 'Ursus maritimus, oso polar',
+    },
+    'mmezai8p': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    'ady5teap': {
+      'fr': 'Le code est : Griffes suivi de Pattes.',
+      'en': 'The code is: Claws followed by Paws.',
+      'es': 'El código es: Garras seguidas de Patas.',
+    },
+    '77aib6nn': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'dmdvvmu7': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '70er3kjg': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // eclair
+  {
+    'tvqlbtzq': {
+      'fr': 'ECLAIR',
+      'en': 'FLASH',
+      'es': 'DESTELLO',
+    },
+    'gczlzam2': {
+      'fr': 'Colibri thalassinus, Colibri thalassin',
+      'en': 'Hummingbird thalassinus, Hummingbird thalassin',
+      'es': 'Colibrí thalassinus, Colibrí thalassinus',
+    },
+    'e9ap7swu': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    '9y2vsct5': {
+      'fr': 'Le code est : nombre de doigts total.',
+      'en': 'The code is: total number of fingers.',
+      'es': 'El código es: número total de dedos.',
+    },
+    'gjkrwkst': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    '4alel88b': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'vr81a7hs': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // fantome
+  {
+    'bzz3sryh': {
+      'fr': 'FANTOME',
+      'en': 'GHOST',
+      'es': 'FANTASMA',
+    },
+    'yysxotfa': {
+      'fr': 'Panthera uncia, Panthère des neiges',
+      'en': 'Panthera uncia, Snow leopard',
+      'es': 'Panthera uncia, Leopardo de las nieves',
+    },
+    '58vkbx2s': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    '7k6zevlc': {
+      'fr': 'Le code est : nombre de canines.',
+      'en': 'The code is: number of canines.',
+      'es': 'El código es: número de caninos.',
+    },
+    'd67eu2q6': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'd8bsr3hf': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'ks859cxv': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // guerisseur
+  {
+    '52gbfwj1': {
+      'fr': 'GUERISSEUR',
+      'en': 'HEALER',
+      'es': 'CURADOR',
+    },
+    'q7n5ks2s': {
+      'fr': 'Ambystoma mexicanum, Axolotl',
+      'en': 'Ambystoma mexicanum, Axolotl',
+      'es': 'Ambystoma mexicanum, Ajolote',
+    },
+    'jca7f7w6': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    '69qhhcux': {
+      'fr': 'Le code est : nombre de branchies.',
+      'en': 'The code is: number of gills.',
+      'es': 'El código es: número de branquias.',
+    },
+    'g95md1md': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    '1jbssr0e': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '20mewkws': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // marsupial
+  {
+    'l3583mkr': {
+      'fr': 'MARSUPIAL',
+      'en': 'MARSUPIAL',
+      'es': 'MARSUPIAL',
+    },
+    '7d5vpy1g': {
+      'fr': 'Petaurus breviceps, Sugar glider',
+      'en': 'Petaurus breviceps, Sugar glider',
+      'es': 'Petaurus breviceps, planeador del azúcar',
+    },
+    'v4ruc63z': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    '0xwayj70': {
+      'fr': 'Le code est : nombre de doigts total de l\'animal.',
+      'en': 'The code is: total number of toes of the animal.',
+      'es': 'El código es: número total de dedos del animal.',
+    },
+    'j2o40ju0': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'b4nbr7qh': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '5r2rzopk': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // nuit
+  {
+    'gwt3p0wv': {
+      'fr': 'NUIT NOIR',
+      'en': 'BLACK NIGHT',
+      'es': 'NOCHE NEGRA',
+    },
+    'oe3drbim': {
+      'fr': 'Pteropus niger, Roussette noire.',
+      'en': 'Pteropus niger, Black flying fox.',
+      'es': 'Pteropus niger, zorro volador negro.',
+    },
+    'l6dimyfb': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme. ',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    'v3ibkztm': {
+      'fr': 'Le code est : nombre de doigts total d\'une main de l\'animal.',
+      'en': 'The code is: total number of fingers on an animal\'s hand.',
+      'es': 'El código es: número total de dedos de la mano de un animal.',
+    },
+    '0qxlkhxy': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'h6d13uia': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    '77xjekv3': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // ressort
+  {
+    'tt43behx': {
+      'fr': 'RESSORT',
+      'en': 'SPRING',
+      'es': 'PRIMAVERA',
+    },
+    'na7qbyhl': {
+      'fr': 'Rupicapra rupicapra, Chamois des Alpes',
+      'en': 'Rupicapra rupicapra, Alpine Chamois',
+      'es': 'Rupicapra rupicapra, Gamuza Alpina',
+    },
+    'p1sfzdbu': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    'nt95gq4d': {
+      'fr': 'Le code est : nombre de cornes X nombre de pattes.',
+      'en': 'The code is: number of horns X number of legs.',
+      'es': 'El código es: número de cuernos X número de patas.',
+    },
+    '6gtto6u9': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'z1zj35q0': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'xs6pm9sl': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // sentinelle
+  {
+    'plvocd0i': {
+      'fr': 'SENTINELLE',
+      'en': 'SENTINEL',
+      'es': 'CENTINELA',
+    },
+    'xrp1zqn1': {
+      'fr': 'Bubo bubo, Grand-duc d\'Europe',
+      'en': 'Bubo bubo, European Grand Duke',
+      'es': 'Bubo bubo, Gran Duque europeo',
+    },
+    'e8rfjiyb': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    '26qkl0j5': {
+      'fr': 'Le code est : nombre de doigts total de l\'animal.',
+      'en': 'The code is: total number of toes of the animal.',
+      'es': 'El código es: número total de dedos del animal.',
+    },
+    '7lycqhen': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'zguvw4fg': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'rc82aoq7': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // symbioz
+  {
+    '1oy7yioo': {
+      'fr': 'SYMBIOZ',
+      'en': 'SYMBIOZ',
+      'es': 'SIMBIOZ',
+    },
+    'mimxrjt2': {
+      'fr': 'Bradypus tridactylus, Paresseux',
+      'en': 'Bradypus tridactylus, Sloth',
+      'es': 'Bradypus tridactylus, Perezoso',
+    },
+    '9od81gnu': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    'xehmtnvz': {
+      'fr': 'Le code est : nombre de griffes total X nombre de pattes.',
+      'en': 'The code is: total number of claws X number of legs.',
+      'es': 'El código es: número total de garras X número de patas.',
+    },
+    'dxkv2pp7': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'nx0iqjer': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'qlvvs283': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // tasmanie
+  {
+    'jwa5ckzm': {
+      'fr': 'TASMANIE',
+      'en': 'TASMANIA',
+      'es': 'TASMANÍA',
+    },
+    'j770gff9': {
+      'fr': 'Ornithorhynchus anatinus, Ornythorinque',
+      'en': 'Platypus',
+      'es': 'Ornitorrinco',
+    },
+    'n1hz2sus': {
+      'fr':
+          'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
+      'en':
+          'Use this video to find the animal in the museum and solve the last puzzle.',
+      'es':
+          'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
+    },
+    '37yczxvr': {
+      'fr': 'Le code est : nombre de doigts pattes avant de l\'animal.',
+      'en': 'The code is: number of toes on the animal\'s front legs.',
+      'es': 'El código es: número de dedos de las patas delanteras del animal.',
+    },
+    'pfkunl8e': {
+      'fr': 'MOT DE PASSE',
+      'en': 'PASSWORD',
+      'es': 'CONTRASEÑA',
+    },
+    'af38b3sf': {
+      'fr': 'VALIDER',
+      'en': 'TO VALIDATE',
+      'es': 'VALIDAR',
+    },
+    'vykcvgvg': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
   // Miscellaneous
   {
     'obh009ze': {
@@ -846,6 +1149,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Please enable permission to access the camera to scan the treasure hunt QR codes.',
       'es':
           'Habilite el permiso para acceder a la cámara y escanear los códigos QR de la búsqueda del tesoro.',
+    },
+    'fiur3s0s': {
+      'fr':
+          'We need microphone for show you the different videos of the application',
+      'en': '',
+      'es': '',
+    },
+    'uwbmu9ew': {
+      'fr':
+          'We need microphone for show you the different videos of the application',
+      'en': '',
+      'es': '',
     },
     'h2vzqt05': {
       'fr': '',

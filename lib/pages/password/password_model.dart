@@ -7,9 +7,11 @@ import 'package:flutter/material.dart';
 class PasswordModel extends FlutterFlowModel<PasswordWidget> {
   ///  State fields for stateful widgets in this page.
 
+  final unfocusNode = FocusNode();
   // State field(s) for PassWord widget.
   FocusNode? passWordFocusNode;
   TextEditingController? passWordTextController;
+  late bool passWordVisibility;
   String? Function(BuildContext, String?)? passWordTextControllerValidator;
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
@@ -23,10 +25,13 @@ class PasswordModel extends FlutterFlowModel<PasswordWidget> {
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passWordVisibility = false;
+  }
 
   @override
   void dispose() {
+    unfocusNode.dispose();
     passWordFocusNode?.dispose();
     passWordTextController?.dispose();
 

@@ -39,9 +39,9 @@ class _TimerWidgetState extends State<TimerWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFF344D59),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -62,9 +62,11 @@ class _TimerWidgetState extends State<TimerWidget> {
               'g46hdcbm' /* Compte à rebours */,
             ),
             style: FlutterFlowTheme.of(context).headlineLarge.override(
-                  fontFamily: 'Urbanist',
+                  fontFamily: 'Oswald',
                   color: FlutterFlowTheme.of(context).primaryText,
+                  fontSize: 30.0,
                   letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
           actions: const [],
@@ -77,116 +79,132 @@ class _TimerWidgetState extends State<TimerWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                  child: Text(
-                    FFLocalizations.of(context).getText(
-                      'hn7bs33d' /* Choisissez la durée du compte ... */,
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyLarge.override(
-                          fontFamily: 'Manrope',
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
-              ),
               Flexible(
                 child: Align(
                   alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Flexible(
-                          child: Align(
-                            alignment: const AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  50.0, 0.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  FFAppState().countDown = 3600000;
-                                  setState(() {});
-                                  FFAppState().deuxheures = 3600000;
-                                  setState(() {});
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 200));
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: const AlignmentDirectional(-1.02, -0.24),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              50.0, 0.0, 0.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              FFAppState().countDown = 3600000;
+                              setState(() {});
+                              FFAppState().deuxheures = 3600000;
+                              setState(() {});
+                              await Future.delayed(
+                                  const Duration(milliseconds: 200));
 
-                                  context.goNamed('Accueil');
-                                },
-                                text: FFLocalizations.of(context).getText(
-                                  'sh22z9ht' /* 1h */,
-                                ),
-                                options: FFButtonOptions(
-                                  width: 100.0,
-                                  height: 50.0,
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleMedium
-                                      .override(
-                                        fontFamily: 'Manrope',
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                      ),
-                                  elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                              ),
+                              context.goNamed('Accueil');
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              'sh22z9ht' /* 1h */,
+                            ),
+                            options: FFButtonOptions(
+                              width: 100.0,
+                              height: 50.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: const Color(0xFF344D59),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Oswald',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(12.0),
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 50.0, 0.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                FFAppState().countDown = 7200000;
-                                setState(() {});
-                                FFAppState().deuxheures = 7200000;
-                                setState(() {});
-                                await Future.delayed(
-                                    const Duration(milliseconds: 200));
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(1.03, -0.24),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 50.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              FFAppState().countDown = 7200000;
+                              setState(() {});
+                              FFAppState().deuxheures = 7200000;
+                              setState(() {});
+                              await Future.delayed(
+                                  const Duration(milliseconds: 200));
 
-                                context.goNamed('Accueil');
-                              },
-                              text: FFLocalizations.of(context).getText(
-                                '7ofavb6n' /* 2h */,
-                              ),
-                              options: FFButtonOptions(
-                                width: 100.0,
-                                height: 50.0,
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).secondary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: 'Manrope',
+                              context.goNamed('Accueil');
+                            },
+                            text: FFLocalizations.of(context).getText(
+                              '7ofavb6n' /* 2h */,
+                            ),
+                            options: FFButtonOptions(
+                              width: 100.0,
+                              height: 50.0,
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: const Color(0xFF344D59),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
+                                    fontFamily: 'Oswald',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, -0.86),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 0.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'hn7bs33d' /* Choisissez la durée du compte ... */,
+                            ),
+                            textAlign: TextAlign.center,
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Oswald',
                                       color: Colors.white,
+                                      fontSize: 30.0,
                                       letterSpacing: 0.0,
                                     ),
-                                elevation: 0.0,
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Align(
+                        alignment: const AlignmentDirectional(0.0, 1.0),
+                        child: Padding(
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 150.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              '47hbjogc' /* Attention : si l'application s... */,
+                            ),
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Oswald',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

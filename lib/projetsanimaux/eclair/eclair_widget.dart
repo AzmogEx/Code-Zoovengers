@@ -1,9 +1,13 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
+import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'eclair_model.dart';
 export 'eclair_model.dart';
 
@@ -23,6 +27,21 @@ class _EclairWidgetState extends State<EclairWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => EclairModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.timerController.onStartTimer();
+      while (FFAppState().countDown != null) {
+        FFAppState().countDown = _model.timerMilliseconds;
+        setState(() {});
+        await Future.delayed(const Duration(milliseconds: 200));
+      }
+    });
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -34,15 +53,17 @@ class _EclairWidgetState extends State<EclairWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFF344D59),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -60,114 +81,300 @@ class _EclairWidgetState extends State<EclairWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              '62qmre4b' /* eclair */,
+              'tvqlbtzq' /* ECLAIR */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Urbanist',
+                  fontFamily: 'Oswald',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 30.0,
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                child: FlutterFlowTimer(
+                  initialTime: FFAppState().countDown,
+                  getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                    value,
+                    hours: false,
+                    milliSecond: false,
+                  ),
+                  controller: _model.timerController,
+                  updateStateInterval: const Duration(milliseconds: 1000),
+                  onChanged: (value, displayTime, shouldUpdate) {
+                    _model.timerMilliseconds = value;
+                    _model.timerValue = displayTime;
+                    if (shouldUpdate) setState(() {});
+                  },
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Urbanist',
+                        fontSize: 30.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),
         body: SafeArea(
           top: true,
-          child: SizedBox(
-            width: double.infinity,
-            height: 500.0,
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 40.0),
-                  child: PageView(
-                    controller: _model.pageViewController ??=
-                        PageController(initialPage: 0),
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/Capture_decran_2024-05-27_a_14.43.40.png',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/fantome-futur.png',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/hygrochrome-futur.png',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/marsupia-futur.png',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/tasmanie-futur.png',
-                          width: 300.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                FFLocalizations.of(context).getText(
+                  'gczlzam2' /* Colibri thalassinus, Colibri t... */,
                 ),
-                Align(
-                  alignment: const AlignmentDirectional(-1.0, 1.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 16.0),
-                    child: smooth_page_indicator.SmoothPageIndicator(
-                      controller: _model.pageViewController ??=
-                          PageController(initialPage: 0),
-                      count: 5,
-                      axisDirection: Axis.horizontal,
-                      onDotClicked: (i) async {
-                        await _model.pageViewController!.animateToPage(
-                          i,
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.ease,
-                        );
-                        setState(() {});
-                      },
-                      effect: smooth_page_indicator.ExpandingDotsEffect(
-                        expansionFactor: 3.0,
-                        spacing: 8.0,
-                        radius: 16.0,
-                        dotWidth: 16.0,
-                        dotHeight: 8.0,
-                        dotColor: FlutterFlowTheme.of(context).accent1,
-                        activeDotColor: FlutterFlowTheme.of(context).primary,
-                        paintStyle: PaintingStyle.fill,
+                style: FlutterFlowTheme.of(context).titleLarge.override(
+                      fontFamily: 'Oswald',
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              const Icon(
+                Icons.music_note,
+                color: Colors.black,
+                size: 50.0,
+              ),
+              const FlutterFlowVideoPlayer(
+                path: 'assets/videos/Colibri.mp4',
+                videoType: VideoType.asset,
+                autoPlay: true,
+                looping: true,
+                showControls: false,
+                allowFullScreen: false,
+                allowPlaybackSpeedMenu: false,
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Text(
+                  FFLocalizations.of(context).getText(
+                    'e9ap7swu' /* Utilisez cette vidéo pour retr... */,
+                  ),
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Oswald',
+                        fontSize: 20.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
+              Text(
+                FFLocalizations.of(context).getText(
+                  '9y2vsct5' /* Le code est : nombre de doigts... */,
+                ),
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Oswald',
+                      fontSize: 17.0,
+                      letterSpacing: 0.0,
+                    ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                  child: TextFormField(
+                    controller: _model.textController,
+                    focusNode: _model.textFieldFocusNode,
+                    autofocus: false,
+                    obscureText: !_model.passwordVisibility,
+                    decoration: InputDecoration(
+                      labelText: FFLocalizations.of(context).getText(
+                        'gjkrwkst' /* MOT DE PASSE */,
+                      ),
+                      labelStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                fontFamily: 'Oswald',
+                                letterSpacing: 0.0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelLarge.override(
+                                fontFamily: 'Oswald',
+                                letterSpacing: 0.0,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Color(0x00000000),
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      prefixIcon: Icon(
+                        Icons.password,
+                        color: FlutterFlowTheme.of(context).primaryText,
+                      ),
+                      suffixIcon: InkWell(
+                        onTap: () => setState(
+                          () => _model.passwordVisibility =
+                              !_model.passwordVisibility,
+                        ),
+                        focusNode: FocusNode(skipTraversal: true),
+                        child: Icon(
+                          _model.passwordVisibility
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          size: 22,
+                        ),
                       ),
                     ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Oswald',
+                          letterSpacing: 0.0,
+                        ),
+                    textAlign: TextAlign.start,
+                    maxLength: 1,
+                    keyboardType: TextInputType.number,
+                    cursorColor: FlutterFlowTheme.of(context).primaryBackground,
+                    validator:
+                        _model.textControllerValidator.asValidator(context),
                   ),
                 ),
-              ],
-            ),
+              ),
+              FFButtonWidget(
+                onPressed: () async {
+                  if (FFAppState().Difficulte == true) {
+                    if (_model.textController.text == '8') {
+                      FFAppState().addToMdpfinale('3');
+                      setState(() {});
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('BRAVO!'),
+                            content: const Text(
+                                'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('continuer'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      FFAppState().NbrEnigmesFait =
+                          FFAppState().NbrEnigmesFait + 1;
+                      setState(() {});
+
+                      context.pushNamed('Accueil');
+                    } else {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('ERREUR!'),
+                            content:
+                                const Text('Le code inserer n\'est pas correcte'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  } else {
+                    if (_model.textController.text == '8') {
+                      FFAppState().addToMdpfinale('8');
+                      setState(() {});
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('BRAVO!'),
+                            content: const Text(
+                                'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('continuer'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      FFAppState().NbrEnigmesFait =
+                          FFAppState().NbrEnigmesFait + 1;
+                      setState(() {});
+
+                      context.pushNamed('Accueil');
+                    } else {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: const Text('ERREUR!'),
+                            content:
+                                const Text('Le code inserer n\'est pas correcte'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  }
+                },
+                text: FFLocalizations.of(context).getText(
+                  '4alel88b' /* VALIDER */,
+                ),
+                options: FFButtonOptions(
+                  height: 40.0,
+                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: const Color(0xFF344D59),
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Oswald',
+                        color: Colors.white,
+                        letterSpacing: 0.0,
+                      ),
+                  elevation: 3.0,
+                  borderSide: const BorderSide(
+                    color: Colors.transparent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(12.0),
+                ),
+              ),
+            ],
           ),
         ),
       ),

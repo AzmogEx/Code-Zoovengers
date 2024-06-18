@@ -1,4 +1,6 @@
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'sentinelle_widget.dart' show SentinelleWidget;
 import 'package:flutter/material.dart';
 
@@ -6,20 +8,33 @@ class SentinelleModel extends FlutterFlowModel<SentinelleWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for PageView widget.
-  PageController? pageViewController;
+  // State field(s) for Timer widget.
+  final timerInitialTimeMs = 0;
+  int timerMilliseconds = 0;
+  String timerValue = StopWatchTimer.getDisplayTime(
+    0,
+    hours: false,
+    milliSecond: false,
+  );
+  FlutterFlowTimerController timerController =
+      FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
 
-  int get pageViewCurrentIndex => pageViewController != null &&
-          pageViewController!.hasClients &&
-          pageViewController!.page != null
-      ? pageViewController!.page!.round()
-      : 0;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  late bool passwordVisibility;
+  String? Function(BuildContext, String?)? textControllerValidator;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passwordVisibility = false;
+  }
 
   @override
   void dispose() {
     unfocusNode.dispose();
+    timerController.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
 }

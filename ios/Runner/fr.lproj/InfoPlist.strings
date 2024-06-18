@@ -1,1 +1,2 @@
 NSCameraUsageDescription = "Veuillez activez la permission d'accéder à la caméra pour scanner les qr codes du jeu de piste.";
+NSMicrophoneUsageDescription = "We need microphone for show you the different videos of the application";

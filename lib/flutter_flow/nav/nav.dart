@@ -35,7 +35,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context) => Container(
                 color: Colors.transparent,
                 child: Image.asset(
-                  'assets/images/final_sans_fond_zoovengers.png',
+                  'assets/images/ZOOVENGERS_375_x_812_px_(2).png',
                   fit: BoxFit.contain,
                 ),
               ),
@@ -50,7 +50,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   builder: (context) => Container(
                     color: Colors.transparent,
                     child: Image.asset(
-                      'assets/images/final_sans_fond_zoovengers.png',
+                      'assets/images/ZOOVENGERS_375_x_812_px_(2).png',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -110,6 +110,43 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ProjetBerserkWidget(),
         ),
         FFRoute(
+          name: 'password',
+          path: '/password',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'password')
+              : const PasswordWidget(),
+        ),
+        FFRoute(
+          name: 'projetEclair',
+          path: '/projetEclair',
+          builder: (context, params) => const ProjetEclairWidget(),
+        ),
+        FFRoute(
+          name: 'projetFantome',
+          path: '/projetFantome',
+          builder: (context, params) => const ProjetFantomeWidget(),
+        ),
+        FFRoute(
+          name: 'projetNuit',
+          path: '/projetNuit',
+          builder: (context, params) => const ProjetNuitWidget(),
+        ),
+        FFRoute(
+          name: 'projetRessort',
+          path: '/projetRessort',
+          builder: (context, params) => const ProjetRessortWidget(),
+        ),
+        FFRoute(
+          name: 'projetSentinelle',
+          path: '/projetSentinelle',
+          builder: (context, params) => const ProjetSentinelleWidget(),
+        ),
+        FFRoute(
+          name: 'projetSylbioz',
+          path: '/projetSylbioz',
+          builder: (context, params) => const ProjetSylbiozWidget(),
+        ),
+        FFRoute(
           name: 'projetTasmanie',
           path: '/projetTasmanie',
           builder: (context, params) => const ProjetTasmanieWidget(),
@@ -120,24 +157,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ProjetMarsupialWidget(),
         ),
         FFRoute(
-          name: 'projetFantome',
-          path: '/projetFantome',
-          builder: (context, params) => const ProjetFantomeWidget(),
+          name: 'projetGuerisseur',
+          path: '/projetGuerisseur',
+          builder: (context, params) => const ProjetGuerisseurWidget(),
         ),
         FFRoute(
-          name: 'projetEclair',
-          path: '/projetEclair',
-          builder: (context, params) => const ProjetEclairWidget(),
-        ),
-        FFRoute(
-          name: 'berserk',
-          path: '/berserk',
-          builder: (context, params) => const BerserkWidget(),
-        ),
-        FFRoute(
-          name: 'tasmanie',
-          path: '/tasmanie',
-          builder: (context, params) => const TasmanieWidget(),
+          name: 'berserker',
+          path: '/berserker',
+          builder: (context, params) => const BerserkerWidget(),
         ),
         FFRoute(
           name: 'eclair',
@@ -145,44 +172,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EclairWidget(),
         ),
         FFRoute(
-          name: 'marsupial',
-          path: '/marsupial',
-          builder: (context, params) => const MarsupialWidget(),
-        ),
-        FFRoute(
           name: 'fantome',
           path: '/fantome',
           builder: (context, params) => const FantomeWidget(),
         ),
         FFRoute(
-          name: 'axololth',
-          path: '/axololth',
-          builder: (context, params) => const AxololthWidget(),
+          name: 'guerisseur',
+          path: '/guerisseur',
+          builder: (context, params) => const GuerisseurWidget(),
         ),
         FFRoute(
-          name: 'projetAxoloth',
-          path: '/projetAxoloth',
-          builder: (context, params) => const ProjetAxolothWidget(),
+          name: 'marsupial',
+          path: '/marsupial',
+          builder: (context, params) => const MarsupialWidget(),
         ),
         FFRoute(
-          name: 'symbiose',
-          path: '/symbiose',
-          builder: (context, params) => const SymbioseWidget(),
-        ),
-        FFRoute(
-          name: 'projetSimbiose',
-          path: '/projetSimbiose',
-          builder: (context, params) => const ProjetSimbioseWidget(),
-        ),
-        FFRoute(
-          name: 'sentinelle',
-          path: '/sentinelle',
-          builder: (context, params) => const SentinelleWidget(),
-        ),
-        FFRoute(
-          name: 'projetSentinelle',
-          path: '/projetSentinelle',
-          builder: (context, params) => const ProjetSentinelleWidget(),
+          name: 'nuit',
+          path: '/nuit',
+          builder: (context, params) => const NuitWidget(),
         ),
         FFRoute(
           name: 'ressort',
@@ -190,26 +197,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const RessortWidget(),
         ),
         FFRoute(
-          name: 'projetRessort',
-          path: '/projetRessort',
-          builder: (context, params) => const ProjetRessortWidget(),
+          name: 'sentinelle',
+          path: '/sentinelle',
+          builder: (context, params) => const SentinelleWidget(),
         ),
         FFRoute(
-          name: 'hygrochrome',
-          path: '/hygrochrome',
-          builder: (context, params) => const HygrochromeWidget(),
+          name: 'symbioz',
+          path: '/symbioz',
+          builder: (context, params) => const SymbiozWidget(),
         ),
         FFRoute(
-          name: 'projetHygrochrome',
-          path: '/projetHygrochrome',
-          builder: (context, params) => const ProjetHygrochromeWidget(),
-        ),
-        FFRoute(
-          name: 'password',
-          path: '/password',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'password')
-              : const PasswordWidget(),
+          name: 'tasmanie',
+          path: '/tasmanie',
+          builder: (context, params) => const TasmanieWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

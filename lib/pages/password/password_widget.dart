@@ -54,111 +54,120 @@ class _PasswordWidgetState extends State<PasswordWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-      appBar: AppBar(
+    return GestureDetector(
+      onTap: () => _model.unfocusNode.canRequestFocus
+          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+          : FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        automaticallyImplyLeading: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
-            child: FlutterFlowTimer(
-              initialTime: FFAppState().countDown,
-              getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
-                value,
-                hours: false,
-                milliSecond: false,
-              ),
-              controller: _model.timerController,
-              updateStateInterval: const Duration(milliseconds: 1000),
-              onChanged: (value, displayTime, shouldUpdate) {
-                _model.timerMilliseconds = value;
-                _model.timerValue = displayTime;
-                if (shouldUpdate) setState(() {});
-              },
-              textAlign: TextAlign.start,
-              style: FlutterFlowTheme.of(context).headlineSmall.override(
-                    fontFamily: 'Urbanist',
-                    fontSize: 40.0,
-                    letterSpacing: 0.0,
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF344D59),
+          automaticallyImplyLeading: false,
+          actions: [
+            Visibility(
+              visible: FFAppState().continuer == false,
+              child: Align(
+                alignment: const AlignmentDirectional(0.0, 0.0),
+                child: Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 20.0, 0.0),
+                  child: FlutterFlowTimer(
+                    initialTime: FFAppState().countDown,
+                    getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                      value,
+                      hours: false,
+                      milliSecond: false,
+                    ),
+                    controller: _model.timerController,
+                    updateStateInterval: const Duration(milliseconds: 1000),
+                    onChanged: (value, displayTime, shouldUpdate) {
+                      _model.timerMilliseconds = value;
+                      _model.timerValue = displayTime;
+                      if (shouldUpdate) setState(() {});
+                    },
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily: 'Oswald',
+                          fontSize: 30.0,
+                          letterSpacing: 0.0,
+                        ),
                   ),
+                ),
+              ),
             ),
-          ),
-        ],
-        centerTitle: false,
-        elevation: 0.0,
-      ),
-      body: Align(
-        alignment: const AlignmentDirectional(0.0, -1.0),
-        child: Container(
-          width: double.infinity,
-          constraints: const BoxConstraints(
-            maxWidth: 570.0,
-          ),
-          decoration: const BoxDecoration(),
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // This row exists for when the "app bar" is hidden on desktop, having a way back for the user can work well.
-                if (responsiveVisibility(
-                  context: context,
-                  phone: false,
-                  tablet: false,
-                ))
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        context.safePop();
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 12.0, 0.0, 12.0),
-                            child: Icon(
-                              Icons.arrow_back_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                '2oun6orm' /* Back */,
+          ],
+          centerTitle: false,
+          elevation: 0.0,
+        ),
+        body: Align(
+          alignment: const AlignmentDirectional(0.0, -1.0),
+          child: Container(
+            width: double.infinity,
+            constraints: const BoxConstraints(
+              maxWidth: 570.0,
+            ),
+            decoration: const BoxDecoration(
+              color: Color(0xFF7A90A4),
+            ),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // This row exists for when the "app bar" is hidden on desktop, having a way back for the user can work well.
+                  if (responsiveVisibility(
+                    context: context,
+                    phone: false,
+                    tablet: false,
+                  ))
+                    Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.safePop();
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 12.0, 0.0, 12.0),
+                              child: Icon(
+                                Icons.arrow_back_rounded,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 24.0,
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                FFLocalizations.of(context).getText(
+                                  '2oun6orm' /* Back */,
+                                ),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Manrope',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'zx2l5tcm' /* Mots de passe final: */,
+                        'zx2l5tcm' /* MOT DE PASSE FINAL: */,
                       ),
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
@@ -167,216 +176,414 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                               ),
                     ),
                   ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
+                  Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
-                    child: Text(
-                      FFLocalizations.of(context).getText(
-                        '0eejz8ik' /* Attention vous n'avez le droit... */,
-                      ),
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                            fontFamily: 'Manrope',
-                            letterSpacing: 0.0,
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: TextFormField(
+                        controller: _model.passWordTextController,
+                        focusNode: _model.passWordFocusNode,
+                        autofocus: false,
+                        obscureText: !_model.passWordVisibility,
+                        decoration: InputDecoration(
+                          labelText: FFLocalizations.of(context).getText(
+                            'r90vn38u' /* Mots de passe final: */,
                           ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.passWordTextController,
-                      focusNode: _model.passWordFocusNode,
-                      autofocus: false,
-                      autofillHints: const [AutofillHints.password],
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          'r90vn38u' /* Mots de passe final: */,
-                        ),
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Manrope',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Manrope',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 24.0, 20.0, 24.0),
-                        prefixIcon: const Icon(
-                          Icons.password,
-                        ),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Manrope',
-                            letterSpacing: 0.0,
-                          ),
-                      maxLength: 10,
-                      keyboardType: TextInputType.number,
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.passWordTextControllerValidator
-                          .asValidator(context),
-                    ),
-                  ),
-                ),
-                if (FFAppState().animSend)
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Lottie.network(
-                      'https://lottie.host/a03effb3-777a-455b-b9da-156fd42061cb/DSjVZlzKmT.json',
-                      width: 311.0,
-                      height: 130.0,
-                      fit: BoxFit.cover,
-                      animate: true,
-                    ),
-                  ),
-                if (FFAppState().animVerif)
-                  Align(
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Lottie.network(
-                      'https://lottie.host/9bc464c8-a813-4b20-9537-a90b6b7ec77b/X1ee2TnmjJ.json',
-                      width: 188.0,
-                      height: 152.0,
-                      fit: BoxFit.cover,
-                      animate: true,
-                    ),
-                  ),
-                Flexible(
-                  child: Align(
-                    alignment: const AlignmentDirectional(0.0, 1.0),
-                    child: Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          16.0, 24.0, 16.0, 50.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          if (_model.passWordTextController.text == '12345') {
-                            FFAppState().animVerif = true;
-                            setState(() {});
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Verification des fichiers adn !',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor: const Color(0xFF7335D0),
-                              ),
-                            );
-                            await Future.delayed(
-                                const Duration(milliseconds: 8000));
-                            FFAppState().animVerif = false;
-                            setState(() {});
-                            FFAppState().animSend = true;
-                            setState(() {});
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 4000),
-                                backgroundColor: const Color(0xFF41E822),
-                              ),
-                            );
-                            await Future.delayed(
-                                const Duration(milliseconds: 5000));
-                            FFAppState().animSend = false;
-                            setState(() {});
-
-                            context.pushNamed('Win');
-                          } else {
-                            await showDialog(
-                              context: context,
-                              builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: const Text('ERREUR'),
-                                  content: const Text(
-                                      'le code que vous avez envoyer n\'est pas bon'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: const Text('reesayyer'),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          }
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          'i2y6xlm4' /* Envoyer: */,
-                        ),
-                        options: FFButtonOptions(
-                          width: double.infinity,
-                          height: 50.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
+                          labelStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
                                     fontFamily: 'Manrope',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                     letterSpacing: 0.0,
                                   ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Oswald',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0xFFB8CBD0),
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
                           ),
-                          borderRadius: BorderRadius.circular(12.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          filled: true,
+                          fillColor: const Color(0xFFB8CBD0),
+                          contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 24.0, 20.0, 24.0),
+                          prefixIcon: Icon(
+                            Icons.password,
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => _model.passWordVisibility =
+                                  !_model.passWordVisibility,
+                            ),
+                            focusNode: FocusNode(skipTraversal: true),
+                            child: Icon(
+                              _model.passWordVisibility
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              color: const Color(0xFF757575),
+                              size: 22.0,
+                            ),
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Manrope',
+                              color: Colors.white,
+                              letterSpacing: 0.0,
+                            ),
+                        maxLength: 5,
+                        keyboardType: TextInputType.number,
+                        cursorColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        validator: _model.passWordTextControllerValidator
+                            .asValidator(context),
+                      ),
+                    ),
+                  ),
+                  if (FFAppState().animSend)
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Lottie.asset(
+                        'assets/lottie_animations/animSend.json',
+                        width: 311.0,
+                        height: 130.0,
+                        fit: BoxFit.cover,
+                        animate: true,
+                      ),
+                    ),
+                  if (FFAppState().animVerif)
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Lottie.asset(
+                        'assets/lottie_animations/AnimCheck.json',
+                        width: 188.0,
+                        height: 152.0,
+                        fit: BoxFit.cover,
+                        animate: true,
+                      ),
+                    ),
+                  Flexible(
+                    child: Align(
+                      alignment: const AlignmentDirectional(0.0, 1.0),
+                      child: Padding(
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 24.0, 16.0, 50.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            if (FFAppState().Difficulte == true) {
+                              if (FFAppState().continuer == true) {
+                                if (_model.passWordTextController.text ==
+                                    '03029') {
+                                  FFAppState().animVerif = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Verification des fichiers adn !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF7335D0),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 8000));
+                                  FFAppState().animVerif = false;
+                                  setState(() {});
+                                  FFAppState().animSend = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF41E822),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 5000));
+                                  FFAppState().animSend = false;
+                                  setState(() {});
+
+                                  context.pushNamed('Win');
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('ERREUR'),
+                                        content: const Text(
+                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('reesayyer'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              } else {
+                                if (_model.passWordTextController.text ==
+                                    '20127') {
+                                  FFAppState().animVerif = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Verification des fichiers adn !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF7335D0),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 8000));
+                                  FFAppState().animVerif = false;
+                                  setState(() {});
+                                  FFAppState().animSend = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF41E822),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 5000));
+                                  FFAppState().animSend = false;
+                                  setState(() {});
+
+                                  context.pushNamed('Win');
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('ERREUR'),
+                                        content: const Text(
+                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('reesayyer'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              }
+                            } else {
+                              if (FFAppState().continuer == true) {
+                                if (_model.passWordTextController.text ==
+                                    '63184') {
+                                  FFAppState().animVerif = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Verification des fichiers adn !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF7335D0),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 8000));
+                                  FFAppState().animVerif = false;
+                                  setState(() {});
+                                  FFAppState().animSend = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF41E822),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 5000));
+                                  FFAppState().animSend = false;
+                                  setState(() {});
+
+                                  context.pushNamed('Win');
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('ERREUR'),
+                                        content: const Text(
+                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('reesayyer'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              } else {
+                                if (_model.passWordTextController.text ==
+                                    '54972') {
+                                  FFAppState().animVerif = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Verification des fichiers adn !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF7335D0),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 8000));
+                                  FFAppState().animVerif = false;
+                                  setState(() {});
+                                  FFAppState().animSend = true;
+                                  setState(() {});
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        style: TextStyle(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                        ),
+                                      ),
+                                      duration: const Duration(milliseconds: 4000),
+                                      backgroundColor: const Color(0xFF41E822),
+                                    ),
+                                  );
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 5000));
+                                  FFAppState().animSend = false;
+                                  setState(() {});
+
+                                  context.pushNamed('Win');
+                                } else {
+                                  await showDialog(
+                                    context: context,
+                                    builder: (alertDialogContext) {
+                                      return AlertDialog(
+                                        title: const Text('ERREUR'),
+                                        content: const Text(
+                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: const Text('reesayyer'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              }
+                            }
+                          },
+                          text: FFLocalizations.of(context).getText(
+                            'i2y6xlm4' /* Envoyer: */,
+                          ),
+                          options: FFButtonOptions(
+                            width: double.infinity,
+                            height: 50.0,
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: const Color(0xFF344D59),
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Manrope',
+                                  letterSpacing: 0.0,
+                                ),
+                            elevation: 3.0,
+                            borderSide: const BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

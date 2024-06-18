@@ -6,6 +6,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'index.dart';
 
 void main() async {
@@ -37,6 +38,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
+
   ThemeMode _themeMode = FlutterFlowTheme.themeMode;
 
   late AppStateNotifier _appStateNotifier;
@@ -129,65 +131,55 @@ class _NavBarPageState extends State<NavBarPage> {
 
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
+      bottomNavigationBar: GNav(
+        selectedIndex: currentIndex,
+        onTabChange: (i) => setState(() {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
-        backgroundColor: Colors.white,
-        selectedItemColor: FlutterFlowTheme.of(context).primary,
-        unselectedItemColor: const Color(0x8A000000),
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.home,
-            ),
-            label: FFLocalizations.of(context).getText(
+        backgroundColor: const Color(0xFF344D59),
+        color: Colors.white,
+        activeColor: const Color(0xFFF46969),
+        tabBackgroundColor: const Color(0x00000000),
+        tabBorderRadius: 100.0,
+        tabMargin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        padding: const EdgeInsets.all(16.0),
+        gap: 0.0,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        duration: const Duration(milliseconds: 500),
+        haptic: false,
+        tabs: [
+          GButton(
+            icon: Icons.home,
+            text: FFLocalizations.of(context).getText(
               '23vakbx8' /* Accueil */,
             ),
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.key,
-            ),
-            label: FFLocalizations.of(context).getText(
+          GButton(
+            icon: Icons.key,
+            text: FFLocalizations.of(context).getText(
               'f2y9mbrm' /* Decryptek */,
             ),
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.qr_code,
-            ),
-            label: FFLocalizations.of(context).getText(
+          GButton(
+            icon: Icons.qr_code,
+            text: FFLocalizations.of(context).getText(
               '2t6ado82' /* Scan */,
             ),
-            tooltip: '',
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.castle,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
+          GButton(
+            icon: Icons.castle,
+            text: FFLocalizations.of(context).getText(
               'x7pnqojq' /* Enigmes */,
             ),
-            tooltip: '',
+            iconSize: 24.0,
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.password,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
+          GButton(
+            icon: Icons.password,
+            text: FFLocalizations.of(context).getText(
               'l1yiy5pz' /* Final */,
             ),
-            tooltip: '',
+            iconSize: 24.0,
           )
         ],
       ),

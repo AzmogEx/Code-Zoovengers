@@ -9,34 +9,34 @@ export '/pages/scan/scan_widget.dart' show ScanWidget;
 export '/pages/enigmes/enigmes_widget.dart' show EnigmesWidget;
 export '/projetsanimaux/projet_berserk/projet_berserk_widget.dart'
     show ProjetBerserkWidget;
+export '/pages/password/password_widget.dart' show PasswordWidget;
+export '/projetsanimaux/projet_eclair/projet_eclair_widget.dart'
+    show ProjetEclairWidget;
+export '/projetsanimaux/projet_fantome/projet_fantome_widget.dart'
+    show ProjetFantomeWidget;
+export '/projetsanimaux/projet_nuit/projet_nuit_widget.dart'
+    show ProjetNuitWidget;
+export '/projetsanimaux/projet_ressort/projet_ressort_widget.dart'
+    show ProjetRessortWidget;
+export '/projetsanimaux/projet_sentinelle/projet_sentinelle_widget.dart'
+    show ProjetSentinelleWidget;
+export '/projetsanimaux/projet_sylbioz/projet_sylbioz_widget.dart'
+    show ProjetSylbiozWidget;
 export '/projetsanimaux/projet_tasmanie/projet_tasmanie_widget.dart'
     show ProjetTasmanieWidget;
 export '/projetsanimaux/projet_marsupial/projet_marsupial_widget.dart'
     show ProjetMarsupialWidget;
-export '/projetsanimaux/projet_fantome/projet_fantome_widget.dart'
-    show ProjetFantomeWidget;
-export '/projetsanimaux/projet_eclair/projet_eclair_widget.dart'
-    show ProjetEclairWidget;
-export '/projetsanimaux/berserk/berserk_widget.dart' show BerserkWidget;
-export '/projetsanimaux/tasmanie/tasmanie_widget.dart' show TasmanieWidget;
+export '/projetsanimaux/projet_guerisseur/projet_guerisseur_widget.dart'
+    show ProjetGuerisseurWidget;
+export '/projetsanimaux/berserker/berserker_widget.dart' show BerserkerWidget;
 export '/projetsanimaux/eclair/eclair_widget.dart' show EclairWidget;
-export '/projetsanimaux/marsupial/marsupial_widget.dart' show MarsupialWidget;
 export '/projetsanimaux/fantome/fantome_widget.dart' show FantomeWidget;
-export '/projetsanimaux/axololth/axololth_widget.dart' show AxololthWidget;
-export '/projetsanimaux/projet_axoloth/projet_axoloth_widget.dart'
-    show ProjetAxolothWidget;
-export '/projetsanimaux/symbiose/symbiose_widget.dart' show SymbioseWidget;
-export '/projetsanimaux/projet_simbiose/projet_simbiose_widget.dart'
-    show ProjetSimbioseWidget;
+export '/projetsanimaux/guerisseur/guerisseur_widget.dart'
+    show GuerisseurWidget;
+export '/projetsanimaux/marsupial/marsupial_widget.dart' show MarsupialWidget;
+export '/projetsanimaux/nuit/nuit_widget.dart' show NuitWidget;
+export '/projetsanimaux/ressort/ressort_widget.dart' show RessortWidget;
 export '/projetsanimaux/sentinelle/sentinelle_widget.dart'
     show SentinelleWidget;
-export '/projetsanimaux/projet_sentinelle/projet_sentinelle_widget.dart'
-    show ProjetSentinelleWidget;
-export '/projetsanimaux/ressort/ressort_widget.dart' show RessortWidget;
-export '/projetsanimaux/projet_ressort/projet_ressort_widget.dart'
-    show ProjetRessortWidget;
-export '/projetsanimaux/hygrochrome/hygrochrome_widget.dart'
-    show HygrochromeWidget;
-export '/projetsanimaux/projet_hygrochrome/projet_hygrochrome_widget.dart'
-    show ProjetHygrochromeWidget;
-export '/pages/password/password_widget.dart' show PasswordWidget;
+export '/projetsanimaux/symbioz/symbioz_widget.dart' show SymbiozWidget;
+export '/projetsanimaux/tasmanie/tasmanie_widget.dart' show TasmanieWidget;
