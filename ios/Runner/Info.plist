@@ -50,7 +50,10 @@
 
 	<key>NSCameraUsageDescription</key>
     <string>In order to scan for barcodes and QR codes, this app requires permission to access the camera.</string>
-
+	<key>NSMicrophoneUsageDescription</key>
+    <string>We need microphone for show you the different videos of the application</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>We need microphone for show you the different videos of the application</string>
 
 
 	<key>UILaunchStoryboardName</key>

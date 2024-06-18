@@ -68,7 +68,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         body: SafeArea(
           top: true,
           child: Padding(
@@ -80,10 +80,13 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                   FFLocalizations.of(context).getText(
                     'tqoumjk3' /* Decryptek */,
                   ),
+                  textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).headlineLarge.override(
-                        fontFamily: 'Urbanist',
+                        fontFamily: 'Oswald',
                         color: FlutterFlowTheme.of(context).primaryText,
+                        fontSize: 30.0,
                         letterSpacing: 0.0,
+                        fontWeight: FontWeight.w500,
                       ),
                 ),
                 Padding(
@@ -92,186 +95,557 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                     FFLocalizations.of(context).getText(
                       '21s8o4jm' /* Bienvenue sur le decryptek! Ut... */,
                     ),
+                    textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Manrope',
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          fontFamily: 'Oswald',
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontSize: 12.0,
                           letterSpacing: 0.0,
                         ),
                   ),
                 ),
-                FlutterFlowTimer(
-                  initialTime: FFAppState().countDown,
-                  getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
-                    value,
-                    hours: false,
-                    milliSecond: false,
-                  ),
-                  controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
-                  onChanged: (value, displayTime, shouldUpdate) {
-                    _model.timerMilliseconds = value;
-                    _model.timerValue = displayTime;
-                    if (shouldUpdate) setState(() {});
-                  },
-                  textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Urbanist',
-                        fontSize: 40.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-                Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 500.0,
-                    child: Stack(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 40.0),
-                          child: PageView(
-                            controller: _model.pageViewController ??=
-                                PageController(initialPage: 0),
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.asset(
-                                          'assets/images/eclair-final.png',
-                                          fit: BoxFit.contain,
-                                        ),
-                                        allowRotation: true,
-                                        tag: 'imageTag1',
-                                        useHeroAnimation: true,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: 'imageTag1',
-                                  transitionOnUserGestures: true,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/eclair-final.png',
-                                      width: 300.0,
-                                      height: 200.0,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: FlutterFlowExpandedImageView(
-                                        image: Image.asset(
-                                          'assets/images/fantome-final.png',
-                                          fit: BoxFit.contain,
-                                        ),
-                                        allowRotation: true,
-                                        tag: 'imageTag2',
-                                        useHeroAnimation: true,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Hero(
-                                  tag: 'imageTag2',
-                                  transitionOnUserGestures: true,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/fantome-final.png',
-                                      width: 337.0,
-                                      height: 469.0,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/eclair-final.png',
-                                  width: 300.0,
-                                  height: 200.0,
-                                  fit: BoxFit.fitWidth,
-                                ),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/fantome-final.png',
-                                  width: 300.0,
-                                  height: 200.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.asset(
-                                  'assets/images/marsupial-final.png',
-                                  width: 300.0,
-                                  height: 200.0,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ],
-                          ),
+                if (FFAppState().continuer == false)
+                  FlutterFlowTimer(
+                    initialTime: FFAppState().countDown,
+                    getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                      value,
+                      hours: false,
+                      milliSecond: false,
+                    ),
+                    controller: _model.timerController,
+                    updateStateInterval: const Duration(milliseconds: 1000),
+                    onChanged: (value, displayTime, shouldUpdate) {
+                      _model.timerMilliseconds = value;
+                      _model.timerValue = displayTime;
+                      if (shouldUpdate) setState(() {});
+                    },
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily: 'Oswald',
+                          fontSize: 40.0,
+                          letterSpacing: 0.0,
                         ),
-                        Align(
-                          alignment: const AlignmentDirectional(-1.0, 1.0),
-                          child: Padding(
+                  ),
+                if (FFAppState().Difficulte == false)
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 180.0, 0.0, 0.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        '73rm5fhi' /* Cette fonctionnalité est réser... */,
+                      ),
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Manrope',
+                            fontSize: 24.0,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
+                  ),
+                if ((FFAppState().Difficulte == true) &&
+                    (FFAppState().continuer == false))
+                  Expanded(
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 500.0,
+                      child: Stack(
+                        children: [
+                          Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 0.0, 16.0),
-                            child: smooth_page_indicator.SmoothPageIndicator(
-                              controller: _model.pageViewController ??=
+                                0.0, 0.0, 0.0, 40.0),
+                            child: PageView(
+                              controller: _model.pageViewController1 ??=
                                   PageController(initialPage: 0),
-                              count: 5,
-                              axisDirection: Axis.horizontal,
-                              onDotClicked: (i) async {
-                                await _model.pageViewController!.animateToPage(
-                                  i,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.ease,
-                                );
-                                setState(() {});
-                              },
-                              effect: smooth_page_indicator.ExpandingDotsEffect(
-                                expansionFactor: 3.0,
-                                spacing: 8.0,
-                                radius: 16.0,
-                                dotWidth: 16.0,
-                                dotHeight: 8.0,
-                                dotColor: FlutterFlowTheme.of(context).accent1,
-                                activeDotColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                paintStyle: PaintingStyle.fill,
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/21.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag1',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag1',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/21.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/22.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag2',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag2',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/22.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: 100.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/23.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag3',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag3',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/23.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/24.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag4',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag4',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/24.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/25.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag5',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag5',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/25.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 1.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 0.0, 16.0),
+                              child: smooth_page_indicator.SmoothPageIndicator(
+                                controller: _model.pageViewController1 ??=
+                                    PageController(initialPage: 0),
+                                count: 5,
+                                axisDirection: Axis.horizontal,
+                                onDotClicked: (i) async {
+                                  await _model.pageViewController1!
+                                      .animateToPage(
+                                    i,
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.ease,
+                                  );
+                                  setState(() {});
+                                },
+                                effect:
+                                    const smooth_page_indicator.ExpandingDotsEffect(
+                                  expansionFactor: 3.0,
+                                  spacing: 8.0,
+                                  radius: 16.0,
+                                  dotWidth: 16.0,
+                                  dotHeight: 8.0,
+                                  dotColor: Color(0xFF7A90A4),
+                                  activeDotColor: Color(0xFFB8CBD0),
+                                  paintStyle: PaintingStyle.fill,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                if ((FFAppState().Difficulte == true) &&
+                    (FFAppState().continuer == true))
+                  Expanded(
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 500.0,
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 40.0),
+                            child: PageView(
+                              controller: _model.pageViewController2 ??=
+                                  PageController(initialPage: 0),
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/image.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag6',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag6',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/image.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/26.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag7',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag7',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/26.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: 100.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/28.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag8',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag8',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/28.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: FFAppState().continuer == false,
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.fade,
+                                          child: FlutterFlowExpandedImageView(
+                                            image: Image.asset(
+                                              'assets/images/29.png',
+                                              fit: BoxFit.contain,
+                                            ),
+                                            allowRotation: true,
+                                            tag: 'imageTag9',
+                                            useHeroAnimation: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Hero(
+                                      tag: 'imageTag9',
+                                      transitionOnUserGestures: true,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.asset(
+                                          'assets/images/29.png',
+                                          width:
+                                              MediaQuery.sizeOf(context).width *
+                                                  0.7,
+                                          height: MediaQuery.sizeOf(context)
+                                                  .height *
+                                              1.0,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(-1.0, 1.0),
+                            child: Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 0.0, 16.0),
+                              child: smooth_page_indicator.SmoothPageIndicator(
+                                controller: _model.pageViewController2 ??=
+                                    PageController(initialPage: 0),
+                                count: 4,
+                                axisDirection: Axis.horizontal,
+                                onDotClicked: (i) async {
+                                  await _model.pageViewController2!
+                                      .animateToPage(
+                                    i,
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.ease,
+                                  );
+                                  setState(() {});
+                                },
+                                effect:
+                                    const smooth_page_indicator.ExpandingDotsEffect(
+                                  expansionFactor: 3.0,
+                                  spacing: 8.0,
+                                  radius: 16.0,
+                                  dotWidth: 16.0,
+                                  dotHeight: 8.0,
+                                  dotColor: Color(0xFF7A90A4),
+                                  activeDotColor: Color(0xFFB8CBD0),
+                                  paintStyle: PaintingStyle.fill,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

@@ -1,9 +1,12 @@
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'projet_marsupial_model.dart';
 export 'projet_marsupial_model.dart';
 
@@ -26,6 +29,8 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -37,15 +42,17 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFF344D59),
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -58,21 +65,49 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed('Enigmes');
             },
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              '1qnxw2vo' /* MARSUPIAL */,
+              'snfl2jhz' /* MARSUPIAL */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Urbanist',
+                  fontFamily: 'Oswald',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 30.0,
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: const [],
+          actions: [
+            Align(
+              alignment: const AlignmentDirectional(0.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                child: FlutterFlowTimer(
+                  initialTime: FFAppState().countDown,
+                  getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                    value,
+                    hours: false,
+                    milliSecond: false,
+                  ),
+                  controller: _model.timerController,
+                  updateStateInterval: const Duration(milliseconds: 1000),
+                  onChanged: (value, displayTime, shouldUpdate) {
+                    _model.timerMilliseconds = value;
+                    _model.timerValue = displayTime;
+                    if (shouldUpdate) setState(() {});
+                  },
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Urbanist',
+                        fontSize: 30.0,
+                        letterSpacing: 0.0,
+                      ),
+                ),
+              ),
+            ),
+          ],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -81,190 +116,279 @@ class _ProjetMarsupialWidgetState extends State<ProjetMarsupialWidget> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Container(
-                    width: 400.0,
-                    height: 704.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      shape: BoxShape.rectangle,
+                  alignment: const AlignmentDirectional(0.0, -1.0),
+                  child: Text(
+                    FFLocalizations.of(context).getText(
+                      'e0arwc1q' /* PROJET MARSUPIAL */,
                     ),
-                    alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          FFLocalizations.of(context).getText(
-                            'ze66he32' /* PROJET MARSUPIAL */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 25.0,
-                                    letterSpacing: 0.0,
-                                  ),
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).displayLarge.override(
+                          fontFamily: 'Urbanist',
+                          fontSize: 35.0,
+                          letterSpacing: 0.0,
                         ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            'https://images.unsplash.com/photo-1581825101896-2fbbbf7bec26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxfHxlY3VyZXVpbHxlbnwwfHx8fDE3MTY5NzAyNTh8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                            width: 300.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          FFLocalizations.of(context).getText(
-                            '06vy7hfd' /* veuillez inserer le code du pr... */,
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              8.0, 0.0, 8.0, 0.0),
-                          child: TextFormField(
-                            controller: _model.textController,
-                            focusNode: _model.textFieldFocusNode,
-                            autofocus: true,
-                            textInputAction: TextInputAction.done,
-                            obscureText: !_model.passwordVisibility,
-                            decoration: InputDecoration(
-                              labelText: FFLocalizations.of(context).getText(
-                                'yc7l3mq2' /* code secret */,
-                              ),
-                              labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                              hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    letterSpacing: 0.0,
-                                  ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              errorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              focusedErrorBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).error,
-                                  width: 2.0,
-                                ),
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.password_sharp,
-                              ),
-                              suffixIcon: InkWell(
-                                onTap: () => setState(
-                                  () => _model.passwordVisibility =
-                                      !_model.passwordVisibility,
-                                ),
-                                focusNode: FocusNode(skipTraversal: true),
-                                child: Icon(
-                                  _model.passwordVisibility
-                                      ? Icons.visibility_outlined
-                                      : Icons.visibility_off_outlined,
-                                  size: 22,
-                                ),
-                              ),
+                  ),
+                ),
+                if (FFAppState().Difficulte == false)
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: FlutterFlowExpandedImageView(
+                            image: Image.asset(
+                              'assets/images/MARSUPIAL.png',
+                              fit: BoxFit.contain,
                             ),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Manrope',
+                            allowRotation: true,
+                            tag: 'imageTag1',
+                            useHeroAnimation: true,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Hero(
+                      tag: 'imageTag1',
+                      transitionOnUserGestures: true,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/MARSUPIAL.png',
+                          width: MediaQuery.sizeOf(context).width * 0.65,
+                          height: MediaQuery.sizeOf(context).height * 0.6,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                  ),
+                if (FFAppState().Difficulte == true)
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.fade,
+                          child: FlutterFlowExpandedImageView(
+                            image: Image.asset(
+                              'assets/images/MARUPIAL_DIFFICILE.png',
+                              fit: BoxFit.contain,
+                            ),
+                            allowRotation: true,
+                            tag: 'imageTag2',
+                            useHeroAnimation: true,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Hero(
+                      tag: 'imageTag2',
+                      transitionOnUserGestures: true,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.asset(
+                          'assets/images/MARUPIAL_DIFFICILE.png',
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 0.6,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ),
+                Text(
+                  FFLocalizations.of(context).getText(
+                    '0ki5ayyt' /* Insérez le mot de passe du pro... */,
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Oswald',
+                        letterSpacing: 0.0,
+                      ),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(0.0, 0.0),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                    child: TextFormField(
+                      controller: _model.textController,
+                      focusNode: _model.textFieldFocusNode,
+                      autofocus: false,
+                      obscureText: !_model.passwordVisibility,
+                      decoration: InputDecoration(
+                        labelText: FFLocalizations.of(context).getText(
+                          'k0jqrt5c' /* MOT DE PASSE */,
+                        ),
+                        labelStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Oswald',
                                   letterSpacing: 0.0,
                                 ),
-                            maxLength: 5,
-                            maxLengthEnforcement: MaxLengthEnforcement.none,
-                            keyboardType: TextInputType.number,
-                            validator: _model.textControllerValidator
-                                .asValidator(context),
+                        hintStyle:
+                            FlutterFlowTheme.of(context).labelLarge.override(
+                                  fontFamily: 'Oswald',
+                                  letterSpacing: 0.0,
+                                ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            color: Color(0x00000000),
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        errorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedErrorBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).error,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        prefixIcon: Icon(
+                          Icons.password,
+                          color: FlutterFlowTheme.of(context).primaryText,
+                        ),
+                        suffixIcon: InkWell(
+                          onTap: () => setState(
+                            () => _model.passwordVisibility =
+                                !_model.passwordVisibility,
+                          ),
+                          focusNode: FocusNode(skipTraversal: true),
+                          child: Icon(
+                            _model.passwordVisibility
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 22,
                           ),
                         ),
-                        Flexible(
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              if (_model.textController.text == '12345') {
-                                FFAppState().marsupilan = true;
-                                setState(() {});
-
-                                context.pushNamed('marsupial');
-                              } else {
-                                await showDialog(
-                                  context: context,
-                                  builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: const Text('ERREUR!'),
-                                      content: const Text('mauvais code'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: const Text('reesseyer'),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                );
-                              }
-                            },
-                            text: FFLocalizations.of(context).getText(
-                              'vpbepcfj' /* valider */,
-                            ),
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Manrope',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: const BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
+                      ),
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Oswald',
+                            letterSpacing: 0.0,
                           ),
-                        ),
-                      ],
+                      textAlign: TextAlign.start,
+                      keyboardType: TextInputType.number,
+                      cursorColor:
+                          FlutterFlowTheme.of(context).primaryBackground,
+                      validator:
+                          _model.textControllerValidator.asValidator(context),
                     ),
+                  ),
+                ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    if (FFAppState().Difficulte == true) {
+                      if (_model.textController.text == '6126') {
+                        FFAppState().marsupilan = true;
+                        setState(() {});
+
+                        context.pushNamed(
+                          'marsupial',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.bottomToTop,
+                            ),
+                          },
+                        );
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('ERREUR!'),
+                              content: const Text(
+                                  'Le code que vous avez inséré n\'est pas le bon.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Réessayer'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    } else {
+                      if (_model.textController.text == '120') {
+                        FFAppState().marsupilan = true;
+                        setState(() {});
+
+                        context.pushNamed(
+                          'marsupial',
+                          extra: <String, dynamic>{
+                            kTransitionInfoKey: const TransitionInfo(
+                              hasTransition: true,
+                              transitionType: PageTransitionType.bottomToTop,
+                            ),
+                          },
+                        );
+                      } else {
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: const Text('ERREUR!'),
+                              content: const Text(
+                                  'Le code que vous avez inséré n\'est pas le bon.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: const Text('Réessayer'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    }
+                  },
+                  text: FFLocalizations.of(context).getText(
+                    'v9t4z6bp' /* VALIDER */,
+                  ),
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF344D59),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Oswald',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(12.0),
                   ),
                 ),
               ],

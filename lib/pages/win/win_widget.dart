@@ -45,7 +45,7 @@ class _WinWidgetState extends State<WinWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -65,7 +65,7 @@ class _WinWidgetState extends State<WinWidget> {
                     '910ep2k8' /* Félicitation */,
                   ),
                   style: FlutterFlowTheme.of(context).displayLarge.override(
-                        fontFamily: 'Urbanist',
+                        fontFamily: 'Oswald',
                         color: FlutterFlowTheme.of(context).primaryText,
                         fontSize: 50.0,
                         letterSpacing: 0.0,
@@ -80,8 +80,8 @@ class _WinWidgetState extends State<WinWidget> {
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Manrope',
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        fontFamily: 'Oswald',
+                        color: Colors.white,
                         letterSpacing: 0.0,
                       ),
                 ),
@@ -105,19 +105,71 @@ class _WinWidgetState extends State<WinWidget> {
                 },
                 textAlign: TextAlign.start,
                 style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Urbanist',
+                      fontFamily: 'Oswald',
                       fontSize: 40.0,
                       letterSpacing: 0.0,
                     ),
               ),
+              if (FFAppState().continuer == false)
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      FFAppState().continuer = true;
+                      setState(() {});
+
+                      context.pushNamed('Accueil');
+                    },
+                    text: FFLocalizations.of(context).getText(
+                      'pzor89sk' /* Continuer ? */,
+                    ),
+                    options: FFButtonOptions(
+                      width: 130.0,
+                      height: 50.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: const Color(0xFF344D59),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Oswald',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 3.0,
+                    ),
+                  ),
+                ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    context.goNamed('Start');
+                    FFAppState().berserk = false;
+                    FFAppState().eclair = false;
+                    FFAppState().marsupilan = false;
+                    FFAppState().fantome = false;
+                    FFAppState().tasmanie = false;
+                    FFAppState().countDown = 360000;
+                    FFAppState().Difficulte = false;
+                    FFAppState().axoloth = false;
+                    FFAppState().simbioz = false;
+                    FFAppState().sentinelle = false;
+                    FFAppState().ressort = false;
+                    FFAppState().hygrochrome = false;
+                    FFAppState().deuxheures = 720000;
+                    FFAppState().animSend = false;
+                    FFAppState().animVerif = false;
+                    FFAppState().adnScan = [];
+                    FFAppState().continuer = false;
+                    FFAppState().NbrEnigmesFait = 0;
+                    FFAppState().mdpfinale = [];
+                    setState(() {});
+
+                    context.pushNamed('Start');
                   },
                   text: FFLocalizations.of(context).getText(
-                    'pzor89sk' /* Rejouer */,
+                    '5cvalrt8' /* Rejouer */,
                   ),
                   options: FFButtonOptions(
                     width: 130.0,
@@ -125,10 +177,10 @@ class _WinWidgetState extends State<WinWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: const Color(0xFF344D59),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Manrope',
-                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          fontFamily: 'Oswald',
+                          color: Colors.white,
                           letterSpacing: 0.0,
                         ),
                     elevation: 3.0,

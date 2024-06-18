@@ -38,7 +38,7 @@ class _GameOverWidgetState extends State<GameOverWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         body: SafeArea(
           top: true,
           child: Padding(
@@ -52,10 +52,10 @@ class _GameOverWidgetState extends State<GameOverWidget> {
                   alignment: const AlignmentDirectional(0.0, -1.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
-                      'me9kbrcb' /* Game Over */,
+                      'me9kbrcb' /* GAME OVER */,
                     ),
                     style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: 'Urbanist',
+                          fontFamily: 'Oswald',
                           color: FlutterFlowTheme.of(context).primaryText,
                           letterSpacing: 0.0,
                         ),
@@ -72,39 +72,34 @@ class _GameOverWidgetState extends State<GameOverWidget> {
                       ),
                       textAlign: TextAlign.center,
                       style: FlutterFlowTheme.of(context).titleMedium.override(
-                            fontFamily: 'Manrope',
-                            color: FlutterFlowTheme.of(context).secondaryText,
+                            fontFamily: 'Oswald',
+                            color: Colors.white,
                             letterSpacing: 0.0,
                           ),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('Start');
-                    },
-                    text: FFLocalizations.of(context).getText(
-                      'n7c8br8i' /* Try Again */,
-                    ),
-                    options: FFButtonOptions(
-                      width: 200.0,
-                      height: 50.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Manrope',
-                                color: Colors.white,
-                                letterSpacing: 0.0,
-                              ),
-                      elevation: 2.0,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
+                FFButtonWidget(
+                  onPressed: () async {
+                    context.pushNamed('Start');
+                  },
+                  text: FFLocalizations.of(context).getText(
+                    'n7c8br8i' /* réessayer */,
+                  ),
+                  options: FFButtonOptions(
+                    width: 200.0,
+                    height: 50.0,
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF344D59),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Oswald',
+                          color: Colors.white,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 2.0,
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
               ],

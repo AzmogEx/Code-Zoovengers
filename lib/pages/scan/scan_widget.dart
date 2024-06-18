@@ -32,17 +32,22 @@ class _ScanWidgetState extends State<ScanWidget> {
       _model.timerController.onStartTimer();
       await Future.wait([
         Future(() async {
-          while (FFAppState().countDown != null) {
-            FFAppState().countDown = _model.timerMilliseconds;
+          while (FFAppState().adnScan.contains(_model.adnScan)) {
+            FFAppState().addToAdnScan(_model.adnScan);
             setState(() {});
             await Future.delayed(const Duration(milliseconds: 200));
           }
         }),
         Future(() async {
-          while (FFAppState().adnScan.contains(_model.adnScan)) {
-            FFAppState().addToAdnScan(_model.adnScan);
-            setState(() {});
-            await Future.delayed(const Duration(milliseconds: 200));
+          if (FFAppState().continuer == true) {
+            _model.timerController.onStopTimer();
+          } else {
+            _model.timerController.onStartTimer();
+            while (FFAppState().countDown != null) {
+              FFAppState().countDown = _model.timerMilliseconds;
+              setState(() {});
+              await Future.delayed(const Duration(milliseconds: 200));
+            }
           }
         }),
       ]);
@@ -68,46 +73,49 @@ class _ScanWidgetState extends State<ScanWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: const Color(0xFF7A90A4),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: const Color(0xFF344D59),
           automaticallyImplyLeading: false,
           title: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
+            alignment: const AlignmentDirectional(-1.0, 0.0),
             child: Text(
               FFLocalizations.of(context).getText(
                 'przuw6rp' /* Scan QR Code */,
               ),
               style: FlutterFlowTheme.of(context).headlineLarge.override(
-                    fontFamily: 'Urbanist',
+                    fontFamily: 'Oswald',
                     color: FlutterFlowTheme.of(context).primaryText,
                     letterSpacing: 0.0,
                   ),
             ),
           ),
           actions: [
-            Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-              child: FlutterFlowTimer(
-                initialTime: FFAppState().countDown,
-                getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
-                  value,
-                  hours: false,
-                  milliSecond: false,
+            Visibility(
+              visible: FFAppState().continuer == false,
+              child: Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 20.0, 0.0),
+                child: FlutterFlowTimer(
+                  initialTime: FFAppState().countDown,
+                  getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                    value,
+                    hours: false,
+                    milliSecond: false,
+                  ),
+                  controller: _model.timerController,
+                  updateStateInterval: const Duration(milliseconds: 1000),
+                  onChanged: (value, displayTime, shouldUpdate) {
+                    _model.timerMilliseconds = value;
+                    _model.timerValue = displayTime;
+                    if (shouldUpdate) setState(() {});
+                  },
+                  textAlign: TextAlign.start,
+                  style: FlutterFlowTheme.of(context).headlineSmall.override(
+                        fontFamily: 'Oswald',
+                        fontSize: 30.0,
+                        letterSpacing: 0.0,
+                      ),
                 ),
-                controller: _model.timerController,
-                updateStateInterval: const Duration(milliseconds: 1000),
-                onChanged: (value, displayTime, shouldUpdate) {
-                  _model.timerMilliseconds = value;
-                  _model.timerValue = displayTime;
-                  if (shouldUpdate) setState(() {});
-                },
-                textAlign: TextAlign.start,
-                style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Urbanist',
-                      fontSize: 30.0,
-                      letterSpacing: 0.0,
-                    ),
               ),
             ),
           ],
@@ -118,7 +126,7 @@ class _ScanWidgetState extends State<ScanWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
@@ -129,8 +137,8 @@ class _ScanWidgetState extends State<ScanWidget> {
                   ),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Manrope',
-                        color: FlutterFlowTheme.of(context).secondaryText,
+                        fontFamily: 'Oswald',
+                        color: Colors.white,
                         fontSize: 13.0,
                         letterSpacing: 0.0,
                       ),
@@ -142,7 +150,7 @@ class _ScanWidgetState extends State<ScanWidget> {
                   width: 267.0,
                   height: 300.0,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: const Color(0xFF344D59),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Align(
@@ -296,15 +304,13 @@ class _ScanWidgetState extends State<ScanWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .titleSmall
-                          .override(
-                            fontFamily: 'Manrope',
-                            color:
-                                FlutterFlowTheme.of(context).primaryBackground,
-                            letterSpacing: 0.0,
-                          ),
+                      color: const Color(0xFF344D59),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Oswald',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
                       elevation: 2.0,
                       borderRadius: BorderRadius.circular(8.0),
                     ),
