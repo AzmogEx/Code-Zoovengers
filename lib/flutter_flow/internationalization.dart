@@ -120,19 +120,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'q5fn3fsz': {
       'fr': 'Expert Zoovengers',
-      'en': 'Expert',
-      'es': 'Experto',
+      'en': 'Zoovengers Expert',
+      'es': 'Experto en Zoovengers',
     },
     'l3dg3sze': {
       'fr': '10ans +',
-      'en': '10 years and over',
-      'es': '10 años y más',
+      'en': '10 years +',
+      'es': '10 años +',
     },
     '8e6so0wr': {
       'fr':
           'Attention : le choix de la difficulté aura un impact sur votre expérience de jeu. Choisissez judicieusement, car cela influencera le défi et l\'intensité de votre partie !',
-      'en': '7 years',
-      'es': '7 años',
+      'en':
+          'Please note: the choice of difficulty will impact your gaming experience. Choose wisely, as it will influence the challenge and intensity of your game!',
+      'es':
+          'Tenga en cuenta: la elección de la dificultad afectará su experiencia de juego. ¡Elija sabiamente, ya que influirá en el desafío y la intensidad de su juego!',
     },
     '22xd5sx7': {
       'fr': '7 ans',
@@ -149,8 +151,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'sh22z9ht': {
       'fr': '1h',
-      'en': '1 hour',
-      'es': '1 hora',
+      'en': '1h',
+      'es': '1h',
     },
     '7ofavb6n': {
       'fr': '2h',
@@ -165,8 +167,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '47hbjogc': {
       'fr':
           'Attention : si l\'application se ferme, vous perdrez votre progression et toutes vos données. Faites attention ! La mission échouera.',
-      'en': '',
-      'es': '',
+      'en':
+          'Warning: if the application closes, you will lose your progress and all your data. Pay attention ! The mission will fail.',
+      'es':
+          'Advertencia: si la aplicación se cierra, perderás tu progreso y todos tus datos. Presta atención ! La misión fracasará.',
     },
     'g46hdcbm': {
       'fr': 'Compte à rebours',
@@ -176,22 +180,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Accueil
   {
-    '4flophpy': {
+    'ooph7t6l': {
       'fr': 'Zoovengers',
-      'en': 'Zoovengers:',
-      'es': 'Vengadores del zoológico:',
+      'en': 'Zoovengers',
+      'es': 'Vengadores del zoo',
     },
-    'tx5gnfmy': {
+    'kopltei7': {
       'fr': 'L\'agence zoovengers vous souhaite la bienvenue',
       'en': 'The zoovengers agency welcomes you',
       'es': 'La agencia zoovengers te da la bienvenida.',
     },
-    'kig4qnvv': {
+    '3ig8uae0': {
       'fr': 'Pourrez vous résoudre à temps les puzzles ?',
       'en': 'Can you solve the puzzles in time?',
       'es': '¿Podrás resolver los acertijos a tiempo?',
     },
-    '9r2cp5f0': {
+    'x9ypormm': {
       'fr': 'Code: ',
       'en': 'Coded:',
       'es': 'Codificado:',
@@ -204,12 +208,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Decryptek
   {
-    'tqoumjk3': {
+    'qvt5u4sl': {
       'fr': 'Decryptek',
       'en': 'Decryptek',
       'es': 'Decryptek',
     },
-    '21s8o4jm': {
+    'ao64zo8d': {
       'fr':
           'Bienvenue sur le decryptek! Utiliser le pour déchiffrer les codes et résoudre les énigmes. Bonne chance! (Uniquement pour la difficutlé Expert)',
       'en':
@@ -217,11 +221,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es':
           '¡Bienvenido a decryptek! Úselo para descifrar códigos y resolver acertijos. ¡Buena suerte! (Solo para dificultad Experto)',
     },
-    '73rm5fhi': {
+    '7t7qxmio': {
       'fr':
           'Cette fonctionnalité est réservée aux modes de difficulté plus élevés. Vous pourrez tenter votre chance à un autre moment.',
-      'en': '',
-      'es': '',
+      'en':
+          'This feature is reserved for higher difficulty modes. You can try your luck at another time.',
+      'es':
+          'Esta función está reservada para modos de mayor dificultad. Puedes probar suerte en otro momento.',
     },
     'f2y9mbrm': {
       'fr': 'Decryptek',
@@ -231,17 +237,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // GameOver
   {
-    'me9kbrcb': {
+    'wssarhky': {
       'fr': 'GAME OVER',
       'en': 'GAME OVER',
       'es': 'JUEGO TERMINADO',
     },
-    '5fys4m2n': {
+    'c8z0ej84': {
       'fr': 'Vous ne vous êtes pas échappez à temps',
       'en': 'You didn\'t escape in time',
       'es': 'No escapaste a tiempo',
     },
-    'n7c8br8i': {
+    'nh723u8n': {
       'fr': 'réessayer',
       'en': 'try again',
       'es': 'Volver a intentar',
@@ -249,49 +255,44 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // Win
   {
-    '910ep2k8': {
+    'vodp8nnj': {
       'fr': 'Félicitation',
       'en': 'Congratulations',
       'es': 'Felicidades',
     },
-    '0qttfj54': {
+    '46w5o9af': {
       'fr': 'Vous avez réussi à retrouvez tout les animaux manquant !',
       'en': 'You have managed to find all the missing animals!',
       'es': '¡Has logrado encontrar todos los animales perdidos!',
     },
-    'pzor89sk': {
+    'heponw3y': {
       'fr': 'Continuer ?',
       'en': 'Continue ?',
       'es': 'Seguir ?',
     },
-    '5cvalrt8': {
-      'fr': 'Rejouer',
-      'en': 'Replay',
-      'es': 'Repetición',
-    },
   },
   // Scan
   {
-    '3ys739fc': {
+    'przuw6rp': {
+      'fr': 'Scan QR Code',
+      'en': 'Scan QR Code',
+      'es': 'Escanear código QR',
+    },
+    'j9t9yuit': {
       'fr': 'Placez le qr code au milieu du rectangle pour scanner l\'adn.',
       'en': 'Place the QR code in the middle of the rectangle to scan the DNA.',
       'es':
           'Coloque el código QR en el medio del rectángulo para escanear el ADN.',
     },
-    'mj2zm0k2': {
+    '3ayp5h8n': {
       'fr': 'Démarrer le scan',
       'en': 'Start scanning',
       'es': 'Iniciar escaneo',
     },
-    'dmvdpma6': {
-      'fr': 'Annuler',
+    'w9msst5p': {
+      'fr': 'Cancel',
       'en': 'Cancel',
-      'es': 'anular',
-    },
-    'przuw6rp': {
-      'fr': 'Scan QR Code',
-      'en': 'Scan QR Code',
-      'es': 'Escanear código QR',
+      'es': 'Cancelar',
     },
     '2t6ado82': {
       'fr': 'Scan',
@@ -633,22 +634,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'TASMANIA',
       'es': 'TASMANÍA',
     },
-    'su4ordwk': {
+    'zn3dvnqd': {
       'fr': 'PROJET TASMANIE',
       'en': 'TASMANIA PROJECT',
       'es': 'PROYECTO TASMANÍA',
     },
-    '7kyojovj': {
+    'hh6el6e1': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
       'en': 'Insert the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
-    '7v5iroat': {
+    'ldj6b1yp': {
       'fr': 'MOT DE PASSE',
       'en': 'PASSWORD',
       'es': 'CONTRASEÑA',
     },
-    'ba8wrb2k': {
+    'a4febzsl': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
       'es': 'VALIDAR',
@@ -732,12 +733,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'BERSERKER',
       'es': 'FRENÉTICO',
     },
-    'xry0k6ys': {
+    '8tlzfzyp': {
       'fr': 'Ursus maritimus, Ours polaire',
       'en': 'Ursus maritimus, Polar bear',
       'es': 'Ursus maritimus, oso polar',
     },
-    'mmezai8p': {
+    '630w90zo': {
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
@@ -745,17 +746,17 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
-    'ady5teap': {
+    'm4af6bc6': {
       'fr': 'Le code est : Griffes suivi de Pattes.',
       'en': 'The code is: Claws followed by Paws.',
       'es': 'El código es: Garras seguidas de Patas.',
     },
-    '77aib6nn': {
+    '7rzrxre5': {
       'fr': 'MOT DE PASSE',
       'en': 'PASSWORD',
       'es': 'CONTRASEÑA',
     },
-    'dmdvvmu7': {
+    'w6l4in0o': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
       'es': 'VALIDAR',
@@ -1103,8 +1104,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'j770gff9': {
       'fr': 'Ornithorhynchus anatinus, Ornythorinque',
-      'en': 'Platypus',
-      'es': 'Ornitorrinco',
+      'en': 'Ornithorhynchus anatinus, Platypus',
+      'es': 'Ornithorhynchus anatinus, Ornitorrinco',
     },
     'n1hz2sus': {
       'fr':
@@ -1135,6 +1136,74 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Hogar',
     },
   },
+  // Demarrage
+  {
+    'yofg6qmf': {
+      'fr': 'Zoovengers Escape game',
+      'en': 'Zoovengers Escape game',
+      'es': 'Juego Escape de los Vengadores del Zoo',
+    },
+    'ztdjau0f': {
+      'fr': 'Demarrer',
+      'en': 'Zoovengers Expert',
+      'es': 'Experto en Zoovengers',
+    },
+    'wfxq9l01': {
+      'fr': 'Home',
+      'en': 'Home',
+      'es': 'Hogar',
+    },
+  },
+  // video
+  {
+    'q47w2dtk': {
+      'fr': 'Learn the Game',
+      'en': '',
+      'es': '',
+    },
+    'ja4nyt0z': {
+      'fr': 'Durée: ',
+      'en': '',
+      'es': '',
+    },
+    'cti4qmrr': {
+      'fr': '30min à 2h environ',
+      'en': '',
+      'es': '',
+    },
+    'uwx78zkr': {
+      'fr': 'Je suis prêt !',
+      'en': '',
+      'es': '',
+    },
+    'p8d0tk00': {
+      'fr': 'Game Concept',
+      'en': '',
+      'es': '',
+    },
+    'w5469jge': {
+      'fr':
+          'In this game, you will explore various challenges and puzzles. The goal is to solve all the puzzles and complete the game within the given time.',
+      'en': '',
+      'es': '',
+    },
+    '4amzfwe1': {
+      'fr': 'Crée par: ',
+      'en': '',
+      'es': '',
+    },
+    'o0b0oqda': {
+      'fr': 'Museum d\'histoire naturel Nîmes',
+      'en': '',
+      'es': '',
+    },
+    'oy7thlet': {
+      'fr':
+          'Get ready for an exciting adventure filled with mysteries and challenges. Good luck!',
+      'en': '',
+      'es': '',
+    },
+  },
   // Miscellaneous
   {
     'obh009ze': {
@@ -1153,14 +1222,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fiur3s0s': {
       'fr':
           'We need microphone for show you the different videos of the application',
-      'en': '',
-      'es': '',
+      'en':
+          'We need microphone to show you the different videos of the application',
+      'es':
+          'Necesitamos micrófono para mostrarte los diferentes videos de la aplicación.',
     },
     'uwbmu9ew': {
       'fr':
           'We need microphone for show you the different videos of the application',
-      'en': '',
-      'es': '',
+      'en':
+          'We need microphone to show you the different videos of the application',
+      'es':
+          'Necesitamos micrófono para mostrarte los diferentes videos de la aplicación.',
     },
     'h2vzqt05': {
       'fr': '',

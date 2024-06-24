@@ -41,68 +41,84 @@ class _GameOverWidgetState extends State<GameOverWidget> {
         backgroundColor: const Color(0xFF7A90A4),
         body: SafeArea(
           top: true,
-          child: Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(32.0, 16.0, 32.0, 16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
-                  child: Text(
-                    FFLocalizations.of(context).getText(
-                      'me9kbrcb' /* GAME OVER */,
-                    ),
-                    style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: 'Oswald',
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+          child: Container(
+            width: MediaQuery.sizeOf(context).width * 1.0,
+            height: MediaQuery.sizeOf(context).height * 1.0,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Image.asset(
+                  'assets/images/fond.png',
+                ).image,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(32.0, 16.0, 32.0, 16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, -1.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        '5fys4m2n' /* Vous ne vous êtes pas échappez... */,
+                        'wssarhky' /* GAME OVER */,
                       ),
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).titleMedium.override(
+                      style: FlutterFlowTheme.of(context).displayLarge.override(
                             fontFamily: 'Oswald',
-                            color: Colors.white,
+                            color: FlutterFlowTheme.of(context).primaryText,
                             letterSpacing: 0.0,
                           ),
                     ),
                   ),
-                ),
-                FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed('Start');
-                  },
-                  text: FFLocalizations.of(context).getText(
-                    'n7c8br8i' /* réessayer */,
-                  ),
-                  options: FFButtonOptions(
-                    width: 200.0,
-                    height: 50.0,
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFF344D59),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Oswald',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, -1.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 100.0),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'c8z0ej84' /* Vous ne vous êtes pas échappez... */,
                         ),
-                    elevation: 2.0,
-                    borderRadius: BorderRadius.circular(8.0),
+                        textAlign: TextAlign.center,
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Oswald',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                  FFButtonWidget(
+                    onPressed: () async {
+                      context.pushNamed('Start');
+                    },
+                    text: FFLocalizations.of(context).getText(
+                      'nh723u8n' /* réessayer */,
+                    ),
+                    options: FFButtonOptions(
+                      width: 200.0,
+                      height: 50.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Oswald',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 2.0,
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

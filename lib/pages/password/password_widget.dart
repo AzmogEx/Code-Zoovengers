@@ -60,9 +60,9 @@ class _PasswordWidgetState extends State<PasswordWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primary,
         appBar: AppBar(
-          backgroundColor: const Color(0xFF344D59),
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           actions: [
             Visibility(
@@ -106,8 +106,14 @@ class _PasswordWidgetState extends State<PasswordWidget> {
             constraints: const BoxConstraints(
               maxWidth: 570.0,
             ),
-            decoration: const BoxDecoration(
-              color: Color(0xFF7A90A4),
+            decoration: BoxDecoration(
+              color: const Color(0xFF7A90A4),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Image.asset(
+                  'assets/images/fond.png',
+                ).image,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
@@ -564,7 +570,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF344D59),
+                            color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(

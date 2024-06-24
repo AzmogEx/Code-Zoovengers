@@ -41,7 +41,7 @@ class _TimerWidgetState extends State<TimerWidget> {
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
         appBar: AppBar(
-          backgroundColor: const Color(0xFF344D59),
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -85,6 +85,23 @@ class _TimerWidgetState extends State<TimerWidget> {
                   child: Stack(
                     children: [
                       Align(
+                        alignment: const AlignmentDirectional(0.0, 0.0),
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          height: MediaQuery.sizeOf(context).height * 1.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: Image.asset(
+                                'assets/images/fond.png',
+                              ).image,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Align(
                         alignment: const AlignmentDirectional(-1.02, -0.24),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -110,7 +127,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                                   0.0, 0.0, 0.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF344D59),
+                              color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(
@@ -150,7 +167,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                                   0.0, 0.0, 0.0, 0.0),
                               iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: const Color(0xFF344D59),
+                              color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
                                   .override(

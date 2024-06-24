@@ -35,12 +35,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context) => Container(
                 color: Colors.transparent,
                 child: Image.asset(
-                  'assets/images/ZOOVENGERS_375_x_812_px_(2).png',
+                  'assets/images/ZOOVENGERS_splash.png',
                   fit: BoxFit.contain,
                 ),
               ),
             )
-          : const StartWidget(),
+          : const DemarrageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -50,12 +50,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   builder: (context) => Container(
                     color: Colors.transparent,
                     child: Image.asset(
-                      'assets/images/ZOOVENGERS_375_x_812_px_(2).png',
+                      'assets/images/ZOOVENGERS_splash.png',
                       fit: BoxFit.contain,
                     ),
                   ),
                 )
-              : const StartWidget(),
+              : const DemarrageWidget(),
         ),
         FFRoute(
           name: 'Start',
@@ -210,6 +210,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'tasmanie',
           path: '/tasmanie',
           builder: (context, params) => const TasmanieWidget(),
+        ),
+        FFRoute(
+          name: 'Demarrage',
+          path: '/demarrage',
+          builder: (context, params) => const DemarrageWidget(),
+        ),
+        FFRoute(
+          name: 'video',
+          path: '/video',
+          builder: (context, params) => const VideoWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
