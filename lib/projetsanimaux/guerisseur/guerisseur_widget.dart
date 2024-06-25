@@ -278,8 +278,6 @@ class _GuerisseurWidgetState extends State<GuerisseurWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '6') {
-                          FFAppState().addToMdpfinale('6');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[6]);
                           setState(() {});
                           await showDialog(
@@ -325,8 +323,6 @@ class _GuerisseurWidgetState extends State<GuerisseurWidget> {
                         }
                       } else {
                         if (_model.textController.text == '6') {
-                          FFAppState().addToMdpfinale('1');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[1]);
                           setState(() {});
                           await showDialog(

@@ -278,8 +278,6 @@ class _NuitWidgetState extends State<NuitWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '5') {
-                          FFAppState().addToMdpfinale('4');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[3]);
                           setState(() {});
                           await showDialog(
@@ -327,8 +325,6 @@ class _NuitWidgetState extends State<NuitWidget> {
                         }
                       } else {
                         if (_model.textController.text == '5') {
-                          FFAppState().addToMdpfinale('9');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[8]);
                           setState(() {});
                           await showDialog(

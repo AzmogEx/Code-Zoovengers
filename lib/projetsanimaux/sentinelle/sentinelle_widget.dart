@@ -278,8 +278,6 @@ class _SentinelleWidgetState extends State<SentinelleWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '8') {
-                          FFAppState().addToMdpfinale('6');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[8]);
                           setState(() {});
                           await showDialog(
@@ -333,8 +331,6 @@ class _SentinelleWidgetState extends State<SentinelleWidget> {
                         }
                       } else {
                         if (_model.textController.text == '8') {
-                          FFAppState().addToMdpfinale('1');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[3]);
                           setState(() {});
                           await showDialog(

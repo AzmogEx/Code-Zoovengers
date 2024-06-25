@@ -124,13 +124,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Experto en Zoovengers',
     },
     'l3dg3sze': {
-      'fr': '10ans +',
+      'fr': '10ans et +',
       'en': '10 years +',
       'es': '10 años +',
     },
     '8e6so0wr': {
       'fr':
-          'Attention : le choix de la difficulté aura un impact sur votre expérience de jeu. Choisissez judicieusement, car cela influencera le défi et l\'intensité de votre partie !',
+          'Attention : le choix de la difficulté aura un impact sur votre expérience de jeu. Nous recommandons a partir de 7 ans l\'experience Apprenti qui est basé sur de l\'observation.\nA partir de 10 ans et + La reflexion contient des énigme et des codes à décoder.',
       'en':
           'Please note: the choice of difficulty will impact your gaming experience. Choose wisely, as it will influence the challenge and intensity of your game!',
       'es':
@@ -166,7 +166,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '47hbjogc': {
       'fr':
-          'Attention : si l\'application se ferme, vous perdrez votre progression et toutes vos données. Faites attention ! La mission échouera.',
+          'Attention : si  vous fermez complètement l\'application. Vous perdrez votre progression et toutes vos données. Faites attention ! La mission échouera.',
       'en':
           'Warning: if the application closes, you will lose your progress and all your data. Pay attention ! The mission will fail.',
       'es':
@@ -196,7 +196,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '¿Podrás resolver los acertijos a tiempo?',
     },
     'x9ypormm': {
-      'fr': 'Code: ',
+      'fr': 'Code final d\'extraction: ',
       'en': 'Coded:',
       'es': 'Codificado:',
     },
@@ -220,6 +220,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
           'Welcome to decryptek! Use it to decipher codes and solve puzzles. Good luck! (Only for Expert difficulty)',
       'es':
           '¡Bienvenido a decryptek! Úselo para descifrar códigos y resolver acertijos. ¡Buena suerte! (Solo para dificultad Experto)',
+    },
+    'x7kukhvf': {
+      'fr':
+          'Il est fortement recommandé de vous munir d\'un crayon et d\'un papier pour résoudre les énigmes. Si vous n\'en avez pas, vous pouvez en demander un au gardien de la salle.',
+      'en': '',
+      'es': '',
     },
     '7t7qxmio': {
       'fr':
@@ -404,12 +410,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Atrás',
     },
     'zx2l5tcm': {
-      'fr': 'MOT DE PASSE FINAL:',
+      'fr': 'MOT DE PASSE FINAL D\'EXTRACTION:',
       'en': 'FINAL PASSWORD:',
       'es': 'CONTRASEÑA FINAL:',
     },
     'r90vn38u': {
-      'fr': 'Mots de passe final:',
+      'fr': 'Mots de passe final d\'extraction:',
       'en': 'Final passwords:',
       'es': 'Contraseñas finales:',
     },
@@ -1156,50 +1162,44 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // video
   {
-    'q47w2dtk': {
-      'fr': 'Learn the Game',
+    'j5i2g8ce': {
+      'fr': 'Comprendre le jeu:',
       'en': '',
       'es': '',
     },
-    'ja4nyt0z': {
+    'ef87kro0': {
       'fr': 'Durée: ',
       'en': '',
       'es': '',
     },
-    'cti4qmrr': {
+    'kyjtg00o': {
       'fr': '30min à 2h environ',
       'en': '',
       'es': '',
     },
-    'uwx78zkr': {
+    're5rvlpi': {
       'fr': 'Je suis prêt !',
       'en': '',
       'es': '',
     },
-    'p8d0tk00': {
-      'fr': 'Game Concept',
+    'y5kvnjbn': {
+      'fr': 'Zoovengers',
       'en': '',
       'es': '',
     },
-    'w5469jge': {
+    '5d89nccj': {
       'fr':
-          'In this game, you will explore various challenges and puzzles. The goal is to solve all the puzzles and complete the game within the given time.',
+          'Dans ce jeu vous devrez résoudre différentes énigmes pour retrouver tout les animaux perdu dans la salle de zoologie.',
       'en': '',
       'es': '',
     },
-    '4amzfwe1': {
-      'fr': 'Crée par: ',
+    'w182ek90': {
+      'fr': 'Proposé par: ',
       'en': '',
       'es': '',
     },
-    'o0b0oqda': {
+    '49upwuqe': {
       'fr': 'Museum d\'histoire naturel Nîmes',
-      'en': '',
-      'es': '',
-    },
-    'oy7thlet': {
-      'fr':
-          'Get ready for an exciting adventure filled with mysteries and challenges. Good luck!',
       'en': '',
       'es': '',
     },

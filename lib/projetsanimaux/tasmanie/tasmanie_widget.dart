@@ -280,8 +280,6 @@ class _TasmanieWidgetState extends State<TasmanieWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '10') {
-                          FFAppState().addToMdpfinale('1');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[4]);
                           setState(() {});
                           await showDialog(
@@ -327,8 +325,6 @@ class _TasmanieWidgetState extends State<TasmanieWidget> {
                         }
                       } else {
                         if (_model.textController.text == '10') {
-                          FFAppState().addToMdpfinale('6');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[9]);
                           setState(() {});
                           await showDialog(

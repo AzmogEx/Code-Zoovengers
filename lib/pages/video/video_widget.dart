@@ -119,7 +119,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                                           10.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         FFLocalizations.of(context).getText(
-                                          'q47w2dtk' /* Learn the Game */,
+                                          'j5i2g8ce' /* Comprendre le jeu: */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -154,7 +154,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                             child: Container(
                               width: 192.0,
                               decoration: BoxDecoration(
-                                color: const Color(0x4CFFFFFF),
+                                color: const Color(0x4C88DDFF),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Padding(
@@ -165,14 +165,13 @@ class _VideoWidgetState extends State<VideoWidget> {
                                   children: [
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        'ja4nyt0z' /* Durée:  */,
+                                        'ef87kro0' /* Durée:  */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Manrope',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                            color: Colors.white,
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
@@ -180,14 +179,13 @@ class _VideoWidgetState extends State<VideoWidget> {
                                     ),
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        'cti4qmrr' /* 30min à 2h environ */,
+                                        'kyjtg00o' /* 30min à 2h environ */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Manrope',
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryBackground,
+                                            color: Colors.white,
                                             fontSize: 14.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -221,10 +219,37 @@ class _VideoWidgetState extends State<VideoWidget> {
                             0.0, 0.0, 0.0, 100.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            context.pushNamed('Start');
+                            var confirmDialogResponse = await showDialog<bool>(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: const Text('Demarrage'),
+                                      content: const Text(
+                                          'Êtes vous sur d\'être prêt à démarrer ?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, false),
+                                          child: const Text('Annuler'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, true),
+                                          child: const Text('Commencer'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ) ??
+                                false;
+                            if (confirmDialogResponse) {
+                              context.pushNamed('Start');
+                            } else {
+                              Navigator.pop(context);
+                            }
                           },
                           text: FFLocalizations.of(context).getText(
-                            'uwx78zkr' /* Je suis prêt ! */,
+                            're5rvlpi' /* Je suis prêt ! */,
                           ),
                           options: FFButtonOptions(
                             height: 40.0,
@@ -264,12 +289,12 @@ class _VideoWidgetState extends State<VideoWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
                       child: Text(
                         FFLocalizations.of(context).getText(
-                          'p8d0tk00' /* Game Concept */,
+                          'y5kvnjbn' /* Zoovengers */,
                         ),
                         style:
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Manrope',
-                                  color: FlutterFlowTheme.of(context).primary,
+                                  color: Colors.white,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -277,7 +302,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                     ),
                     Text(
                       FFLocalizations.of(context).getText(
-                        'w5469jge' /* In this game, you will explore... */,
+                        '5d89nccj' /* Dans ce jeu vous devrez résoud... */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Manrope',
@@ -305,7 +330,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                         children: [
                           Text(
                             FFLocalizations.of(context).getText(
-                              '4amzfwe1' /* Crée par:  */,
+                              'w182ek90' /* Proposé par:  */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
@@ -320,7 +345,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                           ),
                           Text(
                             FFLocalizations.of(context).getText(
-                              'o0b0oqda' /* Museum d'histoire naturel Nîme... */,
+                              '49upwuqe' /* Museum d'histoire naturel Nîme... */,
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleMedium
@@ -334,26 +359,6 @@ class _VideoWidgetState extends State<VideoWidget> {
                                 ),
                           ),
                         ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.0,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 20.0),
-                      child: Text(
-                        FFLocalizations.of(context).getText(
-                          'oy7thlet' /* Get ready for an exciting adve... */,
-                        ),
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily: 'Manrope',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              fontSize: 14.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                            ),
                       ),
                     ),
                   ],

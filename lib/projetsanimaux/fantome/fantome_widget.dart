@@ -364,7 +364,7 @@ class _FantomeWidgetState extends State<FantomeWidget> {
                         }
                       } else {
                         if (_model.textController.text == '4') {
-                          FFAppState().addToMdpfinale(FFAppState().nbrmdp[6]);
+                          FFAppState().addToMdpfinale(FFAppState().nbrmdp[8]);
                           setState(() {});
                           await showDialog(
                             context: context,

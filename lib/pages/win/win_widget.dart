@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
@@ -70,15 +69,6 @@ class _WinWidgetState extends State<WinWidget> {
                   Icons.check_circle_outline_rounded,
                   color: FlutterFlowTheme.of(context).secondary,
                   size: 160.0,
-                ),
-                const FlutterFlowVideoPlayer(
-                  path: 'https://fichier.adam-marzuk.fr/Zoovengers-final.mp4',
-                  videoType: VideoType.network,
-                  autoPlay: true,
-                  looping: false,
-                  showControls: true,
-                  allowFullScreen: true,
-                  allowPlaybackSpeedMenu: false,
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),

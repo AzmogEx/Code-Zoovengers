@@ -208,7 +208,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                               0.0, 0.0, 0.0, 150.0),
                           child: Text(
                             FFLocalizations.of(context).getText(
-                              '47hbjogc' /* Attention : si l'application s... */,
+                              '47hbjogc' /* Attention : si  vous fermez co... */,
                             ),
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)

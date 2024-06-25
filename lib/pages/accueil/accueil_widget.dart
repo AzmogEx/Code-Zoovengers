@@ -240,7 +240,7 @@ class _AccueilWidgetState extends State<AccueilWidget> {
                         alignment: const AlignmentDirectional(0.0, 0.0),
                         child: Text(
                           FFLocalizations.of(context).getText(
-                            'x9ypormm' /* Code:  */,
+                            'x9ypormm' /* Code final d'extraction:  */,
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(

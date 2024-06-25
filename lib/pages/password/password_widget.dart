@@ -173,8 +173,9 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'zx2l5tcm' /* MOT DE PASSE FINAL: */,
+                        'zx2l5tcm' /* MOT DE PASSE FINAL D'EXTRACTIO... */,
                       ),
+                      textAlign: TextAlign.center,
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: 'Urbanist',
@@ -194,7 +195,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                         obscureText: !_model.passWordVisibility,
                         decoration: InputDecoration(
                           labelText: FFLocalizations.of(context).getText(
-                            'r90vn38u' /* Mots de passe final: */,
+                            'r90vn38u' /* Mots de passe final d'extracti... */,
                           ),
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
@@ -309,7 +310,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                             if (FFAppState().Difficulte == true) {
                               if (FFAppState().continuer == true) {
                                 if (_model.passWordTextController.text ==
-                                    '03029') {
+                                    '20127') {
                                   FFAppState().animVerif = true;
                                   setState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -371,7 +372,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 }
                               } else {
                                 if (_model.passWordTextController.text ==
-                                    '20127') {
+                                    '03029') {
                                   FFAppState().animVerif = true;
                                   setState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(

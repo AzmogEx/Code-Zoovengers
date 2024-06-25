@@ -319,8 +319,6 @@ class _RessortWidgetState extends State<RessortWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '8') {
-                          FFAppState().addToMdpfinale('7');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[7]);
                           setState(() {});
                           await showDialog(
@@ -374,8 +372,6 @@ class _RessortWidgetState extends State<RessortWidget> {
                         }
                       } else {
                         if (_model.textController.text == '8') {
-                          FFAppState().addToMdpfinale('3');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[2]);
                           setState(() {});
                           await showDialog(

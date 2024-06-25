@@ -319,8 +319,6 @@ class _MarsupialWidgetState extends State<MarsupialWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '20') {
-                          FFAppState().addToMdpfinale('2');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[2]);
                           setState(() {});
                           await showDialog(
@@ -366,8 +364,6 @@ class _MarsupialWidgetState extends State<MarsupialWidget> {
                         }
                       } else {
                         if (_model.textController.text == '20') {
-                          FFAppState().addToMdpfinale('7');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[7]);
                           setState(() {});
                           await showDialog(

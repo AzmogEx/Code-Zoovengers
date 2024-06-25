@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
@@ -68,7 +69,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFF7A90A4),
+        backgroundColor: FlutterFlowTheme.of(context).primary,
         body: SafeArea(
           top: true,
           child: Container(
@@ -140,6 +141,53 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                 letterSpacing: 0.0,
                               ),
                     ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 1.0),
+                    child: Container(
+                      width: 100.0,
+                      height: 100.0,
+                      decoration: const BoxDecoration(
+                        color: Color(0x007A90A4),
+                      ),
+                      child: AlignedTooltip(
+                        content: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Text(
+                            FFLocalizations.of(context).getText(
+                              'x7kukhvf' /* Il est fortement recommandé de... */,
+                            ),
+                            style:
+                                FlutterFlowTheme.of(context).bodyLarge.override(
+                                      fontFamily: 'Oswald',
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                          ),
+                        ),
+                        offset: 4.0,
+                        preferredDirection: AxisDirection.up,
+                        borderRadius: BorderRadius.circular(8.0),
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).primaryBackground,
+                        elevation: 4.0,
+                        tailBaseWidth: 40.0,
+                        tailLength: 12.0,
+                        waitDuration: const Duration(milliseconds: 300),
+                        showDuration: const Duration(milliseconds: 4000),
+                        triggerMode: TooltipTriggerMode.tap,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.asset(
+                            'assets/images/Design_sans_titre.png',
+                            width: 300.0,
+                            height: 200.0,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   if (FFAppState().Difficulte == false)
                     Padding(
                       padding:
@@ -190,14 +238,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag1',
+                                              tag: 'imageTag2',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag1',
+                                        tag: 'imageTag2',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -234,14 +282,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag2',
+                                              tag: 'imageTag3',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag2',
+                                        tag: 'imageTag3',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -276,14 +324,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag3',
+                                              tag: 'imageTag4',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag3',
+                                        tag: 'imageTag4',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -320,14 +368,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag4',
+                                              tag: 'imageTag5',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag4',
+                                        tag: 'imageTag5',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -364,14 +412,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag5',
+                                              tag: 'imageTag6',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag5',
+                                        tag: 'imageTag6',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -465,14 +513,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag6',
+                                              tag: 'imageTag7',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag6',
+                                        tag: 'imageTag7',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -509,14 +557,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag7',
+                                              tag: 'imageTag8',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag7',
+                                        tag: 'imageTag8',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -551,14 +599,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag8',
+                                              tag: 'imageTag9',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag8',
+                                        tag: 'imageTag9',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:
@@ -595,14 +643,14 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
-                                              tag: 'imageTag9',
+                                              tag: 'imageTag10',
                                               useHeroAnimation: true,
                                             ),
                                           ),
                                         );
                                       },
                                       child: Hero(
-                                        tag: 'imageTag9',
+                                        tag: 'imageTag10',
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
                                           borderRadius:

@@ -278,8 +278,6 @@ class _SymbiozWidgetState extends State<SymbiozWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '48') {
-                          FFAppState().addToMdpfinale('9');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[9]);
                           setState(() {});
                           await showDialog(
@@ -333,8 +331,6 @@ class _SymbiozWidgetState extends State<SymbiozWidget> {
                         }
                       } else {
                         if (_model.textController.text == '48') {
-                          FFAppState().addToMdpfinale('5');
-                          setState(() {});
                           FFAppState().addToMdpfinale(FFAppState().nbrmdp[4]);
                           setState(() {});
                           await showDialog(

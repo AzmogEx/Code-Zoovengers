@@ -182,10 +182,10 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.65, 0.15),
+                alignment: const AlignmentDirectional(0.83, 0.14),
                 child: Text(
                   FFLocalizations.of(context).getText(
-                    'l3dg3sze' /* 10ans + */,
+                    'l3dg3sze' /* 10ans et + */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -209,7 +209,7 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.61, 0.15),
+                alignment: const AlignmentDirectional(-0.79, 0.14),
                 child: Text(
                   FFLocalizations.of(context).getText(
                     '22xd5sx7' /* 7 ans */,

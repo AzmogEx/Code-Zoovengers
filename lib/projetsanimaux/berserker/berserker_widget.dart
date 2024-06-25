@@ -327,7 +327,7 @@ class _BerserkerWidgetState extends State<BerserkerWidget> {
                       }
                     } else {
                       if (_model.textController.text == '204') {
-                        FFAppState().addToMdpfinale(FFAppState().nbrmdp[1]);
+                        FFAppState().addToMdpfinale(FFAppState().nbrmdp[0]);
                         setState(() {});
                         await showDialog(
                           context: context,
