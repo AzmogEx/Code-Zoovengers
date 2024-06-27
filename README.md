@@ -4,4 +4,6 @@ description: 'Documentation technique du fonctionnement de l''application Zooven
 
 # Zoovengers
 
-{% embed url="https://github.com/AzmogEx/Projet-ZooVengers" %}
+{% @github-files/github-code-block url="https://github.com/AzmogEx/Projet-ZooVengers" %}
+
+{% @github-files/github-code-block url="https://github.com/AzmogEx/Projet-ZooVengers" %}
