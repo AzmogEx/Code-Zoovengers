@@ -1,4 +1,4 @@
-# Page choix de difficulté
+# 🏃 Page choix de difficulté
 
 Les boutons suivants servent à changer la difficulté du jeu en modifiant la variable booléenne "difficulté". Lorsque cette variable est définie sur “false”, le jeu est en mode facile. Lorsque la varia
 
