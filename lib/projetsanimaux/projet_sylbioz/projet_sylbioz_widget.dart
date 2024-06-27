@@ -63,7 +63,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
         appBar: AppBar(
-          backgroundColor: const Color(0xFF344D59),
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -124,286 +124,311 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Align(
-                  alignment: const AlignmentDirectional(0.0, -1.0),
-                  child: Text(
-                    FFLocalizations.of(context).getText(
-                      'vjevkq45' /* PROJET SYMBIOZ */,
-                    ),
-                    textAlign: TextAlign.center,
-                    style: FlutterFlowTheme.of(context).displayLarge.override(
-                          fontFamily: 'Urbanist',
-                          fontSize: 35.0,
-                          letterSpacing: 0.0,
-                        ),
+          child: Stack(
+            children: [
+              Container(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.asset(
+                      'assets/images/fond.png',
+                    ).image,
                   ),
                 ),
-                if (FFAppState().Difficulte == true)
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: FlutterFlowExpandedImageView(
-                            image: Image.asset(
-                              'assets/images/SYMBIOZ_(2).png',
-                              fit: BoxFit.contain,
-                            ),
-                            allowRotation: true,
-                            tag: 'imageTag1',
-                            useHeroAnimation: true,
-                          ),
+              ),
+              SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, -1.0),
+                      child: Text(
+                        FFLocalizations.of(context).getText(
+                          'vjevkq45' /* PROJET SYMBIOZ */,
                         ),
-                      );
-                    },
-                    child: Hero(
-                      tag: 'imageTag1',
-                      transitionOnUserGestures: true,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/SYMBIOZ_(2).png',
-                          width: MediaQuery.sizeOf(context).width * 0.7,
-                          height: MediaQuery.sizeOf(context).height * 0.7,
-                          fit: BoxFit.cover,
-                        ),
+                        textAlign: TextAlign.center,
+                        style:
+                            FlutterFlowTheme.of(context).displayLarge.override(
+                                  fontFamily: 'Urbanist',
+                                  fontSize: 35.0,
+                                  letterSpacing: 0.0,
+                                ),
                       ),
                     ),
-                  ),
-                if (FFAppState().Difficulte == false)
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.fade,
-                          child: FlutterFlowExpandedImageView(
-                            image: Image.asset(
+                    if (FFAppState().Difficulte == true)
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/SYMBIOZ.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag1',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag1',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
                               'assets/images/SYMBIOZ.png',
-                              fit: BoxFit.contain,
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.cover,
                             ),
-                            allowRotation: true,
-                            tag: 'imageTag2',
-                            useHeroAnimation: true,
                           ),
-                        ),
-                      );
-                    },
-                    child: Hero(
-                      tag: 'imageTag2',
-                      transitionOnUserGestures: true,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.asset(
-                          'assets/images/SYMBIOZ.png',
-                          width: MediaQuery.sizeOf(context).width * 0.7,
-                          height: MediaQuery.sizeOf(context).height * 0.7,
-                          fit: BoxFit.cover,
                         ),
                       ),
-                    ),
-                  ),
-                Text(
-                  FFLocalizations.of(context).getText(
-                    '0lv9bbh2' /* Insérez le mot de passe du pro... */,
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Oswald',
-                        letterSpacing: 0.0,
+                    if (FFAppState().Difficulte == false)
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/SYMBIOZ.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag2',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag2',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/SYMBIOZ.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
                       ),
-                ),
-                Align(
-                  alignment: const AlignmentDirectional(0.0, 0.0),
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                    child: TextFormField(
-                      controller: _model.textController,
-                      focusNode: _model.textFieldFocusNode,
-                      autofocus: false,
-                      obscureText: !_model.passwordVisibility,
-                      decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          'j6o6i3iv' /* MOT DE PASSE */,
-                        ),
-                        labelStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Oswald',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelLarge.override(
-                                  fontFamily: 'Oswald',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.password,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                        ),
-                        suffixIcon: InkWell(
-                          onTap: () => setState(
-                            () => _model.passwordVisibility =
-                                !_model.passwordVisibility,
-                          ),
-                          focusNode: FocusNode(skipTraversal: true),
-                          child: Icon(
-                            _model.passwordVisibility
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 22,
-                          ),
-                        ),
+                    Text(
+                      FFLocalizations.of(context).getText(
+                        '0lv9bbh2' /* Insérez le mot de passe du pro... */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Oswald',
                             letterSpacing: 0.0,
                           ),
-                      textAlign: TextAlign.start,
-                      keyboardType: TextInputType.number,
-                      cursorColor:
-                          FlutterFlowTheme.of(context).primaryBackground,
-                      validator:
-                          _model.textControllerValidator.asValidator(context),
                     ),
-                  ),
-                ),
-                FFButtonWidget(
-                  onPressed: () async {
-                    if (FFAppState().Difficulte == true) {
-                      if (_model.textController.text == '4398') {
-                        FFAppState().simbioz = true;
-                        setState(() {});
-
-                        context.pushNamed(
-                          'symbioz',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.bottomToTop,
+                    Align(
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                        child: TextFormField(
+                          controller: _model.textController,
+                          focusNode: _model.textFieldFocusNode,
+                          autofocus: false,
+                          obscureText: !_model.passwordVisibility,
+                          decoration: InputDecoration(
+                            labelText: FFLocalizations.of(context).getText(
+                              'j6o6i3iv' /* MOT DE PASSE */,
                             ),
-                          },
-                        );
-                      } else {
-                        await showDialog(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: const Text('ERREUR!'),
-                              content: const Text(
-                                  'Le code que vous avez inséré n\'est pas le bon.'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
-                                  child: const Text('Réessayer'),
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Oswald',
+                                  letterSpacing: 0.0,
                                 ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    } else {
-                      if (_model.textController.text == '1100') {
-                        FFAppState().simbioz = true;
-                        setState(() {});
-
-                        context.pushNamed(
-                          'symbioz',
-                          extra: <String, dynamic>{
-                            kTransitionInfoKey: const TransitionInfo(
-                              hasTransition: true,
-                              transitionType: PageTransitionType.bottomToTop,
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelLarge
+                                .override(
+                                  fontFamily: 'Oswald',
+                                  letterSpacing: 0.0,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
-                          },
-                        );
-                      } else {
-                        await showDialog(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: const Text('ERREUR!'),
-                              content: const Text(
-                                  'Le code que vous avez inséré n\'est pas le bon.'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
-                                  child: const Text('Réessayer'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    }
-                  },
-                  text: FFLocalizations.of(context).getText(
-                    'xunlg3vv' /* VALIDER */,
-                  ),
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFF344D59),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Oswald',
-                          color: Colors.white,
-                          letterSpacing: 0.0,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0x00000000),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            prefixIcon: Icon(
+                              Icons.password,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                            suffixIcon: InkWell(
+                              onTap: () => setState(
+                                () => _model.passwordVisibility =
+                                    !_model.passwordVisibility,
+                              ),
+                              focusNode: FocusNode(skipTraversal: true),
+                              child: Icon(
+                                _model.passwordVisibility
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Oswald',
+                                    letterSpacing: 0.0,
+                                  ),
+                          textAlign: TextAlign.start,
+                          keyboardType: TextInputType.number,
+                          cursorColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
                         ),
-                    elevation: 3.0,
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
+                      ),
                     ),
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
+                    FFButtonWidget(
+                      onPressed: () async {
+                        if (FFAppState().Difficulte == true) {
+                          if (_model.textController.text == '1058') {
+                            FFAppState().simbioz = true;
+                            setState(() {});
+
+                            context.pushNamed(
+                              'symbioz',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                ),
+                              },
+                            );
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('ERREUR!'),
+                                  content: const Text(
+                                      'Le code que vous avez inséré n\'est pas le bon.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Réessayer'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        } else {
+                          if (_model.textController.text == '1100') {
+                            FFAppState().simbioz = true;
+                            setState(() {});
+
+                            context.pushNamed(
+                              'symbioz',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                ),
+                              },
+                            );
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('ERREUR!'),
+                                  content: const Text(
+                                      'Le code que vous avez inséré n\'est pas le bon.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Réessayer'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        }
+                      },
+                      text: FFLocalizations.of(context).getText(
+                        'xunlg3vv' /* VALIDER */,
+                      ),
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Oswald',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

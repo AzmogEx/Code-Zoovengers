@@ -61,9 +61,9 @@ class _FantomeWidgetState extends State<FantomeWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFF7A90A4),
+        backgroundColor: FlutterFlowTheme.of(context).primary,
         appBar: AppBar(
-          backgroundColor: const Color(0xFF344D59),
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
@@ -124,295 +124,316 @@ class _FantomeWidgetState extends State<FantomeWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Stack(
             children: [
-              Text(
-                FFLocalizations.of(context).getText(
-                  'yysxotfa' /* Panthera uncia, Panthère des n... */,
-                ),
-                style: FlutterFlowTheme.of(context).titleLarge.override(
-                      fontFamily: 'Oswald',
-                      letterSpacing: 0.0,
-                    ),
-              ),
-              const Icon(
-                Icons.music_note,
-                color: Colors.black,
-                size: 50.0,
-              ),
-              const FlutterFlowVideoPlayer(
-                path: 'assets/videos/panthere_720p_compress.mp4',
-                videoType: VideoType.asset,
-                autoPlay: true,
-                looping: true,
-                showControls: false,
-                allowFullScreen: false,
-                allowPlaybackSpeedMenu: false,
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Text(
-                  FFLocalizations.of(context).getText(
-                    '58vkbx2s' /* Utilisez cette vidéo pour retr... */,
+              Container(
+                width: MediaQuery.sizeOf(context).width * 1.0,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.asset(
+                      'assets/images/fond.png',
+                    ).image,
                   ),
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Oswald',
-                        fontSize: 20.0,
-                        letterSpacing: 0.0,
-                      ),
                 ),
               ),
-              Text(
-                FFLocalizations.of(context).getText(
-                  '7k6zevlc' /* Le code est : nombre de canine... */,
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Oswald',
-                      fontSize: 17.0,
-                      letterSpacing: 0.0,
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    FFLocalizations.of(context).getText(
+                      'yysxotfa' /* Panthera uncia, Panthère des n... */,
                     ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                  child: TextFormField(
-                    controller: _model.textController,
-                    focusNode: _model.textFieldFocusNode,
-                    onFieldSubmitted: (_) async {
-                      if (_model.textController.text == '4') {
-                        FFAppState().addToMdpfinale('FANTOME');
-                        setState(() {});
-                        await showDialog(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: const Text('BRAVO!'),
-                              content: const Text(
-                                  'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
-                                  child: const Text('continuer'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      } else {
-                        await showDialog(
-                          context: context,
-                          builder: (alertDialogContext) {
-                            return AlertDialog(
-                              title: const Text('ERREUR!'),
-                              content:
-                                  const Text('Le code inserer n\'est pas correcte'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () =>
-                                      Navigator.pop(alertDialogContext),
-                                  child: const Text('Ok'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      }
-                    },
-                    autofocus: false,
-                    obscureText: !_model.passwordVisibility,
-                    decoration: InputDecoration(
-                      labelText: FFLocalizations.of(context).getText(
-                        'd67eu2q6' /* MOT DE PASSE */,
-                      ),
-                      labelStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.override(
-                                fontFamily: 'Oswald',
-                                letterSpacing: 0.0,
-                              ),
-                      hintStyle:
-                          FlutterFlowTheme.of(context).labelLarge.override(
-                                fontFamily: 'Oswald',
-                                letterSpacing: 0.0,
-                              ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0x00000000),
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.of(context).error,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.password,
-                        color: FlutterFlowTheme.of(context).primaryText,
-                      ),
-                      suffixIcon: InkWell(
-                        onTap: () => setState(
-                          () => _model.passwordVisibility =
-                              !_model.passwordVisibility,
-                        ),
-                        focusNode: FocusNode(skipTraversal: true),
-                        child: Icon(
-                          _model.passwordVisibility
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          size: 22,
-                        ),
-                      ),
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    style: FlutterFlowTheme.of(context).titleLarge.override(
                           fontFamily: 'Oswald',
                           letterSpacing: 0.0,
                         ),
-                    textAlign: TextAlign.start,
-                    keyboardType: TextInputType.number,
-                    cursorColor: FlutterFlowTheme.of(context).primaryBackground,
-                    validator:
-                        _model.textControllerValidator.asValidator(context),
                   ),
-                ),
-              ),
-              FFButtonWidget(
-                onPressed: () async {
-                  if (FFAppState().Difficulte == true) {
-                    if (_model.textController.text == '4') {
-                      FFAppState().addToMdpfinale('5');
-                      setState(() {});
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('BRAVO!'),
-                            content: const Text(
-                                'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('continuer'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                      FFAppState().NbrEnigmesFait =
-                          FFAppState().NbrEnigmesFait + 1;
-                      setState(() {});
-
-                      context.pushNamed('Accueil');
-                    } else {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('ERREUR!'),
-                            content:
-                                const Text('Le code inserer n\'est pas correcte'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                  } else {
-                    if (_model.textController.text == '4') {
-                      FFAppState().addToMdpfinale('10');
-                      setState(() {});
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('BRAVO!'),
-                            content: const Text(
-                                'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('continuer'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                      FFAppState().NbrEnigmesFait =
-                          FFAppState().NbrEnigmesFait + 1;
-                      setState(() {});
-
-                      context.pushNamed('Accueil');
-                    } else {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: const Text('ERREUR!'),
-                            content:
-                                const Text('Le code inserer n\'est pas correcte'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: const Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                  }
-                },
-                text: FFLocalizations.of(context).getText(
-                  'd8bsr3hf' /* VALIDER */,
-                ),
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: const Color(0xFF344D59),
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Oswald',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
+                  const Icon(
+                    Icons.music_note,
+                    color: Colors.black,
+                    size: 50.0,
+                  ),
+                  const FlutterFlowVideoPlayer(
+                    path: 'assets/videos/panthere_720p_compress.mp4',
+                    videoType: VideoType.asset,
+                    autoPlay: true,
+                    looping: true,
+                    showControls: false,
+                    allowFullScreen: false,
+                    allowPlaybackSpeedMenu: false,
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Text(
+                      FFLocalizations.of(context).getText(
+                        '58vkbx2s' /* Utilisez cette vidéo pour retr... */,
                       ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Oswald',
+                            fontSize: 20.0,
+                            letterSpacing: 0.0,
+                          ),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
+                  Text(
+                    FFLocalizations.of(context).getText(
+                      '7k6zevlc' /* Le code est : nombre de canine... */,
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Oswald',
+                          fontSize: 17.0,
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                      child: TextFormField(
+                        controller: _model.textController,
+                        focusNode: _model.textFieldFocusNode,
+                        onFieldSubmitted: (_) async {
+                          if (_model.textController.text == '4') {
+                            FFAppState().addToMdpfinale('FANTOME');
+                            setState(() {});
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('BRAVO!'),
+                                  content: const Text(
+                                      'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('continuer'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: const Text('ERREUR!'),
+                                  content: const Text(
+                                      'Le code inserer n\'est pas correcte'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        },
+                        autofocus: false,
+                        obscureText: !_model.passwordVisibility,
+                        decoration: InputDecoration(
+                          labelText: FFLocalizations.of(context).getText(
+                            'd67eu2q6' /* MOT DE PASSE */,
+                          ),
+                          labelStyle:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Oswald',
+                                    letterSpacing: 0.0,
+                                  ),
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelLarge.override(
+                                    fontFamily: 'Oswald',
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Color(0x00000000),
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.password,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => _model.passwordVisibility =
+                                  !_model.passwordVisibility,
+                            ),
+                            focusNode: FocusNode(skipTraversal: true),
+                            child: Icon(
+                              _model.passwordVisibility
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              size: 22,
+                            ),
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Oswald',
+                              letterSpacing: 0.0,
+                            ),
+                        textAlign: TextAlign.start,
+                        keyboardType: TextInputType.number,
+                        cursorColor:
+                            FlutterFlowTheme.of(context).primaryBackground,
+                        validator:
+                            _model.textControllerValidator.asValidator(context),
+                      ),
+                    ),
+                  ),
+                  FFButtonWidget(
+                    onPressed: () async {
+                      if (FFAppState().Difficulte == true) {
+                        if (_model.textController.text == '4') {
+                          FFAppState().addToMdpfinale(FFAppState().nbrmdp[1]);
+                          setState(() {});
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('BRAVO!'),
+                                content: const Text(
+                                    'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('continuer'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          FFAppState().NbrEnigmesFait =
+                              FFAppState().NbrEnigmesFait + 1;
+                          setState(() {});
+
+                          context.pushNamed('Accueil');
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('ERREUR!'),
+                                content:
+                                    const Text('Le code inserer n\'est pas correcte'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      } else {
+                        if (_model.textController.text == '4') {
+                          FFAppState().addToMdpfinale(FFAppState().nbrmdp[8]);
+                          setState(() {});
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('BRAVO!'),
+                                content: const Text(
+                                    'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('continuer'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                          FFAppState().NbrEnigmesFait =
+                              FFAppState().NbrEnigmesFait + 1;
+                          setState(() {});
+
+                          context.pushNamed('Accueil');
+                        } else {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: const Text('ERREUR!'),
+                                content:
+                                    const Text('Le code inserer n\'est pas correcte'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: const Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      }
+                    },
+                    text: FFLocalizations.of(context).getText(
+                      'd8bsr3hf' /* VALIDER */,
+                    ),
+                    options: FFButtonOptions(
+                      height: 40.0,
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primary,
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Oswald',
+                                color: Colors.white,
+                                letterSpacing: 0.0,
+                              ),
+                      elevation: 3.0,
+                      borderSide: const BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

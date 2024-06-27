@@ -61,9 +61,9 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primary,
         appBar: AppBar(
-          backgroundColor: const Color(0xFF344D59),
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           title: Align(
             alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -122,10 +122,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
             children: [
               Expanded(
                 child: Container(
-                  width: 397.0,
-                  height: 100.0,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF7A90A4),
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: MediaQuery.sizeOf(context).height * 1.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF7A90A4),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/fond.png',
+                      ).image,
+                    ),
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -140,9 +146,17 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                if (FFAppState()
-                                    .adnScan
-                                    .contains('HYGROCHROME'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == true) &&
+                                        (FFAppState()
+                                                .adnScan
+                                                .contains('HYGROCHROME') ==
+                                            true)) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('HYGROCHROME')))
                                   FFButtonWidget(
                                     onPressed: () async {
                                       if (FFAppState().hygrochrome == true) {
@@ -161,7 +175,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       iconPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color: const Color(0xFF344D59),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -177,7 +192,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       borderRadius: BorderRadius.circular(8.0),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('SENTINELLE'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('SENTINELLE')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('SENTINELLE')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -199,7 +223,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -217,7 +242,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('SYMBIOZ'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('SYMBIOZ')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('SYMBIOZ')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -239,7 +273,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -257,7 +292,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('RESSORT'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('RESSORT')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('RESSORT')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -279,7 +323,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -297,7 +342,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('TASMANIE'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('TASMANIE')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('TASMANIE')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -319,7 +373,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -337,7 +392,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('GUERISSEUR'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('AXOLOLT')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('AXOLOLT')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -359,7 +423,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -377,7 +442,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('FANTOME'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('FANTOME')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('FANTOME')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -399,7 +473,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -417,7 +492,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('ECLAIR'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('ECLAIR')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('ECLAIR')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -439,7 +523,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -457,7 +542,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('MARSUPIAL'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('MARSUPIAL')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('MARSUPIAL')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -479,7 +573,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -497,7 +592,16 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       ),
                                     ),
                                   ),
-                                if (FFAppState().adnScan.contains('BERSERKER'))
+                                if (((FFAppState().Difficulte == false) &&
+                                        (FFAppState().continuer == false) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('BERSERKER')) ||
+                                    ((FFAppState().Difficulte == true) &&
+                                        (FFAppState().continuer == true) &&
+                                        FFAppState()
+                                            .adnScan
+                                            .contains('BERSERKER')))
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
@@ -519,7 +623,8 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: const Color(0xFF344D59),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(

@@ -8,7 +8,6 @@ class ScanModel extends FlutterFlowModel<ScanWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  var adnScan = '';
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -19,6 +18,8 @@ class ScanModel extends FlutterFlowModel<ScanWidget> {
   );
   FlutterFlowTimerController timerController =
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
+
+  var adnScans = '';
 
   @override
   void initState(BuildContext context) {}

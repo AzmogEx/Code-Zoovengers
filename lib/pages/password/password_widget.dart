@@ -60,9 +60,9 @@ class _PasswordWidgetState extends State<PasswordWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primary,
         appBar: AppBar(
-          backgroundColor: const Color(0xFF344D59),
+          backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           actions: [
             Visibility(
@@ -106,8 +106,14 @@ class _PasswordWidgetState extends State<PasswordWidget> {
             constraints: const BoxConstraints(
               maxWidth: 570.0,
             ),
-            decoration: const BoxDecoration(
-              color: Color(0xFF7A90A4),
+            decoration: BoxDecoration(
+              color: const Color(0xFF7A90A4),
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: Image.asset(
+                  'assets/images/fond.png',
+                ).image,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
@@ -167,8 +173,9 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     alignment: const AlignmentDirectional(0.0, 0.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'zx2l5tcm' /* MOT DE PASSE FINAL: */,
+                        'zx2l5tcm' /* MOT DE PASSE FINAL D'EXTRACTIO... */,
                       ),
+                      textAlign: TextAlign.center,
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
                                 fontFamily: 'Urbanist',
@@ -188,7 +195,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                         obscureText: !_model.passWordVisibility,
                         decoration: InputDecoration(
                           labelText: FFLocalizations.of(context).getText(
-                            'r90vn38u' /* Mots de passe final: */,
+                            'r90vn38u' /* Mots de passe final d'extracti... */,
                           ),
                           labelStyle:
                               FlutterFlowTheme.of(context).labelMedium.override(
@@ -303,7 +310,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                             if (FFAppState().Difficulte == true) {
                               if (FFAppState().continuer == true) {
                                 if (_model.passWordTextController.text ==
-                                    '03029') {
+                                    '20127') {
                                   FFAppState().animVerif = true;
                                   setState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -365,7 +372,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 }
                               } else {
                                 if (_model.passWordTextController.text ==
-                                    '20127') {
+                                    '03029') {
                                   FFAppState().animVerif = true;
                                   setState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -564,7 +571,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 0.0, 0.0, 0.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFF344D59),
+                            color: FlutterFlowTheme.of(context).primary,
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
