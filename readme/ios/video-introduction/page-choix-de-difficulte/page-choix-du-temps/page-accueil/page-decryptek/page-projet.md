@@ -14,7 +14,7 @@ Les différents projets seront affichés seulement si nous avons la difficulté 
 
 ***
 
-<figure><img src="../../../../../../../.gitbook/assets/Capture d’écran 2024-06-27 à 16.26.50.png" alt=""><figcaption><p>Boutton d'aide (En cours de changement)</p></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/Capture d’écran 2024-06-28 à 11.07.50.png" alt=""><figcaption><p>Boutton d'aide</p></figcaption></figure>
 
 {% hint style="warning" %}
 Cette icône servira à donner des indices à l'utilisateur et à le diriger vers la bonne voie. Chaque fois que l'utilisateur appuie dessus, il prendra des phrases enregistrées dans la variable list "NotMess" en fonction du nombre d'énigmes qu'il a résolues, du nombre de projets déverrouillés, etc., afin de ne pas laisser l'utilisateur perdu.
