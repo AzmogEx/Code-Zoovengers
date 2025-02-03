@@ -36,20 +36,20 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
         Future(() async {
           while (FFAppState().countDown != null) {
             FFAppState().countDown = _model.timerMilliseconds;
-            setState(() {});
+            safeSetState(() {});
             await Future.delayed(const Duration(milliseconds: 200));
           }
         }),
         Future(() async {
           if (FFAppState().countDown < 1800000) {
             FFAppState().couleur = const Color(0xFFFF0000);
-            setState(() {});
+            safeSetState(() {});
           }
         }),
       ]);
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -64,9 +64,10 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -131,7 +132,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                       onChanged: (value, displayTime, shouldUpdate) {
                         _model.timerMilliseconds = value;
                         _model.timerValue = displayTime;
-                        if (shouldUpdate) setState(() {});
+                        if (shouldUpdate) safeSetState(() {});
                       },
                       textAlign: TextAlign.start,
                       style:
@@ -179,7 +180,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
-                            'assets/images/Design_sans_titre.png',
+                            'assets/images/Logo_aide_design_20x20_(1).png',
                             width: 300.0,
                             height: 200.0,
                             fit: BoxFit.contain,
@@ -194,7 +195,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                           const EdgeInsetsDirectional.fromSTEB(0.0, 180.0, 0.0, 0.0),
                       child: Text(
                         FFLocalizations.of(context).getText(
-                          '7t7qxmio' /* Cette fonctionnalité est réser... */,
+                          '7t7qxmio' /* Cette fonctionnalitée est rése... */,
                         ),
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -205,7 +206,8 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                       ),
                     ),
                   if ((FFAppState().Difficulte == true) &&
-                      (FFAppState().continuer == false))
+                      (FFAppState().continuer == false) &&
+                      (FFAppState().lang == 'fr'))
                     Expanded(
                       child: SizedBox(
                         width: double.infinity,
@@ -459,7 +461,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                       duration: const Duration(milliseconds: 500),
                                       curve: Curves.ease,
                                     );
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   effect:
                                       const smooth_page_indicator.ExpandingDotsEffect(
@@ -480,7 +482,8 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                       ),
                     ),
                   if ((FFAppState().Difficulte == true) &&
-                      (FFAppState().continuer == true))
+                      (FFAppState().continuer == true) &&
+                      (FFAppState().lang == 'fr'))
                     Expanded(
                       child: SizedBox(
                         width: double.infinity,
@@ -496,51 +499,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                 scrollDirection: Axis.horizontal,
                                 children: [
                                   Visibility(
-                                    visible: FFAppState().continuer == false,
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            child: FlutterFlowExpandedImageView(
-                                              image: Image.asset(
-                                                'assets/images/image.png',
-                                                fit: BoxFit.contain,
-                                              ),
-                                              allowRotation: true,
-                                              tag: 'imageTag7',
-                                              useHeroAnimation: true,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Hero(
-                                        tag: 'imageTag7',
-                                        transitionOnUserGestures: true,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.asset(
-                                            'assets/images/image.png',
-                                            width: MediaQuery.sizeOf(context)
-                                                    .width *
-                                                0.7,
-                                            height: MediaQuery.sizeOf(context)
-                                                    .height *
-                                                1.0,
-                                            fit: BoxFit.contain,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible: FFAppState().continuer == false,
+                                    visible: FFAppState().continuer == true,
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -557,6 +516,50 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                                 fit: BoxFit.contain,
                                               ),
                                               allowRotation: true,
+                                              tag: 'imageTag7',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag7',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.asset(
+                                            'assets/images/26.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.asset(
+                                                'assets/images/27.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
                                               tag: 'imageTag8',
                                               useHeroAnimation: true,
                                             ),
@@ -570,7 +573,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.asset(
-                                            'assets/images/26.png',
+                                            'assets/images/27.png',
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
                                                 0.7,
@@ -582,7 +585,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                     ),
                                   ),
                                   Visibility(
-                                    visible: FFAppState().continuer == false,
+                                    visible: FFAppState().continuer == true,
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -626,7 +629,7 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                     ),
                                   ),
                                   Visibility(
-                                    visible: FFAppState().continuer == false,
+                                    visible: FFAppState().continuer == true,
                                     child: InkWell(
                                       splashColor: Colors.transparent,
                                       focusColor: Colors.transparent,
@@ -690,7 +693,1032 @@ class _DecryptekWidgetState extends State<DecryptekWidget> {
                                       duration: const Duration(milliseconds: 500),
                                       curve: Curves.ease,
                                     );
-                                    setState(() {});
+                                    safeSetState(() {});
+                                  },
+                                  effect:
+                                      const smooth_page_indicator.ExpandingDotsEffect(
+                                    expansionFactor: 3.0,
+                                    spacing: 8.0,
+                                    radius: 16.0,
+                                    dotWidth: 16.0,
+                                    dotHeight: 8.0,
+                                    dotColor: Color(0xFF7A90A4),
+                                    activeDotColor: Color(0xFFB8CBD0),
+                                    paintStyle: PaintingStyle.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  if ((FFAppState().Difficulte == true) &&
+                      (FFAppState().continuer == false) &&
+                      (FFAppState().lang == 'en'))
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 500.0,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 40.0),
+                              child: PageView(
+                                controller: _model.pageViewController3 ??=
+                                    PageController(initialPage: 0),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/6%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag11',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag11',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/6%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/7%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag12',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag12',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/7%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: 100.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/8%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag13',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag13',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/8%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/12%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag14',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag14',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/12%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/3%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag15',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag15',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/3%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 16.0),
+                                child:
+                                    smooth_page_indicator.SmoothPageIndicator(
+                                  controller: _model.pageViewController3 ??=
+                                      PageController(initialPage: 0),
+                                  count: 5,
+                                  axisDirection: Axis.horizontal,
+                                  onDotClicked: (i) async {
+                                    await _model.pageViewController3!
+                                        .animateToPage(
+                                      i,
+                                      duration: const Duration(milliseconds: 500),
+                                      curve: Curves.ease,
+                                    );
+                                    safeSetState(() {});
+                                  },
+                                  effect:
+                                      const smooth_page_indicator.ExpandingDotsEffect(
+                                    expansionFactor: 3.0,
+                                    spacing: 8.0,
+                                    radius: 16.0,
+                                    dotWidth: 16.0,
+                                    dotHeight: 8.0,
+                                    dotColor: Color(0xFF7A90A4),
+                                    activeDotColor: Color(0xFFB8CBD0),
+                                    paintStyle: PaintingStyle.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  if ((FFAppState().Difficulte == true) &&
+                      (FFAppState().continuer == true) &&
+                      (FFAppState().lang == 'en'))
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 500.0,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 40.0),
+                              child: PageView(
+                                controller: _model.pageViewController4 ??=
+                                    PageController(initialPage: 0),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/11%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag16',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag16',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/11%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/1%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag17',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag17',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/1%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: 100.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/4%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag18',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag18',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/4%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/9%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag19',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag19',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/9%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/12%20en.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag20',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag20',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/12%20en.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 16.0),
+                                child:
+                                    smooth_page_indicator.SmoothPageIndicator(
+                                  controller: _model.pageViewController4 ??=
+                                      PageController(initialPage: 0),
+                                  count: 5,
+                                  axisDirection: Axis.horizontal,
+                                  onDotClicked: (i) async {
+                                    await _model.pageViewController4!
+                                        .animateToPage(
+                                      i,
+                                      duration: const Duration(milliseconds: 500),
+                                      curve: Curves.ease,
+                                    );
+                                    safeSetState(() {});
+                                  },
+                                  effect:
+                                      const smooth_page_indicator.ExpandingDotsEffect(
+                                    expansionFactor: 3.0,
+                                    spacing: 8.0,
+                                    radius: 16.0,
+                                    dotWidth: 16.0,
+                                    dotHeight: 8.0,
+                                    dotColor: Color(0xFF7A90A4),
+                                    activeDotColor: Color(0xFFB8CBD0),
+                                    paintStyle: PaintingStyle.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  if ((FFAppState().Difficulte == true) &&
+                      (FFAppState().continuer == false) &&
+                      (FFAppState().lang == 'es'))
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 500.0,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 40.0),
+                              child: PageView(
+                                controller: _model.pageViewController5 ??=
+                                    PageController(initialPage: 0),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/6%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag21',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag21',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/6%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/7%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag22',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag22',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/7%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: 100.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/8%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag23',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag23',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/8%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == false,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/12%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag24',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag24',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/12%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: Image.network(
+                                      'https://fichier.adam-marzuk.fr/img/3%20es.png',
+                                      width: 200.0,
+                                      height: 200.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 16.0),
+                                child:
+                                    smooth_page_indicator.SmoothPageIndicator(
+                                  controller: _model.pageViewController5 ??=
+                                      PageController(initialPage: 0),
+                                  count: 5,
+                                  axisDirection: Axis.horizontal,
+                                  onDotClicked: (i) async {
+                                    await _model.pageViewController5!
+                                        .animateToPage(
+                                      i,
+                                      duration: const Duration(milliseconds: 500),
+                                      curve: Curves.ease,
+                                    );
+                                    safeSetState(() {});
+                                  },
+                                  effect:
+                                      const smooth_page_indicator.ExpandingDotsEffect(
+                                    expansionFactor: 3.0,
+                                    spacing: 8.0,
+                                    radius: 16.0,
+                                    dotWidth: 16.0,
+                                    dotHeight: 8.0,
+                                    dotColor: Color(0xFF7A90A4),
+                                    activeDotColor: Color(0xFFB8CBD0),
+                                    paintStyle: PaintingStyle.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  if ((FFAppState().Difficulte == true) &&
+                      (FFAppState().continuer == true) &&
+                      (FFAppState().lang == 'es'))
+                    Expanded(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 500.0,
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 40.0),
+                              child: PageView(
+                                controller: _model.pageViewController6 ??=
+                                    PageController(initialPage: 0),
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/11%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag26',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag26',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/11%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/1%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag27',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag27',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/1%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: 100.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/4%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag28',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag28',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/4%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: FFAppState().continuer == true,
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.fade,
+                                            child: FlutterFlowExpandedImageView(
+                                              image: Image.network(
+                                                'https://fichier.adam-marzuk.fr/img/9%20es.png',
+                                                fit: BoxFit.contain,
+                                              ),
+                                              allowRotation: true,
+                                              tag: 'imageTag29',
+                                              useHeroAnimation: true,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Hero(
+                                        tag: 'imageTag29',
+                                        transitionOnUserGestures: true,
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://fichier.adam-marzuk.fr/img/9%20es.png',
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                0.7,
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
+                                                1.0,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: const AlignmentDirectional(-1.0, 1.0),
+                              child: Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 0.0, 0.0, 16.0),
+                                child:
+                                    smooth_page_indicator.SmoothPageIndicator(
+                                  controller: _model.pageViewController6 ??=
+                                      PageController(initialPage: 0),
+                                  count: 4,
+                                  axisDirection: Axis.horizontal,
+                                  onDotClicked: (i) async {
+                                    await _model.pageViewController6!
+                                        .animateToPage(
+                                      i,
+                                      duration: const Duration(milliseconds: 500),
+                                      curve: Curves.ease,
+                                    );
+                                    safeSetState(() {});
                                   },
                                   effect:
                                       const smooth_page_indicator.ExpandingDotsEffect(

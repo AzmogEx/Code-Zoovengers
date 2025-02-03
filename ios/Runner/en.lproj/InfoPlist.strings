@@ -1,2 +1,2 @@
-NSCameraUsageDescription = "Please enable permission to access the camera to scan the treasure hunt QR codes.";
+NSCameraUsageDescription = "Please enable camera access permission to scan the QR codes in the treasure hunt.";
 NSMicrophoneUsageDescription = "We need microphone to show you the different videos of the application";

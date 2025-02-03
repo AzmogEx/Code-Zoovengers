@@ -33,7 +33,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
         FFAppState().countDown = _model.timerMilliseconds;
-        setState(() {});
+        safeSetState(() {});
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
@@ -41,7 +41,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,9 +56,10 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
@@ -107,7 +108,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
-                    if (shouldUpdate) setState(() {});
+                    if (shouldUpdate) safeSetState(() {});
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -159,7 +160,8 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                                 ),
                       ),
                     ),
-                    if (FFAppState().Difficulte == true)
+                    if ((FFAppState().Difficulte == false) &&
+                        (FFAppState().lang == 'fr'))
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -191,12 +193,13 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                               'assets/images/SYMBIOZ.png',
                               width: MediaQuery.sizeOf(context).width * 0.7,
                               height: MediaQuery.sizeOf(context).height * 0.7,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
                       ),
-                    if (FFAppState().Difficulte == false)
+                    if ((FFAppState().Difficulte == true) &&
+                        (FFAppState().lang == 'fr'))
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -209,7 +212,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                               type: PageTransitionType.fade,
                               child: FlutterFlowExpandedImageView(
                                 image: Image.asset(
-                                  'assets/images/SYMBIOZ.png',
+                                  'assets/images/SYMBIOZ_(2).png',
                                   fit: BoxFit.contain,
                                 ),
                                 allowRotation: true,
@@ -225,10 +228,162 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
-                              'assets/images/SYMBIOZ.png',
+                              'assets/images/SYMBIOZ_(2).png',
                               width: MediaQuery.sizeOf(context).width * 0.7,
                               height: MediaQuery.sizeOf(context).height * 0.7,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == false) &&
+                        (FFAppState().lang == 'en'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/symbiose%20en%20facile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag3',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag3',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/symbiose%20en%20facile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == true) &&
+                        (FFAppState().lang == 'en'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/symbiose%20en%20difficile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag4',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag4',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/symbiose%20en%20difficile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == false) &&
+                        (FFAppState().lang == 'es'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/symbiose%20es%20facile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag5',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag5',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/symbiose%20es%20facile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == true) &&
+                        (FFAppState().lang == 'es'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/symbiose%20es%20difficile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag6',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag6',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/symbiose%20es%20difficile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
@@ -297,11 +452,11 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             prefixIcon: Icon(
-                              Icons.password,
+                              Icons.key,
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                             suffixIcon: InkWell(
-                              onTap: () => setState(
+                              onTap: () => safeSetState(
                                 () => _model.passwordVisibility =
                                     !_model.passwordVisibility,
                               ),
@@ -334,7 +489,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                         if (FFAppState().Difficulte == true) {
                           if (_model.textController.text == '1058') {
                             FFAppState().simbioz = true;
-                            setState(() {});
+                            safeSetState(() {});
 
                             context.pushNamed(
                               'symbioz',
@@ -351,14 +506,31 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('ERREUR!'),
-                                  content: const Text(
-                                      'Le code que vous avez inséré n\'est pas le bon.'),
+                                  title: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText: 'ERREUR!',
+                                    enText: 'ERROR!',
+                                    esText: '¡ERROR!',
+                                  )),
+                                  content: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText:
+                                        'Le code que vous avez inséré n\'est pas le bon.',
+                                    enText:
+                                        'The code you entered is not the correct one.',
+                                    esText:
+                                        'El código que ingresaste no es el correcto.',
+                                  )),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(alertDialogContext),
-                                      child: const Text('Réessayer'),
+                                      child: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        frText: 'Réessayer',
+                                        enText: 'Try again',
+                                        esText: 'Intentar otra vez',
+                                      )),
                                     ),
                                   ],
                                 );
@@ -368,7 +540,7 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                         } else {
                           if (_model.textController.text == '1100') {
                             FFAppState().simbioz = true;
-                            setState(() {});
+                            safeSetState(() {});
 
                             context.pushNamed(
                               'symbioz',
@@ -385,14 +557,31 @@ class _ProjetSylbiozWidgetState extends State<ProjetSylbiozWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('ERREUR!'),
-                                  content: const Text(
-                                      'Le code que vous avez inséré n\'est pas le bon.'),
+                                  title: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText: 'ERREUR!',
+                                    enText: 'ERROR!',
+                                    esText: '¡ERROR!',
+                                  )),
+                                  content: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText:
+                                        'Le code que vous avez inséré n\'est pas le bon.',
+                                    enText:
+                                        'The code you entered is not the correct one.',
+                                    esText:
+                                        'El código que ingresaste no es el correcto.',
+                                  )),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(alertDialogContext),
-                                      child: const Text('Réessayer'),
+                                      child: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        frText: 'Réessayer',
+                                        enText: 'Try again',
+                                        esText: 'Intentar otra vez',
+                                      )),
                                     ),
                                   ],
                                 );

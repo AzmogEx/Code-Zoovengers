@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class EclairModel extends FlutterFlowModel<EclairWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -32,7 +31,6 @@ class EclairModel extends FlutterFlowModel<EclairWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     timerController.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -77,18 +78,47 @@ class FFLocalizations {
   };
 }
 
+/// Used if the locale is not supported by GlobalMaterialLocalizations.
+class FallbackMaterialLocalizationDelegate
+    extends LocalizationsDelegate<MaterialLocalizations> {
+  const FallbackMaterialLocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
+
+  @override
+  Future<MaterialLocalizations> load(Locale locale) async =>
+      SynchronousFuture<MaterialLocalizations>(
+        const DefaultMaterialLocalizations(),
+      );
+
+  @override
+  bool shouldReload(FallbackMaterialLocalizationDelegate old) => false;
+}
+
+/// Used if the locale is not supported by GlobalCupertinoLocalizations.
+class FallbackCupertinoLocalizationDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const FallbackCupertinoLocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
+
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      SynchronousFuture<CupertinoLocalizations>(
+        const DefaultCupertinoLocalizations(),
+      );
+
+  @override
+  bool shouldReload(FallbackCupertinoLocalizationDelegate old) => false;
+}
+
 class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
   const FFLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) {
-    final language = locale.toString();
-    return FFLocalizations.languages().contains(
-      language.endsWith('_')
-          ? language.substring(0, language.length - 1)
-          : language,
-    );
-  }
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
 
   @override
   Future<FFLocalizations> load(Locale locale) =>
@@ -104,6 +134,15 @@ Locale createLocale(String language) => language.contains('_')
         scriptCode: language.split('_').last,
       )
     : Locale(language);
+
+bool _isSupportedLocale(Locale locale) {
+  final language = locale.toString();
+  return FFLocalizations.languages().contains(
+    language.endsWith('_')
+        ? language.substring(0, language.length - 1)
+        : language,
+  );
+}
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Start
@@ -124,22 +163,22 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'Experto en Zoovengers',
     },
     'l3dg3sze': {
-      'fr': '10ans et +',
-      'en': '10 years +',
-      'es': '10 años +',
+      'fr': 'Casse tête',
+      'en': 'Puzzle',
+      'es': 'rompecabezas de cabeza',
     },
     '8e6so0wr': {
       'fr':
-          'Attention : le choix de la difficulté aura un impact sur votre expérience de jeu. Nous recommandons a partir de 7 ans l\'experience Apprenti qui est basé sur de l\'observation.\nA partir de 10 ans et + La reflexion contient des énigme et des codes à décoder.',
+          'Attention : le choix de la difficulté aura un impact sur votre expérience de jeu. Nous recommandons a partir de 7 ans l\'experience Apprenti qui est basé sur de l\'observation.\nA partir de 10 ans et + La reflexion qui contient des énigme et des codes à déchiffrer.',
       'en':
-          'Please note: the choice of difficulty will impact your gaming experience. Choose wisely, as it will influence the challenge and intensity of your game!',
+          'Warning: the choice of difficulty will have an impact on your gaming experience. We recommend from 7 years old the Apprentice experience which is based on observation.\nFrom 10 years old and + The reflection which contains puzzles and codes to decipher.',
       'es':
-          'Tenga en cuenta: la elección de la dificultad afectará su experiencia de juego. ¡Elija sabiamente, ya que influirá en el desafío y la intensidad de su juego!',
+          'Tenga en cuenta: la elección de la dificultad afectará su experiencia de juego. Recomendamos la experiencia Aprendiz a partir de 7 años, que se basa en la observación.\nA partir de 10 años La reflexión que contiene acertijos y códigos para descifrar.',
     },
     '22xd5sx7': {
-      'fr': '7 ans',
-      'en': '7 years',
-      'es': '7 años',
+      'fr': 'Observation',
+      'en': 'Observation',
+      'es': 'Observación',
     },
     'ojfg8c3h': {
       'fr': 'Home',
@@ -150,14 +189,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Timer
   {
     'sh22z9ht': {
-      'fr': '1h',
-      'en': '1h',
-      'es': '1h',
+      'fr': '45min',
+      'en': '45min',
+      'es': '45 minutos',
     },
     '7ofavb6n': {
-      'fr': '2h',
-      'en': '2h',
-      'es': '2h',
+      'fr': '1h30',
+      'en': '1h30',
+      'es': '1h30',
     },
     'hn7bs33d': {
       'fr': 'Choisissez la durée du compte à rebours',
@@ -168,9 +207,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Attention : si  vous fermez complètement l\'application. Vous perdrez votre progression et toutes vos données. Faites attention ! La mission échouera.',
       'en':
-          'Warning: if the application closes, you will lose your progress and all your data. Pay attention ! The mission will fail.',
+          'Warning: If you close the application completely. You will lose your progress and all your data. Be careful! The mission will fail.',
       'es':
-          'Advertencia: si la aplicación se cierra, perderás tu progreso y todos tus datos. Presta atención ! La misión fracasará.',
+          'Advertencia: si cierras completamente la aplicación. Perderás tu progreso y todos tus datos. ¡Ten cuidado! La misión fracasará.',
     },
     'g46hdcbm': {
       'fr': 'Compte à rebours',
@@ -191,19 +230,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'La agencia zoovengers te da la bienvenida.',
     },
     '3ig8uae0': {
-      'fr': 'Pourrez vous résoudre à temps les puzzles ?',
+      'fr': 'Pourrez vous résoudre à temps les enigmes ?',
       'en': 'Can you solve the puzzles in time?',
       'es': '¿Podrás resolver los acertijos a tiempo?',
     },
     'x9ypormm': {
       'fr': 'Code final d\'extraction: ',
-      'en': 'Coded:',
-      'es': 'Codificado:',
+      'en': 'Final extraction code:',
+      'es': 'Código de extracción final:',
+    },
+    'ilw5e7qr': {
+      'fr': 'Revisionner la vidéo',
+      'en': '',
+      'es': '',
     },
     '23vakbx8': {
       'fr': 'Accueil',
       'en': 'Welcome',
-      'es': 'bienvenida',
+      'es': 'Bienvenido',
     },
   },
   // Decryptek
@@ -217,19 +261,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Bienvenue sur le decryptek! Utiliser le pour déchiffrer les codes et résoudre les énigmes. Bonne chance! (Uniquement pour la difficutlé Expert)',
       'en':
-          'Welcome to decryptek! Use it to decipher codes and solve puzzles. Good luck! (Only for Expert difficulty)',
+          'Welcome to the decryptek! Use it to decipher codes and solve puzzles. Good luck! (Expert difficulty only)',
       'es':
           '¡Bienvenido a decryptek! Úselo para descifrar códigos y resolver acertijos. ¡Buena suerte! (Solo para dificultad Experto)',
     },
     'x7kukhvf': {
       'fr':
           'Il est fortement recommandé de vous munir d\'un crayon et d\'un papier pour résoudre les énigmes. Si vous n\'en avez pas, vous pouvez en demander un au gardien de la salle.',
-      'en': '',
-      'es': '',
+      'en':
+          'It is highly recommended that you bring a pencil and paper to solve the puzzles. If you don\'t have one, you can ask the room attendant for one.',
+      'es':
+          'Se recomienda encarecidamente que traiga lápiz y papel para resolver los acertijos. Si no tienes uno, puedes pedírselo al encargado de la habitación.',
     },
     '7t7qxmio': {
       'fr':
-          'Cette fonctionnalité est réservée aux modes de difficulté plus élevés. Vous pourrez tenter votre chance à un autre moment.',
+          'Cette fonctionnalitée est réservée aux modes de difficulté plus élevés. Vous pourrez tenter votre chance à un autre moment.',
       'en':
           'This feature is reserved for higher difficulty modes. You can try your luck at another time.',
       'es':
@@ -256,25 +302,25 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nh723u8n': {
       'fr': 'réessayer',
       'en': 'try again',
-      'es': 'Volver a intentar',
+      'es': 'intentar otra vez',
     },
   },
   // Win
   {
     'vodp8nnj': {
       'fr': 'Félicitation',
-      'en': 'Congratulations',
-      'es': 'Felicidades',
+      'en': 'Congratulation',
+      'es': 'Felicitaciones',
     },
     '46w5o9af': {
       'fr': 'Vous avez réussi à retrouvez tout les animaux manquant !',
-      'en': 'You have managed to find all the missing animals!',
+      'en': 'You managed to find all the missing animals!',
       'es': '¡Has logrado encontrar todos los animales perdidos!',
     },
     'heponw3y': {
       'fr': 'Continuer ?',
       'en': 'Continue ?',
-      'es': 'Seguir ?',
+      'es': 'Continuar ?',
     },
   },
   // Scan
@@ -292,13 +338,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '3ayp5h8n': {
       'fr': 'Démarrer le scan',
-      'en': 'Start scanning',
+      'en': 'Start Scan',
       'es': 'Iniciar escaneo',
-    },
-    'w9msst5p': {
-      'fr': 'Cancel',
-      'en': 'Cancel',
-      'es': 'Cancelar',
     },
     '2t6ado82': {
       'fr': 'Scan',
@@ -309,9 +350,9 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // Enigmes
   {
     '8kntvy5u': {
-      'fr': 'NUIT NOIR',
-      'en': 'BLACK NIGHT',
-      'es': 'NOCHE NEGRA',
+      'fr': 'NUIT NOIRE',
+      'en': 'DARK NIGHT',
+      'es': 'NOCHE OSCURA',
     },
     'ejqwm72z': {
       'fr': 'SENTINELLE',
@@ -356,7 +397,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kae5yyd8': {
       'fr': 'BERSERKER',
       'en': 'BERSERKER',
-      'es': 'FRENÉTICO',
+      'es': 'BERSERKER',
     },
     's4mzzcnt': {
       'fr': 'Enigmes',
@@ -374,7 +415,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'yrep6uug': {
       'fr': 'BERSERKER',
       'en': 'BERSERKER',
-      'es': 'FRENÉTICO',
+      'es': 'BERSERKER',
     },
     '2ziuo8dl': {
       'fr': 'PROJET BERSERKER',
@@ -383,7 +424,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'wt2hm79s': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'h2j348ul': {
@@ -394,7 +435,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1pzzwabi': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'bfn2kbmh': {
       'fr': 'Home',
@@ -411,13 +452,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'zx2l5tcm': {
       'fr': 'MOT DE PASSE FINAL D\'EXTRACTION:',
-      'en': 'FINAL PASSWORD:',
-      'es': 'CONTRASEÑA FINAL:',
+      'en': 'FINAL EXTRACTION PASSWORD:',
+      'es': 'EXTRACCIÓN DE CONTRASEÑA FINAL:',
     },
     'r90vn38u': {
       'fr': 'Mots de passe final d\'extraction:',
-      'en': 'Final passwords:',
-      'es': 'Contraseñas finales:',
+      'en': 'Final extraction passwords:',
+      'es': 'Contraseñas de extracción final:',
     },
     'u02o7izy': {
       'fr': '',
@@ -427,7 +468,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'i2y6xlm4': {
       'fr': 'Envoyer:',
       'en': 'Send:',
-      'es': 'Enviar a:',
+      'es': 'Enviar:',
     },
     'l1yiy5pz': {
       'fr': 'Final',
@@ -449,7 +490,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'qggbt4m9': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     '8h7kssyj': {
@@ -460,7 +501,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'lw8iwpgh': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'lstxbig5': {
       'fr': 'Home',
@@ -482,7 +523,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'k4w0fllj': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     '4dosy5ds': {
@@ -493,7 +534,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'gj2zf0lr': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '2765r1bu': {
       'fr': 'Home',
@@ -504,18 +545,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // projetNuit
   {
     '8emgfua1': {
-      'fr': 'NUIT NOIR',
-      'en': 'BLACK NIGHT',
-      'es': 'NOCHE NEGRA',
+      'fr': 'NUIT NOIRE',
+      'en': 'DARK NIGHT',
+      'es': 'NOCHE OSCURA',
     },
     'cnrmfgx4': {
-      'fr': 'PROJET NUIT NOIR',
-      'en': 'NIGHT BLACK PROJECT',
+      'fr': 'PROJET NUIT NOIRE',
+      'en': 'BLACK NIGHT PROJECT',
       'es': 'PROYECTO NOCHE NEGRA',
     },
     'xpbvbsnb': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'gobj1gcs': {
@@ -526,7 +567,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'fspy1odi': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '2cns9z59': {
       'fr': 'Home',
@@ -548,7 +589,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'r7gkorir': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'zsbb6lks': {
@@ -559,7 +600,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'kdugha3o': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '1wscl5yp': {
       'fr': 'Home',
@@ -581,7 +622,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ju66758h': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     's69pos50': {
@@ -592,7 +633,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w3ioqhcl': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'nsobf8d1': {
       'fr': 'Home',
@@ -614,7 +655,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '0lv9bbh2': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'j6o6i3iv': {
@@ -625,7 +666,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'xunlg3vv': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '7g7uq3jd': {
       'fr': 'Home',
@@ -647,7 +688,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'hh6el6e1': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'ldj6b1yp': {
@@ -658,7 +699,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'a4febzsl': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '5f6dho03': {
       'fr': 'Home',
@@ -680,7 +721,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '0ki5ayyt': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'k0jqrt5c': {
@@ -691,7 +732,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'v9t4z6bp': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '3zlmq69r': {
       'fr': 'Home',
@@ -708,12 +749,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'lrkxf1oq': {
       'fr': 'PROJET GUERISSEUR',
-      'en': 'HEALER PROJECT',
+      'en': 'HEALING PROJECT',
       'es': 'PROYECTO SANADOR',
     },
     '52xc1q1d': {
       'fr': 'Insérez le mot de passe du projet pour le déverrouiller.',
-      'en': 'Insert the project password to unlock it.',
+      'en': 'Enter the project password to unlock it.',
       'es': 'Inserte la contraseña del proyecto para desbloquearlo.',
     },
     'fursnqsh': {
@@ -724,7 +765,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'u8zwwg3s': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '3licowbx': {
       'fr': 'Home',
@@ -737,7 +778,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'izboco9v': {
       'fr': 'BERSERKER',
       'en': 'BERSERKER',
-      'es': 'FRENÉTICO',
+      'es': 'BERSERKER',
     },
     '8tlzfzyp': {
       'fr': 'Ursus maritimus, Ours polaire',
@@ -748,7 +789,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
@@ -765,7 +806,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'w6l4in0o': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '70er3kjg': {
       'fr': 'Home',
@@ -781,15 +822,15 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': 'DESTELLO',
     },
     'gczlzam2': {
-      'fr': 'Colibri thalassinus, Colibri thalassin',
-      'en': 'Hummingbird thalassinus, Hummingbird thalassin',
+      'fr': 'Colibri thalassinus, Colibri coruscans',
+      'en': 'Hummingbird thalassinus, Thalassin hummingbird',
       'es': 'Colibrí thalassinus, Colibrí thalassinus',
     },
     'e9ap7swu': {
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
@@ -806,7 +847,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '4alel88b': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'vr81a7hs': {
       'fr': 'Home',
@@ -830,7 +871,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
@@ -847,7 +888,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'd8bsr3hf': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'ks859cxv': {
       'fr': 'Home',
@@ -871,7 +912,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
@@ -888,7 +929,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     '1jbssr0e': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '20mewkws': {
       'fr': 'Home',
@@ -912,13 +953,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
     '0xwayj70': {
       'fr': 'Le code est : nombre de doigts total de l\'animal.',
-      'en': 'The code is: total number of toes of the animal.',
+      'en': 'The code is: total number of fingers of the animal.',
       'es': 'El código es: número total de dedos del animal.',
     },
     'j2o40ju0': {
@@ -929,7 +970,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'b4nbr7qh': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '5r2rzopk': {
       'fr': 'Home',
@@ -940,26 +981,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // nuit
   {
     'gwt3p0wv': {
-      'fr': 'NUIT NOIR',
-      'en': 'BLACK NIGHT',
-      'es': 'NOCHE NEGRA',
+      'fr': 'NUIT NOIRE',
+      'en': 'DARK NIGHT',
+      'es': 'NOCHE OSCURA',
     },
     'oe3drbim': {
       'fr': 'Pteropus niger, Roussette noire.',
-      'en': 'Pteropus niger, Black flying fox.',
+      'en': 'Pteropus niger, Black fruit bat.',
       'es': 'Pteropus niger, zorro volador negro.',
     },
     'l6dimyfb': {
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme. ',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
     'v3ibkztm': {
       'fr': 'Le code est : nombre de doigts total d\'une main de l\'animal.',
-      'en': 'The code is: total number of fingers on an animal\'s hand.',
+      'en': 'The code is: total number of fingers on one hand of the animal.',
       'es': 'El código es: número total de dedos de la mano de un animal.',
     },
     '0qxlkhxy': {
@@ -970,7 +1011,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'h6d13uia': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     '77xjekv3': {
       'fr': 'Home',
@@ -994,7 +1035,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
@@ -1011,7 +1052,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'z1zj35q0': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'xs6pm9sl': {
       'fr': 'Home',
@@ -1028,20 +1069,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'xrp1zqn1': {
       'fr': 'Bubo bubo, Grand-duc d\'Europe',
-      'en': 'Bubo bubo, European Grand Duke',
+      'en': 'Bubo bubo, Eurasian Eagle Owl',
       'es': 'Bubo bubo, Gran Duque europeo',
     },
     'e8rfjiyb': {
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
     '26qkl0j5': {
       'fr': 'Le code est : nombre de doigts total de l\'animal.',
-      'en': 'The code is: total number of toes of the animal.',
+      'en': 'The code is: total number of fingers of the animal.',
       'es': 'El código es: número total de dedos del animal.',
     },
     '7lycqhen': {
@@ -1052,7 +1093,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'zguvw4fg': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'rc82aoq7': {
       'fr': 'Home',
@@ -1076,7 +1117,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
@@ -1093,7 +1134,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'nx0iqjer': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'qlvvs283': {
       'fr': 'Home',
@@ -1117,13 +1158,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Utilisez cette vidéo pour retrouver l\'animal dans le musée et résoudre la dernière énigme.',
       'en':
-          'Use this video to find the animal in the museum and solve the last puzzle.',
+          'Use this video to find the animal in the museum and solve the last riddle.',
       'es':
           'Usa este vídeo para encontrar el animal en el museo y resolver el último rompecabezas.',
     },
     '37yczxvr': {
-      'fr': 'Le code est : nombre de doigts pattes avant de l\'animal.',
-      'en': 'The code is: number of toes on the animal\'s front legs.',
+      'fr':
+          'Le code est : nombre de doigts total des pattes avant de l\'animal.',
+      'en': 'The code is: number of toes on the animal\'s front paws.',
       'es': 'El código es: número de dedos de las patas delanteras del animal.',
     },
     'pfkunl8e': {
@@ -1134,7 +1176,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     'af38b3sf': {
       'fr': 'VALIDER',
       'en': 'TO VALIDATE',
-      'es': 'VALIDAR',
+      'es': 'PARA VALIDAR',
     },
     'vykcvgvg': {
       'fr': 'Home',
@@ -1151,8 +1193,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ztdjau0f': {
       'fr': 'Demarrer',
-      'en': 'Zoovengers Expert',
-      'es': 'Experto en Zoovengers',
+      'en': 'To start up',
+      'es': 'para empezar',
     },
     'wfxq9l01': {
       'fr': 'Home',
@@ -1164,50 +1206,98 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     'j5i2g8ce': {
       'fr': 'Comprendre le jeu:',
-      'en': '',
-      'es': '',
+      'en': 'Understanding the game:',
+      'es': 'Entendiendo el juego:',
     },
     'ef87kro0': {
       'fr': 'Durée: ',
-      'en': '',
-      'es': '',
+      'en': 'Duration:',
+      'es': 'Duración:',
     },
     'kyjtg00o': {
       'fr': '30min à 2h environ',
-      'en': '',
-      'es': '',
+      'en': '30min to 2h approximately',
+      'es': '30min a 2 horas aproximadamente',
     },
     're5rvlpi': {
       'fr': 'Je suis prêt !',
-      'en': '',
-      'es': '',
+      'en': 'I\'m ready!',
+      'es': '¡Estoy listo!',
     },
     'y5kvnjbn': {
       'fr': 'Zoovengers',
-      'en': '',
-      'es': '',
+      'en': 'Zoovengers',
+      'es': 'Vengadores del zoo',
     },
     '5d89nccj': {
       'fr':
-          'Dans ce jeu vous devrez résoudre différentes énigmes pour retrouver tout les animaux perdu dans la salle de zoologie.',
-      'en': '',
-      'es': '',
+          'Dans ce  jeu  vous devrez résoudre différentes énigmes pour retrouver tout les animaux perdu dans la salle de zoologie. du muséeum d\'histoire naturel de Nîmes.',
+      'en':
+          'In this game you will have to solve different puzzles to find all the animals lost in the zoology room of the natural history museum of Nîmes.',
+      'es':
+          'En este juego tendrás que resolver diferentes acertijos para encontrar todos los animales perdidos en la sala de zoología. del museo de historia natural de Nimes.',
     },
     'w182ek90': {
       'fr': 'Proposé par: ',
-      'en': '',
-      'es': '',
+      'en': 'Proposed by:',
+      'es': 'Propuesto por:',
     },
     '49upwuqe': {
       'fr': 'Museum d\'histoire naturel Nîmes',
-      'en': '',
-      'es': '',
+      'en': 'Natural History Museum Nîmes',
+      'es': 'Museo de Historia Natural de Nimes',
+    },
+  },
+  // revisionnage
+  {
+    'nyi7ykph': {
+      'fr': 'Comprendre le jeu:',
+      'en': 'Understanding the game:',
+      'es': 'Entendiendo el juego:',
+    },
+    'pp4ik6pk': {
+      'fr': 'Durée: ',
+      'en': 'Duration:',
+      'es': 'Duración:',
+    },
+    '3h7x2z3h': {
+      'fr': '30min à 2h environ',
+      'en': '30min to 2h approximately',
+      'es': '30min a 2 horas aproximadamente',
+    },
+    'hxatkuxz': {
+      'fr': 'Je suis prêt !',
+      'en': 'I\'m ready!',
+      'es': '¡Estoy listo!',
+    },
+    's61vinml': {
+      'fr': 'Zoovengers',
+      'en': 'Zoovengers',
+      'es': 'Vengadores del zoo',
+    },
+    '8jxumpqt': {
+      'fr':
+          'Dans ce  jeu  vous devrez résoudre différentes énigmes pour retrouver tout les animaux perdu dans la salle de zoologie. du muséeum d\'histoire naturel de Nîmes.',
+      'en':
+          'In this game you will have to solve different puzzles to find all the animals lost in the zoology room of the natural history museum of Nîmes.',
+      'es':
+          'En este juego tendrás que resolver diferentes acertijos para encontrar todos los animales perdidos en la sala de zoología. del museo de historia natural de Nimes.',
+    },
+    'dxbavozh': {
+      'fr': 'Proposé par: ',
+      'en': 'Proposed by:',
+      'es': 'Propuesto por:',
+    },
+    'pvgowrzs': {
+      'fr': 'Museum d\'histoire naturel Nîmes',
+      'en': 'Natural History Museum Nîmes',
+      'es': 'Museo de Historia Natural de Nimes',
     },
   },
   // Miscellaneous
   {
     'obh009ze': {
-      'fr': '',
+      'fr': 'We need Camera for scan the qr code of the application',
       'en': '',
       'es': '',
     },
@@ -1215,7 +1305,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'fr':
           'Veuillez activez la permission d\'accéder à la caméra pour scanner les qr codes du jeu de piste.',
       'en':
-          'Please enable permission to access the camera to scan the treasure hunt QR codes.',
+          'Please enable camera access permission to scan the QR codes in the treasure hunt.',
       'es':
           'Habilite el permiso para acceder a la cámara y escanear los códigos QR de la búsqueda del tesoro.',
     },

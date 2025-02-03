@@ -22,6 +22,8 @@ class _TimerWidgetState extends State<TimerWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => TimerModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -34,9 +36,10 @@ class _TimerWidgetState extends State<TimerWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
@@ -102,23 +105,23 @@ class _TimerWidgetState extends State<TimerWidget> {
                         ),
                       ),
                       Align(
-                        alignment: const AlignmentDirectional(-1.02, -0.24),
+                        alignment: const AlignmentDirectional(-1.02, -0.25),
                         child: Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               50.0, 0.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              FFAppState().countDown = 3600000;
-                              setState(() {});
-                              FFAppState().deuxheures = 3600000;
-                              setState(() {});
+                              FFAppState().countDown = 2700000;
+                              safeSetState(() {});
+                              FFAppState().deuxheures = 2700000;
+                              safeSetState(() {});
                               await Future.delayed(
                                   const Duration(milliseconds: 200));
 
                               context.goNamed('Accueil');
                             },
                             text: FFLocalizations.of(context).getText(
-                              'sh22z9ht' /* 1h */,
+                              'sh22z9ht' /* 45min */,
                             ),
                             options: FFButtonOptions(
                               width: 100.0,
@@ -148,17 +151,17 @@ class _TimerWidgetState extends State<TimerWidget> {
                               0.0, 0.0, 50.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              FFAppState().countDown = 7200000;
-                              setState(() {});
-                              FFAppState().deuxheures = 7200000;
-                              setState(() {});
+                              FFAppState().countDown = 5400000;
+                              safeSetState(() {});
+                              FFAppState().deuxheures = 5400000;
+                              safeSetState(() {});
                               await Future.delayed(
                                   const Duration(milliseconds: 200));
 
                               context.goNamed('Accueil');
                             },
                             text: FFLocalizations.of(context).getText(
-                              '7ofavb6n' /* 2h */,
+                              '7ofavb6n' /* 1h30 */,
                             ),
                             options: FFButtonOptions(
                               width: 100.0,

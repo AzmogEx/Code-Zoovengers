@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'video_model.dart';
 export 'video_model.dart';
 
@@ -24,6 +25,8 @@ class _VideoWidgetState extends State<VideoWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VideoModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -35,10 +38,13 @@ class _VideoWidgetState extends State<VideoWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -152,7 +158,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                               sigmaY: 2.0,
                             ),
                             child: Container(
-                              width: 192.0,
+                              width: 217.0,
                               decoration: BoxDecoration(
                                 color: const Color(0x4C88DDFF),
                                 borderRadius: BorderRadius.circular(8.0),
@@ -199,19 +205,45 @@ class _VideoWidgetState extends State<VideoWidget> {
                         ),
                       ),
                     ),
-                    const Align(
-                      alignment: AlignmentDirectional(0.0, 0.0),
-                      child: FlutterFlowVideoPlayer(
-                        path:
-                            'https://fichier.adam-marzuk.fr/Zoovengers-Intro.mp4',
-                        videoType: VideoType.network,
-                        autoPlay: true,
-                        looping: false,
-                        showControls: true,
-                        allowFullScreen: true,
-                        allowPlaybackSpeedMenu: false,
+                    if (FFAppState().lang == 'fr')
+                      const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FlutterFlowVideoPlayer(
+                          path: 'assets/videos/Zoovengers.fr.mp4',
+                          videoType: VideoType.asset,
+                          autoPlay: true,
+                          looping: false,
+                          showControls: true,
+                          allowFullScreen: true,
+                          allowPlaybackSpeedMenu: false,
+                        ),
                       ),
-                    ),
+                    if (FFAppState().lang == 'es')
+                      const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FlutterFlowVideoPlayer(
+                          path: 'assets/videos/zoovengers-es.mp4',
+                          videoType: VideoType.asset,
+                          autoPlay: true,
+                          looping: false,
+                          showControls: true,
+                          allowFullScreen: true,
+                          allowPlaybackSpeedMenu: false,
+                        ),
+                      ),
+                    if (FFAppState().lang == 'en')
+                      const Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: FlutterFlowVideoPlayer(
+                          path: 'assets/videos/zoovengers-en.mp4',
+                          videoType: VideoType.asset,
+                          autoPlay: true,
+                          looping: false,
+                          showControls: true,
+                          allowFullScreen: true,
+                          allowPlaybackSpeedMenu: false,
+                        ),
+                      ),
                     Align(
                       alignment: const AlignmentDirectional(0.0, 1.0),
                       child: Padding(
@@ -219,23 +251,54 @@ class _VideoWidgetState extends State<VideoWidget> {
                             0.0, 0.0, 0.0, 100.0),
                         child: FFButtonWidget(
                           onPressed: () async {
+                            FFAppState().lang =
+                                FFLocalizations.of(context).getVariableText(
+                              frText: 'fr',
+                              enText: 'en',
+                              esText: 'es',
+                            );
+                            safeSetState(() {});
                             var confirmDialogResponse = await showDialog<bool>(
                                   context: context,
                                   builder: (alertDialogContext) {
                                     return AlertDialog(
-                                      title: const Text('Demarrage'),
-                                      content: const Text(
-                                          'Êtes vous sur d\'être prêt à démarrer ?'),
+                                      title: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        frText: 'Démarrage',
+                                        enText: 'Startup',
+                                        esText: 'puesta en marcha',
+                                      )),
+                                      content: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        frText:
+                                            'Êtes vous sur d\'être prêt à démarrer ?',
+                                        enText:
+                                            'Are you sure you\'re ready to get started?',
+                                        esText:
+                                            '¿Estás seguro de que estás listo para comenzar?',
+                                      )),
                                       actions: [
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, false),
-                                          child: const Text('Annuler'),
+                                          child: Text(
+                                              FFLocalizations.of(context)
+                                                  .getVariableText(
+                                            frText: 'Annuler',
+                                            enText: 'Cancel',
+                                            esText: 'Cancelar',
+                                          )),
                                         ),
                                         TextButton(
                                           onPressed: () => Navigator.pop(
                                               alertDialogContext, true),
-                                          child: const Text('Commencer'),
+                                          child: Text(
+                                              FFLocalizations.of(context)
+                                                  .getVariableText(
+                                            frText: 'Commencer',
+                                            enText: 'Start',
+                                            esText: 'Empezar',
+                                          )),
                                         ),
                                       ],
                                     );
@@ -302,7 +365,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                     ),
                     Text(
                       FFLocalizations.of(context).getText(
-                        '5d89nccj' /* Dans ce jeu vous devrez résoud... */,
+                        '5d89nccj' /* Dans ce  jeu  vous devrez réso... */,
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Manrope',

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class WinModel extends FlutterFlowModel<WinWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -24,7 +23,6 @@ class WinModel extends FlutterFlowModel<WinWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     timerController.dispose();
   }
 }

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class EnigmesModel extends FlutterFlowModel<EnigmesWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -24,7 +23,6 @@ class EnigmesModel extends FlutterFlowModel<EnigmesWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     timerController.dispose();
   }
 }

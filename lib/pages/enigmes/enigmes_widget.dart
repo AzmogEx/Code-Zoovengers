@@ -35,13 +35,13 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
         _model.timerController.onStartTimer();
         while (FFAppState().countDown != null) {
           FFAppState().countDown = _model.timerMilliseconds;
-          setState(() {});
+          safeSetState(() {});
           await Future.delayed(const Duration(milliseconds: 200));
         }
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,9 +56,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -99,7 +100,7 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                     onChanged: (value, displayTime, shouldUpdate) {
                       _model.timerMilliseconds = value;
                       _model.timerValue = displayTime;
-                      if (shouldUpdate) setState(() {});
+                      if (shouldUpdate) safeSetState(() {});
                     },
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -166,7 +167,7 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       }
                                     },
                                     text: FFLocalizations.of(context).getText(
-                                      '8kntvy5u' /* NUIT NOIR */,
+                                      '8kntvy5u' /* NUIT NOIRE */,
                                     ),
                                     options: FFButtonOptions(
                                       height: 40.0,
@@ -175,8 +176,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                       iconPadding:
                                           const EdgeInsetsDirectional.fromSTEB(
                                               0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: FFAppState().chauve == true
+                                          ? const Color(0xFF00F91C)
+                                          : FlutterFlowTheme.of(context)
+                                              .primary,
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .override(
@@ -223,8 +226,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().hibou == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -273,8 +278,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().paresseux == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -323,8 +330,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().chamois == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -373,8 +382,11 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color:
+                                            FFAppState().ornythorinque == true
+                                                ? const Color(0xFF00F91C)
+                                                : FlutterFlowTheme.of(context)
+                                                    .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -423,8 +435,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().guerrisseur == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -473,8 +487,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().panthere == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -523,8 +539,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().colibri == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -573,8 +591,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().sucre == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -623,8 +643,10 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                                         iconPadding:
                                             const EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                        color: FFAppState().ours == true
+                                            ? const Color(0xFF00F91C)
+                                            : FlutterFlowTheme.of(context)
+                                                .primary,
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
@@ -660,18 +682,68 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                               padding: const EdgeInsets.all(4.0),
                               child: Text(
                                 FFAppState().NbrEnigmesFait == 0
-                                    ? 'N\'oubliez pas votre mission : chercher les 5 traces d\'animaux cachées dans le musée et les scanner. Faites attention et restez vigilant.'
+                                    ? FFLocalizations.of(context)
+                                        .getVariableText(
+                                        frText:
+                                            'N\'oubliez pas votre mission : chercher les 5 traces d\'animaux cachées dans le musée et les scanner.  Pour les experts vous devez vous aidez du decryptek.',
+                                        enText:
+                                            'Don\'t forget your mission: find the 5 animal tracks hidden in the museum and scan them. Take care and stay alert.',
+                                        esText:
+                                            'No olvides tu misión: encuentra las 5 huellas de animales escondidas en el museo y escanéalas. Cuídate y mantente alerta.',
+                                      )
                                     : (FFAppState().NbrEnigmesFait == 1
-                                        ? 'Il ne vous reste plus que 4 énigmes à résoudre sur les 5. Continuez, vous êtes presque au bout !'
+                                        ? FFLocalizations.of(context)
+                                            .getVariableText(
+                                            frText:
+                                                'Il ne vous reste plus que 4 énigmes à résoudre sur les 5. Continuez, vous êtes presque au bout !',
+                                            enText:
+                                                'You only have 4 puzzles left to solve out of the 5. Keep going, you\'re almost at the end!',
+                                            esText:
+                                                'Solo te quedan 4 acertijos por resolver de los 5. ¡Sigue adelante, ya casi llegas al final!',
+                                          )
                                         : (FFAppState().NbrEnigmesFait == 2
-                                            ? 'Il ne vous reste plus que 3 énigmes à résoudre sur les 5. Continuez, vous êtes presque au bout !'
+                                            ? FFLocalizations.of(context)
+                                                .getVariableText(
+                                                frText:
+                                                    'Il ne vous reste plus que 3 énigmes à résoudre sur les 5. Continuez, vous êtes presque au bout !',
+                                                enText:
+                                                    'You only have 3 puzzles left to solve out of the 5. Keep going, you\'re almost at the end!',
+                                                esText:
+                                                    'Solo te quedan 3 acertijos por resolver de los 5. ¡Sigue adelante, ya casi llegas al final!Solo te quedan 3 acertijos por resolver de los 5. ¡Sigue adelante, ya casi llegas al final!',
+                                              )
                                             : (FFAppState().NbrEnigmesFait == 3
-                                                ? 'Il ne vous reste plus que 2 énigmes à résoudre sur les 5. Continuez, vous êtes presque au bout !'
+                                                ? FFLocalizations.of(context)
+                                                    .getVariableText(
+                                                    frText:
+                                                        'Il ne vous reste plus que 2 énigmes à résoudre sur les 5. Continuez, vous êtes presque au bout !',
+                                                    enText:
+                                                        'You only have 2 puzzles left to solve out of the 5. Keep going, you\'re almost at the end!',
+                                                    esText:
+                                                        'Solo te quedan 2 acertijos por resolver de los 5. ¡Sigue adelante, ya casi llegas al final!',
+                                                  )
                                                 : (FFAppState()
                                                             .NbrEnigmesFait ==
                                                         4
-                                                    ? 'Il ne vous reste plus qu\' une énigme à résoudre sur les 5. Continuez, vous êtes presque au bout !'
-                                                    : 'Félicitations ! Vous avez résolu toutes les énigmes. Maintenant, insérez le code final pour envoyer les données trouvées.')))),
+                                                    ? FFLocalizations.of(
+                                                            context)
+                                                        .getVariableText(
+                                                        frText:
+                                                            'Il ne vous reste plus qu\' une énigme à résoudre sur les 5. Continuez, vous êtes presque au bout !',
+                                                        enText:
+                                                            'You only have one puzzle left to solve out of the 5. Keep going, you\'re almost at the end!',
+                                                        esText:
+                                                            'Solo te queda un rompecabezas de los 5 por resolver. ¡Sigue adelante, ya casi llegas al final!',
+                                                      )
+                                                    : FFLocalizations.of(
+                                                            context)
+                                                        .getVariableText(
+                                                        frText:
+                                                            'Félicitations ! Vous avez résolu toutes les énigmes. Maintenant, insérez le code final pour envoyer les données trouvées.',
+                                                        enText:
+                                                            'Congratulations ! You have solved all the puzzles. Now insert the final code to send the found data.',
+                                                        esText:
+                                                            '¡Felicitaciones! Has resuelto todos los acertijos. Ahora inserte el código final para enviar los datos encontrados.',
+                                                      ))))),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyLarge
                                     .override(
@@ -696,7 +768,7 @@ class _EnigmesWidgetState extends State<EnigmesWidget> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: Image.asset(
-                                'assets/images/Design_sans_titre.png',
+                                'assets/images/Logo_aide_design_20x20_(1).png',
                                 width: 300.0,
                                 height: 200.0,
                                 fit: BoxFit.contain,

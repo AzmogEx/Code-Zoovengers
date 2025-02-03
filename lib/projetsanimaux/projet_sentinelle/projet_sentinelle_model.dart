@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class ProjetSentinelleModel extends FlutterFlowModel<ProjetSentinelleWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -32,7 +31,6 @@ class ProjetSentinelleModel extends FlutterFlowModel<ProjetSentinelleWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     timerController.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();

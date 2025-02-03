@@ -33,7 +33,7 @@ class _EclairWidgetState extends State<EclairWidget> {
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
         FFAppState().countDown = _model.timerMilliseconds;
-        setState(() {});
+        safeSetState(() {});
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
@@ -41,7 +41,7 @@ class _EclairWidgetState extends State<EclairWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,9 +56,10 @@ class _EclairWidgetState extends State<EclairWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
@@ -107,7 +108,7 @@ class _EclairWidgetState extends State<EclairWidget> {
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
-                    if (shouldUpdate) setState(() {});
+                    if (shouldUpdate) safeSetState(() {});
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -145,7 +146,7 @@ class _EclairWidgetState extends State<EclairWidget> {
                 children: [
                   Text(
                     FFLocalizations.of(context).getText(
-                      'gczlzam2' /* Colibri thalassinus, Colibri t... */,
+                      'gczlzam2' /* Colibri thalassinus, Colibri c... */,
                     ),
                     style: FlutterFlowTheme.of(context).titleLarge.override(
                           fontFamily: 'Oswald',
@@ -158,8 +159,8 @@ class _EclairWidgetState extends State<EclairWidget> {
                     size: 50.0,
                   ),
                   const FlutterFlowVideoPlayer(
-                    path: 'assets/videos/Colibri.mp4',
-                    videoType: VideoType.asset,
+                    path: 'https://fichier.adam-marzuk.fr/video/Colibri.mp4',
+                    videoType: VideoType.network,
                     autoPlay: true,
                     looping: true,
                     showControls: false,
@@ -243,11 +244,11 @@ class _EclairWidgetState extends State<EclairWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           prefixIcon: Icon(
-                            Icons.password,
+                            Icons.key,
                             color: FlutterFlowTheme.of(context).primaryText,
                           ),
                           suffixIcon: InkWell(
-                            onTap: () => setState(
+                            onTap: () => safeSetState(
                               () => _model.passwordVisibility =
                                   !_model.passwordVisibility,
                             ),
@@ -279,20 +280,38 @@ class _EclairWidgetState extends State<EclairWidget> {
                     onPressed: () async {
                       if (FFAppState().Difficulte == true) {
                         if (_model.textController.text == '8') {
-                          FFAppState().addToMdpfinale(FFAppState().nbrmdp[0]);
-                          setState(() {});
+                          FFAppState().addToMdpfinale(
+                              FFAppState().nbrmdp.elementAtOrNull(0)!);
+                          safeSetState(() {});
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('BRAVO!'),
-                                content: const Text(
-                                    'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                                title: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText: 'BRAVO!',
+                                  enText: 'WELL DONE!',
+                                  esText: '¡BIEN HECHO!',
+                                )),
+                                content: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText:
+                                      'Felicitations, vous avez trouver un nouveau morceaux du code final.',
+                                  enText:
+                                      'Congratulations, you have found a new piece of the final code.',
+                                  esText:
+                                      'Felicitaciones, ha encontrado una nueva parte del código final.',
+                                )),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('continuer'),
+                                    child: Text(FFLocalizations.of(context)
+                                        .getVariableText(
+                                      frText: 'Continuer',
+                                      enText: 'Continue',
+                                      esText: 'Continuar',
+                                    )),
                                   ),
                                 ],
                               );
@@ -300,7 +319,9 @@ class _EclairWidgetState extends State<EclairWidget> {
                           );
                           FFAppState().NbrEnigmesFait =
                               FFAppState().NbrEnigmesFait + 1;
-                          setState(() {});
+                          safeSetState(() {});
+                          FFAppState().colibri = true;
+                          safeSetState(() {});
 
                           context.pushNamed('Accueil');
                         } else {
@@ -308,14 +329,31 @@ class _EclairWidgetState extends State<EclairWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('ERREUR!'),
-                                content:
-                                    const Text('Le code inserer n\'est pas correcte'),
+                                title: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText: 'ERREUR!',
+                                  enText: 'ERROR!',
+                                  esText: '¡ERROR!',
+                                )),
+                                content: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText:
+                                      'Le code que vous avez inséré n\'est pas le bon.',
+                                  enText:
+                                      'The code you entered is not the correct one.',
+                                  esText:
+                                      'El código que ingresaste no es el correcto.',
+                                )),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
+                                    child: Text(FFLocalizations.of(context)
+                                        .getVariableText(
+                                      frText: 'Réessayer',
+                                      enText: 'Try again',
+                                      esText: 'Intentar otra vez',
+                                    )),
                                   ),
                                 ],
                               );
@@ -324,20 +362,38 @@ class _EclairWidgetState extends State<EclairWidget> {
                         }
                       } else {
                         if (_model.textController.text == '8') {
-                          FFAppState().addToMdpfinale(FFAppState().nbrmdp[9]);
-                          setState(() {});
+                          FFAppState().addToMdpfinale(
+                              FFAppState().nbrmdp.elementAtOrNull(7)!);
+                          safeSetState(() {});
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('BRAVO!'),
-                                content: const Text(
-                                    'Felicitations, vous avez trouver un nouveau chiffre du code final.'),
+                                title: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText: 'BRAVO!',
+                                  enText: 'WELL DONE!',
+                                  esText: '¡BIEN HECHO!',
+                                )),
+                                content: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText:
+                                      'Felicitations, vous avez trouver un nouveau morceaux du code final.',
+                                  enText:
+                                      'Congratulations, you have found a new piece of the final code.',
+                                  esText:
+                                      'Felicitaciones, ha encontrado una nueva parte del código final.',
+                                )),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('continuer'),
+                                    child: Text(FFLocalizations.of(context)
+                                        .getVariableText(
+                                      frText: 'Continuer',
+                                      enText: 'Continue',
+                                      esText: 'Continuar',
+                                    )),
                                   ),
                                 ],
                               );
@@ -345,7 +401,9 @@ class _EclairWidgetState extends State<EclairWidget> {
                           );
                           FFAppState().NbrEnigmesFait =
                               FFAppState().NbrEnigmesFait + 1;
-                          setState(() {});
+                          safeSetState(() {});
+                          FFAppState().colibri = true;
+                          safeSetState(() {});
 
                           context.pushNamed('Accueil');
                         } else {
@@ -353,14 +411,31 @@ class _EclairWidgetState extends State<EclairWidget> {
                             context: context,
                             builder: (alertDialogContext) {
                               return AlertDialog(
-                                title: const Text('ERREUR!'),
-                                content:
-                                    const Text('Le code inserer n\'est pas correcte'),
+                                title: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText: 'ERREUR!',
+                                  enText: 'ERROR!',
+                                  esText: '¡ERROR!',
+                                )),
+                                content: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText:
+                                      'Le code que vous avez inséré n\'est pas le bon.',
+                                  enText:
+                                      'The code you entered is not the correct one.',
+                                  esText:
+                                      'El código que ingresaste no es el correcto.',
+                                )),
                                 actions: [
                                   TextButton(
                                     onPressed: () =>
                                         Navigator.pop(alertDialogContext),
-                                    child: const Text('Ok'),
+                                    child: Text(FFLocalizations.of(context)
+                                        .getVariableText(
+                                      frText: 'Réessayer',
+                                      enText: 'Try again',
+                                      esText: 'Intentar otra vez',
+                                    )),
                                   ),
                                 ],
                               );

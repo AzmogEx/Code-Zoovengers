@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class ScanModel extends FlutterFlowModel<ScanWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -19,14 +18,14 @@ class ScanModel extends FlutterFlowModel<ScanWidget> {
   FlutterFlowTimerController timerController =
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countDown));
 
-  var adnScans = '';
+  // Stores action output result for [Custom Action - scanQRCode] action in Button widget.
+  String? adnScans;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     timerController.dispose();
   }
 }

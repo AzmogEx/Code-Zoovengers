@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class _WinWidgetState extends State<WinWidget> {
     super.initState();
     _model = createModel(context, () => WinModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -40,9 +41,10 @@ class _WinWidgetState extends State<WinWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
@@ -85,8 +87,7 @@ class _WinWidgetState extends State<WinWidget> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 100.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
                       '46w5o9af' /* Vous avez réussi à retrouvez t... */,
@@ -99,40 +100,111 @@ class _WinWidgetState extends State<WinWidget> {
                         ),
                   ),
                 ),
-                FlutterFlowTimer(
-                  initialTime: valueOrDefault<int>(
-                    FFAppState().deuxheures - FFAppState().countDown,
-                    0,
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  child: FlutterFlowTimer(
+                    initialTime: valueOrDefault<int>(
+                      FFAppState().deuxheures - FFAppState().countDown,
+                      0,
+                    ),
+                    getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
+                      value,
+                      hours: false,
+                      milliSecond: false,
+                    ),
+                    controller: _model.timerController,
+                    updateStateInterval: const Duration(milliseconds: 1000),
+                    onChanged: (value, displayTime, shouldUpdate) {
+                      _model.timerMilliseconds = value;
+                      _model.timerValue = displayTime;
+                      if (shouldUpdate) safeSetState(() {});
+                    },
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily: 'Oswald',
+                          fontSize: 40.0,
+                          letterSpacing: 0.0,
+                        ),
                   ),
-                  getDisplayTime: (value) => StopWatchTimer.getDisplayTime(
-                    value,
-                    hours: false,
-                    milliSecond: false,
+                ),
+                const Align(
+                  alignment: AlignmentDirectional(0.0, 0.0),
+                  child: FlutterFlowVideoPlayer(
+                    path: 'assets/videos/final.mp4',
+                    videoType: VideoType.asset,
+                    autoPlay: true,
+                    looping: false,
+                    showControls: true,
+                    allowFullScreen: true,
+                    allowPlaybackSpeedMenu: false,
                   ),
-                  controller: _model.timerController,
-                  updateStateInterval: const Duration(milliseconds: 1000),
-                  onChanged: (value, displayTime, shouldUpdate) {
-                    _model.timerMilliseconds = value;
-                    _model.timerValue = displayTime;
-                    if (shouldUpdate) setState(() {});
-                  },
-                  textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Oswald',
-                        fontSize: 40.0,
-                        letterSpacing: 0.0,
-                      ),
                 ),
                 if (FFAppState().continuer == false)
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 100.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         FFAppState().continuer = true;
-                        setState(() {});
+                        safeSetState(() {});
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text(
+                                  FFLocalizations.of(context).getVariableText(
+                                frText: 'Attention:',
+                                enText: 'Attention:',
+                                esText: 'Atención:',
+                              )),
+                              content: Text(
+                                  FFLocalizations.of(context).getVariableText(
+                                frText:
+                                    'Vous pouvez maintenant scanner les 5 autres traces d’adn, Les énigmes vont maintenant s’adapter au niveau de difficulté que vous avez choisit',
+                                enText:
+                                    'You can now scan the other 5 DNA traces. The puzzles will now adapt to the difficulty level you have chosen.',
+                                esText:
+                                    'Ahora puedes escanear los otros 5 rastros de ADN. Los rompecabezas ahora se adaptarán al nivel de dificultad que hayas elegido.',
+                              )),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText: 'Continuer',
+                                    enText: 'Continue',
+                                    esText: 'Continuar',
+                                  )),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                        FFAppState().hygrochrome = false;
+                        safeSetState(() {});
                         FFAppState().adnScan = [];
-                        setState(() {});
+                        safeSetState(() {});
+                        FFAppState().ours = false;
+                        safeSetState(() {});
+                        FFAppState().guerrisseur = false;
+                        safeSetState(() {});
+                        FFAppState().chauve = false;
+                        safeSetState(() {});
+                        FFAppState().chamois = false;
+                        safeSetState(() {});
+                        FFAppState().colibri = false;
+                        safeSetState(() {});
+                        FFAppState().panthere = false;
+                        safeSetState(() {});
+                        FFAppState().paresseux = false;
+                        safeSetState(() {});
+                        FFAppState().ornythorinque = false;
+                        safeSetState(() {});
+                        FFAppState().sucre = false;
+                        safeSetState(() {});
+                        FFAppState().hibou = false;
+                        safeSetState(() {});
 
                         context.pushNamed('Accueil');
                       },

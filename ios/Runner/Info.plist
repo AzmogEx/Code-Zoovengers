@@ -48,8 +48,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
+
 	<key>NSCameraUsageDescription</key>
-    <string>In order to scan for barcodes and QR codes, this app requires permission to access the camera.</string>
+    <string>Veuillez activez la permission d'accéder à la caméra pour scanner les qr codes du jeu de piste.</string>
 	<key>NSMicrophoneUsageDescription</key>
     <string>We need microphone for show you the different videos of the application</string>
 	<key>NSMicrophoneUsageDescription</key>

@@ -42,3 +42,4 @@ export '/projetsanimaux/symbioz/symbioz_widget.dart' show SymbiozWidget;
 export '/projetsanimaux/tasmanie/tasmanie_widget.dart' show TasmanieWidget;
 export '/pages/demarrage/demarrage_widget.dart' show DemarrageWidget;
 export '/pages/video/video_widget.dart' show VideoWidget;
+export '/pages/revisionnage/revisionnage_widget.dart' show RevisionnageWidget;

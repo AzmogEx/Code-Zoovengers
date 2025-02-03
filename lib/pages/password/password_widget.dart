@@ -32,7 +32,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
         FFAppState().countDown = _model.timerMilliseconds;
-        setState(() {});
+        safeSetState(() {});
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
@@ -40,7 +40,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     _model.passWordTextController ??= TextEditingController();
     _model.passWordFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -55,9 +55,10 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -83,7 +84,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     onChanged: (value, displayTime, shouldUpdate) {
                       _model.timerMilliseconds = value;
                       _model.timerValue = displayTime;
-                      if (shouldUpdate) setState(() {});
+                      if (shouldUpdate) safeSetState(() {});
                     },
                     textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -249,7 +250,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 .secondaryBackground,
                           ),
                           suffixIcon: InkWell(
-                            onTap: () => setState(
+                            onTap: () => safeSetState(
                               () => _model.passWordVisibility =
                                   !_model.passWordVisibility,
                             ),
@@ -281,7 +282,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Lottie.asset(
-                        'assets/lottie_animations/animSend.json',
+                        'assets/jsons/animSend.json',
                         width: 311.0,
                         height: 130.0,
                         fit: BoxFit.cover,
@@ -292,7 +293,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                     Align(
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Lottie.asset(
-                        'assets/lottie_animations/AnimCheck.json',
+                        'assets/jsons/AnimCheck.json',
                         width: 188.0,
                         height: 152.0,
                         fit: BoxFit.cover,
@@ -312,11 +313,18 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 if (_model.passWordTextController.text ==
                                     '20127') {
                                   FFAppState().animVerif = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Verification des fichiers adn !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Verification des fichiers adn !',
+                                          enText: 'Checking DNA files!',
+                                          esText:
+                                              '¡Comprobando archivos de ADN!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -329,13 +337,21 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 8000));
                                   FFAppState().animVerif = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   FFAppState().animSend = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                          enText:
+                                              'File being sent to the agency\'s servers!',
+                                          esText:
+                                              '¡Archivo enviado a los servidores de la agencia!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -348,7 +364,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 5000));
                                   FFAppState().animSend = false;
-                                  setState(() {});
+                                  safeSetState(() {});
 
                                   context.pushNamed('Win');
                                 } else {
@@ -356,14 +372,33 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: const Text('ERREUR'),
-                                        content: const Text(
-                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        title: Text(FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText: 'Erreur!',
+                                          enText: 'Error!',
+                                          esText: 'Error',
+                                        )),
+                                        content: Text(
+                                            FFLocalizations.of(context)
+                                                .getVariableText(
+                                          frText:
+                                              'Le code que vous avez envoyer n\'est pas correct',
+                                          enText:
+                                              'The code you sent is not good',
+                                          esText:
+                                              'El codigo que enviaste no es bueno',
+                                        )),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('reesayyer'),
+                                            child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getVariableText(
+                                              frText: 'Réessayer',
+                                              enText: 'Retry',
+                                              esText: 'Intentar otra vez',
+                                            )),
                                           ),
                                         ],
                                       );
@@ -372,13 +407,20 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 }
                               } else {
                                 if (_model.passWordTextController.text ==
-                                    '03029') {
+                                    '63184') {
                                   FFAppState().animVerif = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Verification des fichiers adn !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Verification des fichiers adn !',
+                                          enText: 'Checking DNA files!',
+                                          esText:
+                                              '¡Comprobando archivos de ADN!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -391,13 +433,21 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 8000));
                                   FFAppState().animVerif = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   FFAppState().animSend = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                          enText:
+                                              'File being sent to the agency\'s servers!',
+                                          esText:
+                                              '¡Archivo enviado a los servidores de la agencia!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -410,7 +460,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 5000));
                                   FFAppState().animSend = false;
-                                  setState(() {});
+                                  safeSetState(() {});
 
                                   context.pushNamed('Win');
                                 } else {
@@ -418,14 +468,33 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: const Text('ERREUR'),
-                                        content: const Text(
-                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        title: Text(FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText: 'Erreur!',
+                                          enText: 'Error!',
+                                          esText: 'Error',
+                                        )),
+                                        content: Text(
+                                            FFLocalizations.of(context)
+                                                .getVariableText(
+                                          frText:
+                                              'Le code que vous avez envoyer n\'est pas correct',
+                                          enText:
+                                              'The code you sent is not good',
+                                          esText:
+                                              'El codigo que enviaste no es bueno',
+                                        )),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('reesayyer'),
+                                            child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getVariableText(
+                                              frText: 'Réessayer',
+                                              enText: 'Retry',
+                                              esText: 'Intentar otra vez',
+                                            )),
                                           ),
                                         ],
                                       );
@@ -438,11 +507,18 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 if (_model.passWordTextController.text ==
                                     '63184') {
                                   FFAppState().animVerif = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Verification des fichiers adn !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Verification des fichiers adn !',
+                                          enText: 'Checking DNA files!',
+                                          esText:
+                                              '¡Comprobando archivos de ADN!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -455,13 +531,21 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 8000));
                                   FFAppState().animVerif = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   FFAppState().animSend = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                          enText:
+                                              'File being sent to the agency\'s servers!',
+                                          esText:
+                                              '¡Archivo enviado a los servidores de la agencia!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -474,7 +558,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 5000));
                                   FFAppState().animSend = false;
-                                  setState(() {});
+                                  safeSetState(() {});
 
                                   context.pushNamed('Win');
                                 } else {
@@ -482,14 +566,33 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: const Text('ERREUR'),
-                                        content: const Text(
-                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        title: Text(FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText: 'Erreur!',
+                                          enText: 'Error!',
+                                          esText: 'Error',
+                                        )),
+                                        content: Text(
+                                            FFLocalizations.of(context)
+                                                .getVariableText(
+                                          frText:
+                                              'Le code que vous avez envoyer n\'est pas correct',
+                                          enText:
+                                              'The code you sent is not good',
+                                          esText:
+                                              'El codigo que enviaste no es bueno',
+                                        )),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('reesayyer'),
+                                            child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getVariableText(
+                                              frText: 'Réessayer',
+                                              enText: 'Retry',
+                                              esText: 'Intentar otra vez',
+                                            )),
                                           ),
                                         ],
                                       );
@@ -500,11 +603,18 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                 if (_model.passWordTextController.text ==
                                     '54972') {
                                   FFAppState().animVerif = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Verification des fichiers adn !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Verification des fichiers adn !',
+                                          enText: 'Checking DNA files!',
+                                          esText:
+                                              '¡Comprobando archivos de ADN!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -517,13 +627,21 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 8000));
                                   FFAppState().animVerif = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   FFAppState().animSend = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Fichier en cours d\'envoi sur les serveurs de l\'agence !',
+                                          enText:
+                                              'File being sent to the agency\'s servers!',
+                                          esText:
+                                              '¡Archivo enviado a los servidores de la agencia!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -536,7 +654,7 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                   await Future.delayed(
                                       const Duration(milliseconds: 5000));
                                   FFAppState().animSend = false;
-                                  setState(() {});
+                                  safeSetState(() {});
 
                                   context.pushNamed('Win');
                                 } else {
@@ -544,14 +662,33 @@ class _PasswordWidgetState extends State<PasswordWidget> {
                                     context: context,
                                     builder: (alertDialogContext) {
                                       return AlertDialog(
-                                        title: const Text('ERREUR'),
-                                        content: const Text(
-                                            'le code que vous avez envoyer n\'est pas bon'),
+                                        title: Text(FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText: 'Erreur!',
+                                          enText: 'Error!',
+                                          esText: 'Error',
+                                        )),
+                                        content: Text(
+                                            FFLocalizations.of(context)
+                                                .getVariableText(
+                                          frText:
+                                              'Le code que vous avez envoyer n\'est pas correct',
+                                          enText:
+                                              'The code you sent is not good',
+                                          esText:
+                                              'El codigo que enviaste no es bueno',
+                                        )),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(
                                                 alertDialogContext),
-                                            child: const Text('reesayyer'),
+                                            child: Text(
+                                                FFLocalizations.of(context)
+                                                    .getVariableText(
+                                              frText: 'Réessayer',
+                                              enText: 'Retry',
+                                              esText: 'Intentar otra vez',
+                                            )),
                                           ),
                                         ],
                                       );

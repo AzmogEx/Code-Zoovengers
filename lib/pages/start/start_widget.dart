@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'start_model.dart';
 export 'start_model.dart';
@@ -21,6 +22,8 @@ class _StartWidgetState extends State<StartWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => StartModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -33,9 +36,10 @@ class _StartWidgetState extends State<StartWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -97,7 +101,7 @@ class _StartWidgetState extends State<StartWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           FFAppState().Difficulte = false;
-                          setState(() {});
+                          safeSetState(() {});
 
                           context.pushNamed('Timer');
                         },
@@ -121,8 +125,8 @@ class _StartWidgetState extends State<StartWidget> {
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                            color: Color(0xFF00FF10),
+                            width: 3.0,
                           ),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
@@ -147,7 +151,41 @@ class _StartWidgetState extends State<StartWidget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           FFAppState().Difficulte = true;
-                          setState(() {});
+                          safeSetState(() {});
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText: 'Attention:',
+                                  enText: 'Attention:',
+                                  esText: 'Atención:',
+                                )),
+                                content: Text(
+                                    FFLocalizations.of(context).getVariableText(
+                                  frText:
+                                      'Pour plus de praticité, pensez à vous munir d\'une feuille et d\'un crayon auprès des gardiens de la salle.',
+                                  enText:
+                                      'For convenience, remember to bring a sheet of paper and a pencil from the room attendants.',
+                                  esText:
+                                      'Para mayor comodidad, recuerda traer un papel y un lápiz de parte de los encargados de la sala.',
+                                )),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text(FFLocalizations.of(context)
+                                        .getVariableText(
+                                      frText: 'Ok',
+                                      enText: 'Ok',
+                                      esText: 'Ok',
+                                    )),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
 
                           context.pushNamed('Timer');
                         },
@@ -171,8 +209,8 @@ class _StartWidgetState extends State<StartWidget> {
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                            color: Color(0xFFCF00FF),
+                            width: 3.0,
                           ),
                           borderRadius: BorderRadius.circular(12.0),
                         ),
@@ -182,10 +220,10 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.83, 0.14),
+                alignment: const AlignmentDirectional(0.7, 0.15),
                 child: Text(
                   FFLocalizations.of(context).getText(
-                    'l3dg3sze' /* 10ans et + */,
+                    'l3dg3sze' /* Casse tête */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
@@ -196,11 +234,12 @@ class _StartWidgetState extends State<StartWidget> {
               ),
               Align(
                 alignment: const AlignmentDirectional(-0.02, 0.58),
-                child: Text(
+                child: AutoSizeText(
                   FFLocalizations.of(context).getText(
                     '8e6so0wr' /* Attention : le choix de la dif... */,
                   ),
                   textAlign: TextAlign.center,
+                  minFontSize: 14.0,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',
                         fontSize: 14.0,
@@ -209,10 +248,10 @@ class _StartWidgetState extends State<StartWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(-0.79, 0.14),
+                alignment: const AlignmentDirectional(-0.71, 0.14),
                 child: Text(
                   FFLocalizations.of(context).getText(
-                    '22xd5sx7' /* 7 ans */,
+                    '22xd5sx7' /* Observation */,
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Manrope',

@@ -2,10 +2,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:provider/provider.dart';
 import 'scan_model.dart';
 export 'scan_model.dart';
@@ -34,8 +34,8 @@ class _ScanWidgetState extends State<ScanWidget> {
         Future(() async {
           while (FFAppState().adnScan.contains(
               FFAppState().adnScan.contains(_model.adnScans).toString())) {
-            FFAppState().addToAdnScan(_model.adnScans);
-            setState(() {});
+            FFAppState().addToAdnScan(_model.adnScans!);
+            safeSetState(() {});
             await Future.delayed(const Duration(milliseconds: 200));
           }
         }),
@@ -46,7 +46,7 @@ class _ScanWidgetState extends State<ScanWidget> {
             _model.timerController.onStartTimer();
             while (FFAppState().countDown != null) {
               FFAppState().countDown = _model.timerMilliseconds;
-              setState(() {});
+              safeSetState(() {});
               await Future.delayed(const Duration(milliseconds: 200));
             }
           }
@@ -54,7 +54,7 @@ class _ScanWidgetState extends State<ScanWidget> {
       ]);
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -69,9 +69,10 @@ class _ScanWidgetState extends State<ScanWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
@@ -108,7 +109,7 @@ class _ScanWidgetState extends State<ScanWidget> {
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
-                    if (shouldUpdate) setState(() {});
+                    if (shouldUpdate) safeSetState(() {});
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -190,18 +191,13 @@ class _ScanWidgetState extends State<ScanWidget> {
                         const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        _model.adnScans =
-                            await FlutterBarcodeScanner.scanBarcode(
-                          '#C62828', // scanning line color
-                          FFLocalizations.of(context).getText(
-                            'w9msst5p' /* Cancel */,
-                          ), // cancel button text
-                          true, // whether to show the flash icon
-                          ScanMode.QR,
+                        var shouldSetState = false;
+                        _model.adnScans = await actions.scanQRCode(
+                          context,
                         );
-
-                        FFAppState().addToAdnScan(_model.adnScans);
-                        setState(() {});
+                        shouldSetState = true;
+                        FFAppState().addToAdnScan(_model.adnScans!);
+                        safeSetState(() {});
                         if (FFAppState().Difficulte == true) {
                           if (FFAppState().continuer == true) {
                             await Future.wait([
@@ -211,7 +207,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -222,7 +226,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('FANTOME');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -233,7 +239,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -244,7 +258,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('MARSUPIAL');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -253,7 +269,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -264,7 +288,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('TASMANIE');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -273,7 +299,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -284,7 +318,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('ECLAIR');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -295,7 +331,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -306,10 +350,25 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('HYGROCHROME');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                             ]);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'ADN Correctement scanner, projet ajouter dans la section enigme !',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor: const Color(0xFF3CEF26),
+                              ),
+                            );
                           } else {
                             await Future.wait([
                               Future(() async {
@@ -320,7 +379,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -331,7 +398,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('BERSERKER');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -340,7 +409,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -351,7 +428,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('AXOLOLT');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -360,7 +439,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -371,7 +458,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('SYMBIOZ');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -380,7 +469,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -391,7 +488,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('RESSORT');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -402,7 +501,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -413,7 +520,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('SENTINELLE');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                             ]);
@@ -440,7 +549,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -451,7 +568,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('FANTOME');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -462,7 +581,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -473,7 +600,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('MARSUPIAL');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -482,7 +611,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -493,7 +630,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('TASMANIE');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -502,7 +641,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -513,7 +660,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('ECLAIR');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -524,7 +673,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'vous pouvez pas scanner 2 fois le meme adn',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -535,10 +692,25 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('HYGROCHROME');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                             ]);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'ADN Correctement scanner, projet ajouter dans la section enigme !',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor: const Color(0xFF3CEF26),
+                              ),
+                            );
                           } else {
                             await Future.wait([
                               Future(() async {
@@ -549,7 +721,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -560,7 +740,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('BERSERKER');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -569,7 +751,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -580,7 +770,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('AXOLOLT');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -589,7 +781,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -600,7 +800,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('SYMBIOZ');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -609,7 +811,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -620,7 +830,9 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('RESSORT');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                               Future(() async {
@@ -631,7 +843,15 @@ class _ScanWidgetState extends State<ScanWidget> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Attention, vous ne pouvez pas scanner d\'ADN difficile dans ce mode de jeu !',
+                                        FFLocalizations.of(context)
+                                            .getVariableText(
+                                          frText:
+                                              'Attention, vous avez déjà scanner cet ADN ou alors il sera disponible dans une prochaine mission !',
+                                          enText:
+                                              'Be careful, you have already scanned this DNA or it will be available in a future mission!',
+                                          esText:
+                                              '¡Ten cuidado, ya has escaneado este ADN o estará disponible en una futura misión!',
+                                        ),
                                         style: TextStyle(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryText,
@@ -642,14 +862,29 @@ class _ScanWidgetState extends State<ScanWidget> {
                                     ),
                                   );
                                   FFAppState().removeFromAdnScan('SENTINELLE');
-                                  setState(() {});
+                                  safeSetState(() {});
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
                                 }
                               }),
                             ]);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'ADN Correctement scanner, projet ajouter dans la section enigme !',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor: const Color(0xFF3CEF26),
+                              ),
+                            );
                           }
                         }
 
-                        setState(() {});
+                        if (shouldSetState) safeSetState(() {});
                       },
                       text: FFLocalizations.of(context).getText(
                         '3ayp5h8n' /* Démarrer le scan */,

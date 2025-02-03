@@ -33,7 +33,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
       _model.timerController.onStartTimer();
       while (FFAppState().countDown != null) {
         FFAppState().countDown = _model.timerMilliseconds;
-        setState(() {});
+        safeSetState(() {});
         await Future.delayed(const Duration(milliseconds: 200));
       }
     });
@@ -41,7 +41,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -56,9 +56,10 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
     context.watch<FFAppState>();
 
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFF7A90A4),
@@ -81,7 +82,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              '8emgfua1' /* NUIT NOIR */,
+              '8emgfua1' /* NUIT NOIRE */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Oswald',
@@ -107,7 +108,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                   onChanged: (value, displayTime, shouldUpdate) {
                     _model.timerMilliseconds = value;
                     _model.timerValue = displayTime;
-                    if (shouldUpdate) setState(() {});
+                    if (shouldUpdate) safeSetState(() {});
                   },
                   textAlign: TextAlign.start,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
@@ -148,7 +149,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                       alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Text(
                         FFLocalizations.of(context).getText(
-                          'cnrmfgx4' /* PROJET NUIT NOIR */,
+                          'cnrmfgx4' /* PROJET NUIT NOIRE */,
                         ),
                         textAlign: TextAlign.center,
                         style:
@@ -159,7 +160,8 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                                 ),
                       ),
                     ),
-                    if (FFAppState().Difficulte == false)
+                    if ((FFAppState().Difficulte == false) &&
+                        (FFAppState().lang == 'fr'))
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -196,7 +198,8 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                           ),
                         ),
                       ),
-                    if (FFAppState().Difficulte == true)
+                    if ((FFAppState().Difficulte == true) &&
+                        (FFAppState().lang == 'fr'))
                       InkWell(
                         splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
@@ -226,6 +229,158 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
                               'assets/images/NUIT_NOIR_DIFFICILE.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == false) &&
+                        (FFAppState().lang == 'en'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/nuit%20noir%20en%20facile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag3',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag3',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/nuit%20noir%20en%20facile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == true) &&
+                        (FFAppState().lang == 'en'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/nuit%20noir%20en%20difficile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag4',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag4',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/nuit%20noir%20en%20difficile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == false) &&
+                        (FFAppState().lang == 'es'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/nuit%20noir%20es%20facile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag5',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag5',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/nuit%20noir%20es%20facile.png',
+                              width: MediaQuery.sizeOf(context).width * 0.7,
+                              height: MediaQuery.sizeOf(context).height * 0.7,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if ((FFAppState().Difficulte == true) &&
+                        (FFAppState().lang == 'es'))
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.network(
+                                  'https://fichier.adam-marzuk.fr/img/nuit%20noir%20es%20difficile.png',
+                                  fit: BoxFit.contain,
+                                ),
+                                allowRotation: true,
+                                tag: 'imageTag6',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag6',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              'https://fichier.adam-marzuk.fr/img/nuit%20noir%20es%20difficile.png',
                               width: MediaQuery.sizeOf(context).width * 0.7,
                               height: MediaQuery.sizeOf(context).height * 0.7,
                               fit: BoxFit.contain,
@@ -297,11 +452,11 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             prefixIcon: Icon(
-                              Icons.password,
+                              Icons.key,
                               color: FlutterFlowTheme.of(context).primaryText,
                             ),
                             suffixIcon: InkWell(
-                              onTap: () => setState(
+                              onTap: () => safeSetState(
                                 () => _model.passwordVisibility =
                                     !_model.passwordVisibility,
                               ),
@@ -334,7 +489,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                         if (FFAppState().Difficulte == true) {
                           if (_model.textController.text == '1551') {
                             FFAppState().hygrochrome = true;
-                            setState(() {});
+                            safeSetState(() {});
 
                             context.pushNamed(
                               'nuit',
@@ -351,14 +506,31 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('ERREUR!'),
-                                  content: const Text(
-                                      'Le code que vous avez inséré n\'est pas le bon.'),
+                                  title: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText: 'ERREUR!',
+                                    enText: 'ERROR!',
+                                    esText: '¡ERROR!',
+                                  )),
+                                  content: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText:
+                                        'Le code que vous avez inséré n\'est pas le bon.',
+                                    enText:
+                                        'The code you entered is not the correct one.',
+                                    esText:
+                                        'El código que ingresaste no es el correcto.',
+                                  )),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(alertDialogContext),
-                                      child: const Text('Réessayer'),
+                                      child: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        frText: 'Réessayer',
+                                        enText: 'Try again',
+                                        esText: 'Intentar otra vez',
+                                      )),
                                     ),
                                   ],
                                 );
@@ -368,7 +540,7 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                         } else {
                           if (_model.textController.text == '1792') {
                             FFAppState().hygrochrome = true;
-                            setState(() {});
+                            safeSetState(() {});
 
                             context.pushNamed(
                               'nuit',
@@ -385,14 +557,31 @@ class _ProjetNuitWidgetState extends State<ProjetNuitWidget> {
                               context: context,
                               builder: (alertDialogContext) {
                                 return AlertDialog(
-                                  title: const Text('ERREUR!'),
-                                  content: const Text(
-                                      'Le code que vous avez inséré n\'est pas le bon.'),
+                                  title: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText: 'ERREUR!',
+                                    enText: 'ERROR!',
+                                    esText: '¡ERROR!',
+                                  )),
+                                  content: Text(FFLocalizations.of(context)
+                                      .getVariableText(
+                                    frText:
+                                        'Le code que vous avez inséré n\'est pas le bon.',
+                                    enText:
+                                        'The code you entered is not the correct one.',
+                                    esText:
+                                        'El código que ingresaste no es el correcto.',
+                                  )),
                                   actions: [
                                     TextButton(
                                       onPressed: () =>
                                           Navigator.pop(alertDialogContext),
-                                      child: const Text('Réessayer'),
+                                      child: Text(FFLocalizations.of(context)
+                                          .getVariableText(
+                                        frText: 'Réessayer',
+                                        enText: 'Try again',
+                                        esText: 'Intentar otra vez',
+                                      )),
                                     ),
                                   ],
                                 );
